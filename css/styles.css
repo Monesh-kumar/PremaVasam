@@ -1,0 +1,191 @@
+/**
+ * ══════════════════════════════════════════════════════════
+ * PREMA VASAM &bull; 2026 Enhanced Stylesheet (css/styles.css)
+ * Warm Amber / Golden Accent Palette &bull; High Contrast & Accessibility
+ * ══════════════════════════════════════════════════════════
+ */
+
+:root {
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+
+  --color-brand: #C17F24;
+  --color-brand-light: #E69D3B;
+  --color-brand-dark: #8F5912;
+  --color-brand-soft: #FDF4E7;
+  --color-brand-border: #F0D7B6;
+
+  --color-bg: #FEF9F2;
+  --color-surface: #FFFFFF;
+  --color-text-dark: #1F1510;
+  --color-text-mid: #68574B;
+  --color-text-soft: #9E8C7F;
+
+  --base-font-size: 16px;
+}
+
+html {
+  font-size: var(--base-font-size);
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text-dark);
+  line-height: 1.6;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: var(--font-heading);
+}
+
+/* ── HIGH CONTRAST THEME ───────────────────────────────────── */
+body.high-contrast {
+  --color-bg: #000000 !important;
+  --color-surface: #121212 !important;
+  --color-text-dark: #FFFFFF !important;
+  --color-text-mid: #E0E0E0 !important;
+  --color-text-soft: #B0B0B0 !important;
+  --color-brand: #FFD27D !important;
+  --color-brand-light: #FFE4A8 !important;
+  --color-brand-soft: #241A0A !important;
+  --color-brand-border: #FFD27D !important;
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+}
+
+body.high-contrast .bg-white {
+  background-color: #161616 !important;
+}
+
+body.high-contrast .bg-amber-50 {
+  background-color: #1F180A !important;
+}
+
+body.high-contrast .text-stone-600,
+body.high-contrast .text-stone-700,
+body.high-contrast .text-stone-800 {
+  color: #F0F0F0 !important;
+}
+
+body.high-contrast .border-amber-200,
+body.high-contrast .border-amber-100,
+body.high-contrast .border-stone-200 {
+  border-color: #FFD27D !important;
+}
+
+/* ── INTERACTIVE TAB STYLES ────────────────────────────────── */
+.about-tab-btn {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border-bottom: 3px solid transparent;
+}
+
+.about-tab-btn.active {
+  color: #C17F24;
+  border-bottom-color: #C17F24;
+  background-color: #FFFDF9;
+  font-weight: 700;
+}
+
+body.high-contrast .about-tab-btn.active {
+  color: #FFD27D !important;
+  border-bottom-color: #FFD27D !important;
+  background-color: #241A0A !important;
+}
+
+.tab-pane {
+  display: none;
+  animation: fadeIn 0.35s ease;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── MEALS CALCULATOR CARDS ────────────────────────────────── */
+.meal-calc-card {
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  user-select: none;
+}
+
+.meal-calc-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(193, 127, 36, 0.12);
+}
+
+.meal-calc-card.selected {
+  border-color: #C17F24 !important;
+  background-color: #FFFDF8 !important;
+  box-shadow: 0 4px 18px rgba(193, 127, 36, 0.18) !important;
+}
+
+.meal-calc-card.selected .meal-check {
+  background-color: #C17F24 !important;
+  color: #FFFFFF !important;
+  border-color: #C17F24 !important;
+}
+
+/* ── GALLERY FILTER PILLS ──────────────────────────────────── */
+.gal-filter-btn {
+  transition: all 0.2s ease;
+}
+
+.gal-filter-btn.active {
+  background-color: #C17F24 !important;
+  color: #FFFFFF !important;
+}
+
+/* ── LIGHTBOX MODAL ────────────────────────────────────────── */
+#lightboxModal {
+  backdrop-filter: blur(8px);
+}
+
+/* ── ACCESSIBILITY CONTROLS ────────────────────────────────── */
+.a11y-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid rgba(193, 127, 36, 0.3);
+  background: #FFFFFF;
+  color: #1F1510;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.a11y-btn:hover {
+  background: #C17F24;
+  color: #FFFFFF;
+  border-color: #C17F24;
+}
+
+body.high-contrast .a11y-btn {
+  background: #000000;
+  color: #FFD27D;
+  border-color: #FFD27D;
+}
+
+/* ── CLIPBOARD COPY TOAST ──────────────────────────────────── */
+#toastNotification {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(100px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+#toastNotification.show {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}

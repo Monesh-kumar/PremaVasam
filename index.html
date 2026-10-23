@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="theme-color" content="#C17F24">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Prema Vasam">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="https://www.premavasam.org/sites/default/files/logo_0.png">
+  <title>Prema Vasam &bull; A Home of Love, Dignity &amp; Hope | Est. 1999</title>
+  <meta name="description" content="Prema Vasam is a non-profit residential home and special school in Chennai, India for 200+ differently-abled and underprivileged children. Registered Trust No. 419 of 1999.">
+  <link rel="shortcut icon" href="/images/logo.png" type="image/png">
+
+  <!-- Google Fonts: Outfit (Headings) + Plus Jakarta Sans (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#FDF8F0',
+              100: '#FBF0DE',
+              200: '#F6DCB6',
+              300: '#EFC585',
+              400: '#E69D3B',
+              500: '#C17F24',
+              600: '#A46519',
+              700: '#824A15',
+              800: '#683B17',
+              900: '#543015',
+            }
+          },
+          fontFamily: {
+            heading: ['Outfit', 'sans-serif'],
+            body: ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body class="bg-[#FEF9F2] text-stone-900 antialiased selection:bg-amber-200 selection:text-amber-900">
+
+  <!-- ════════════════════════════════════════════════════════════
+       1. HEADER & ACCESSIBILITY CONTROLS
+  ════════════════════════════════════════════════════════════ -->
+  <header class="sticky top-0 z-40 bg-[#FEF9F2]/95 backdrop-blur-md border-b border-amber-200/70 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Brand Emblem & Tagline -->
+        <a href="#hero" class="flex items-center gap-3.5 group">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-600 to-amber-400 p-0.5 shadow-md group-hover:scale-105 transition duration-200">
+            <div class="w-full h-full bg-white rounded-[14px] flex items-center justify-center overflow-hidden p-1">
+              <img src="/images/logo.png" alt="Prema Vasam Logo" class="w-full h-full object-contain">
+            </div>
+          </div>
+          <div>
+            <span class="block font-heading text-2xl font-bold tracking-tight text-stone-900 group-hover:text-amber-700 transition">PREMA VASAM</span>
+            <span class="block text-xs font-semibold uppercase tracking-wider text-amber-700">Where Love Resides &bull; Est. 1999</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-6 font-medium text-sm text-stone-700">
+          <a href="#about" class="hover:text-amber-600 transition">About Us</a>
+          <a href="#meals-planner" class="hover:text-amber-600 transition">Sponsor Meals</a>
+          <a href="#campuses" class="hover:text-amber-600 transition">Campuses</a>
+          <a href="#therapies" class="hover:text-amber-600 transition">Therapies</a>
+          <a href="#gallery" class="hover:text-amber-600 transition">Gallery</a>
+          <a href="#donate" class="hover:text-amber-600 transition">Donation Hub</a>
+          <a href="#volunteer" class="hover:text-amber-600 transition">Volunteer</a>
+          <a href="#contact" class="hover:text-amber-600 transition">Contact</a>
+        </nav>
+
+        <!-- Accessibility Controls & Header CTA -->
+        <div class="flex items-center gap-3">
+          <!-- A11y Sizing & Contrast Controls -->
+          <div class="flex items-center gap-1.5 bg-amber-100/60 p-1 rounded-lg border border-amber-300/50" title="Accessibility Controls">
+            <button onclick="adjustFontSize(-1)" class="a11y-btn text-xs" title="Decrease font size" aria-label="Decrease text size">A-</button>
+            <button onclick="adjustFontSize(1)" class="a11y-btn text-xs" title="Increase font size" aria-label="Increase text size">A+</button>
+            <button onclick="toggleHighContrast()" class="a11y-btn" title="Toggle high contrast theme" aria-label="High contrast mode">
+              <i data-lucide="contrast" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <!-- Quick Donate CTA -->
+          <a href="#donate" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-700 hover:to-amber-600 text-white font-semibold text-sm px-4 py-2.5 rounded-xl shadow-md shadow-amber-600/20 transition transform hover:-translate-y-0.5">
+            <i data-lucide="heart" class="w-4 h-4 fill-white"></i>
+            <span>Donate 80G</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ════════════════════════════════════════════════════════════
+         2. HERO SECTION
+    ════════════════════════════════════════════════════════════ -->
+    <section id="hero" class="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <div class="lg:col-span-7 space-y-6">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100 border border-amber-300/80 text-amber-900 text-xs font-bold uppercase tracking-wider">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-600"></i>
+              <span>Chennai's Haven of Unconditional Love Since 1999</span>
+            </div>
+
+            <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-stone-900 tracking-tight leading-[1.12]">
+              Where Every Child Finds <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-700 via-amber-600 to-amber-500">Love, Dignity &amp; Hope</span>
+            </h1>
+
+            <p class="text-lg text-stone-700 max-w-2xl leading-relaxed">
+              Prema Vasam is the only sanctuary in Tamil Nadu nurturing over <strong>200+ mentally challenged, differently-abled, and underprivileged children</strong> alongside normal school-going children under one loving family roof.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-4 pt-2">
+              <a href="#meals-planner" class="inline-flex items-center gap-2.5 bg-amber-600 hover:bg-amber-700 text-white font-semibold px-6 py-3.5 rounded-xl shadow-lg shadow-amber-600/25 transition transform hover:-translate-y-0.5">
+                <i data-lucide="utensils" class="w-5 h-5"></i>
+                <span>Sponsor Today's Meals</span>
+              </a>
+              <a href="#donate" class="inline-flex items-center gap-2.5 bg-white hover:bg-amber-50 text-stone-800 font-semibold px-6 py-3.5 rounded-xl border border-amber-300 shadow-sm transition">
+                <i data-lucide="landmark" class="w-5 h-5 text-amber-600"></i>
+                <span>Direct Bank Donation (80G)</span>
+              </a>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-8 border-t border-amber-200/80">
+              <div class="bg-white/80 p-3.5 rounded-xl border border-amber-100 shadow-xs">
+                <span class="block font-heading text-2xl font-bold text-amber-700">25+ Years</span>
+                <span class="text-xs text-stone-600 font-medium">Of Devoted Service</span>
+              </div>
+              <div class="bg-white/80 p-3.5 rounded-xl border border-amber-100 shadow-xs">
+                <span class="block font-heading text-2xl font-bold text-amber-700">100+</span>
+                <span class="text-xs text-stone-600 font-medium">Children in Care</span>
+              </div>
+              <div class="bg-white/80 p-3.5 rounded-xl border border-amber-100 shadow-xs">
+                <span class="block font-heading text-2xl font-bold text-amber-700">3 Campuses</span>
+                <span class="text-xs text-stone-600 font-medium">Dedicated Facilities</span>
+              </div>
+              <div class="bg-white/80 p-3.5 rounded-xl border border-amber-100 shadow-xs">
+                <span class="block font-heading text-2xl font-bold text-amber-700">100% NGO</span>
+                <span class="text-xs text-stone-600 font-medium">Registered Non-Profit</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5">
+            <div class="relative mx-auto max-w-md lg:max-w-none">
+              <div class="absolute -inset-4 bg-gradient-to-tr from-amber-400/30 to-amber-200/20 rounded-3xl blur-xl"></div>
+              <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white">
+                <img src="/images/front_page_web.jpg" alt="Children of Prema Vasam" class="w-full h-[430px] object-cover">
+                <div class="p-5 bg-gradient-to-t from-stone-900/90 to-transparent absolute inset-x-0 bottom-0 text-white">
+                  <span class="text-xs font-semibold text-amber-300 uppercase tracking-wider">A Sacred Sanctuary</span>
+                  <p class="text-sm font-medium mt-1">"To Serve... Not to be served." Inspiring independence, laughter, and lifelong care.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════
+         3. ABOUT US / WHO WE ARE (INTERACTIVE TABS)
+    ════════════════════════════════════════════════════════════ -->
+    <section id="about" class="py-20 bg-white border-y border-amber-200/70">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <span class="text-xs font-bold text-amber-700 uppercase tracking-wider bg-amber-100 px-3.5 py-1.5 rounded-full border border-amber-300">OUR FOUNDATION &amp; HISTORY</span>
+          <h2 class="font-heading text-3xl sm:text-4xl font-bold text-stone-900 mt-3">The Soul and Stories of Prema Vasam</h2>
+          <p class="text-stone-600 mt-2 text-base">Click through the chapters below to discover our beginnings, key champions, and miraculous milestones.</p>
+        </div>
+
+        <!-- Interactive Tabs Header -->
+        <div class="flex flex-wrap items-center justify-center gap-2 border-b border-amber-200 pb-4 mb-8">
+          <button onclick="switchAboutTab('tab-welcome')" class="about-tab-btn active px-4 py-2.5 rounded-xl font-semibold text-sm text-stone-700 hover:text-amber-700" data-tab="tab-welcome">
+            <span class="flex items-center gap-2"><i data-lucide="home" class="w-4 h-4"></i> Welcome &amp; Mission</span>
+          </button>
+          <button onclick="switchAboutTab('tab-prem')" class="about-tab-btn px-4 py-2.5 rounded-xl font-semibold text-sm text-stone-700 hover:text-amber-700" data-tab="tab-prem">
+            <span class="flex items-center gap-2"><i data-lucide="gift" class="w-4 h-4 text-amber-600"></i> Precious Gift Prem</span>
+          </button>
+          <button onclick="switchAboutTab('tab-indra')" class="about-tab-btn px-4 py-2.5 rounded-xl font-semibold text-sm text-stone-700 hover:text-amber-700" data-tab="tab-indra">
+            <span class="flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-amber-600"></i> The Inception &amp; Indra</span>
+          </button>
+          <button onclick="switchAboutTab('tab-founder')" class="about-tab-btn px-4 py-2.5 rounded-xl font-semibold text-sm text-stone-700 hover:text-amber-700" data-tab="tab-founder">
+            <span class="flex items-center gap-2"><i data-lucide="user-check" class="w-4 h-4 text-amber-600"></i> Founder Mr. Selvyn Roy</span>
+          </button>
+          <button onclick="switchAboutTab('tab-mumtaj')" class="about-tab-btn px-4 py-2.5 rounded-xl font-semibold text-sm text-stone-700 hover:text-amber-700" data-tab="tab-mumtaj">
+            <span class="flex items-center gap-2"><i data-lucide="heart-handshake" class="w-4 h-4 text-amber-600"></i> Coordinator Miss Mumtaj</span>
+          </button>
+        </div>
+
+        <!-- Tab 1: Welcome & Mission -->
+        <div id="tab-welcome" class="tab-pane active bg-[#FFFDF9] p-8 lg:p-10 rounded-3xl border border-amber-200/90 shadow-sm">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-7 space-y-4">
+              <span class="text-xs font-bold text-amber-800 uppercase tracking-widest">CHAPTER 1 &bull; OUR PURPOSE</span>
+              <h3 class="font-heading text-2xl lg:text-3xl font-bold text-stone-900">A Haven of Love for 200+ Special &amp; Less Fortunate Children</h3>
+              <p class="text-stone-700 leading-relaxed">
+                <strong>PREMA VASAM</strong> is a registered non-profit charitable residential home (Reg. No. 419 of 1999) caring for mentally &amp; physically challenged and underprivileged children.
+              </p>
+              <p class="text-stone-700 leading-relaxed">
+                It is the only home in Tamil Nadu uniquely integrating special-needs children (over 132 individuals with cerebral palsy, autism, intellectual disabilities, and multiple challenges) alongside school-going underprivileged children. This seamless integration develops sensitivity and empathy among normal children while offering therapeutic companionship.
+              </p>
+              <div class="bg-amber-100/70 p-4 rounded-2xl border border-amber-300/80">
+                <span class="block font-semibold text-amber-900 text-sm">Meaning of Prema Vasam:</span>
+                <span class="text-stone-700 text-sm">"A place of divine love or where eternal love resides."</span>
+              </div>
+            </div>
+            <div class="lg:col-span-5">
+              <img src="/images/special_ed.jpg" alt="Special Education and Care" class="w-full h-80 object-cover rounded-2xl shadow-md border-2 border-white">
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Precious Gift Prem -->
+        <div id="tab-prem" class="tab-pane bg-[#FFFDF9] p-8 lg:p-10 rounded-3xl border border-amber-200/90 shadow-sm">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-7 space-y-4">
+              <span class="text-xs font-bold text-amber-800 uppercase tracking-widest">CHAPTER 2 &bull; THE NAME THAT STARTED IT ALL</span>
+              <h3 class="font-heading text-2xl lg:text-3xl font-bold text-stone-900">Precious Gift &mdash; Prem</h3>
+              <p class="text-stone-700 leading-relaxed">
+                On <strong>May 14th, 1999</strong>, an abandoned baby boy was discovered by founder Selvyn Roy in a dying stage near Aminjikarai, Chennai.
+              </p>
+              <p class="text-stone-700 leading-relaxed">
+                Though severely mentally and physically challenged, bed-ridden, and completely dependent, this little boy radiate an infectious, angelic smile. Selvyn named him <strong>Prem</strong>.
+              </p>
+              <blockquote class="border-l-4 border-amber-500 pl-4 py-1 italic text-amber-900 font-medium text-base">
+                "Later, the place where Prem lives and smiles became PREMA VASAM &mdash; our entire sanctuary was founded in honor of Prem."
+              </blockquote>
+            </div>
+            <div class="lg:col-span-5">
+              <img src="/images/baby_prem.jpg" alt="Baby Prem" class="w-full h-80 object-cover rounded-2xl shadow-md border-2 border-white">
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: The Inception & Indra -->
+        <div id="tab-indra" class="tab-pane bg-[#FFFDF9] p-8 lg:p-10 rounded-3xl border border-amber-200/90 shadow-sm">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-7 space-y-4">
+              <span class="text-xs font-bold text-amber-800 uppercase tracking-widest">CHAPTER 3 &bull; INSPIRATION OF EMPOWERMENT</span>
+              <h3 class="font-heading text-2xl lg:text-3xl font-bold text-stone-900">The Inception &amp; Indra's Miraculous Journey</h3>
+              <p class="text-stone-700 leading-relaxed">
+                Prema Vasam was officially inaugurated on <strong>June 2nd, 1999</strong> when Mr. Selvyn Roy decided to educate <strong>Indra</strong>, a 14-year-old girl suffering from severe Polio and scoliosis.
+              </p>
+              <p class="text-stone-700 leading-relaxed">
+                Indra had been in deep despair due to her inability to attend school. Under Prema Vasam's daily care and coaching, Indra joined in the 8th standard, scored an incredible <strong>420/500 marks (84%)</strong> in her SSLC Board exams, and earned her undergraduate degree at St. Joseph's College.
+              </p>
+              <p class="text-stone-700 leading-relaxed">
+                She completed her <strong>Master of Computer Applications (MCA) First Class</strong> from the prestigious Anna University and completed Special Education. Today, Indra proudly serves as the <strong>Director of Prem Illam</strong> in Maduranthakam!
+              </p>
+            </div>
+            <div class="lg:col-span-5">
+              <img src="/images/indra.jpg" alt="Indra Director of Prem Illam" class="w-full h-80 object-cover rounded-2xl shadow-md border-2 border-white">
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 4: Founder Mr. Selvyn Roy -->
+        <div id="tab-founder" class="tab-pane bg-[#FFFDF9] p-8 lg:p-10 rounded-3xl border border-amber-200/90 shadow-sm">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-7 space-y-4">
+              <span class="text-xs font-bold text-amber-800 uppercase tracking-widest">CHAPTER 4 &bull; VISIONARY LEADERSHIP</span>
+              <h3 class="font-heading text-2xl lg:text-3xl font-bold text-stone-900">Founder &amp; Administrator &mdash; Mr. Selvyn Roy</h3>
+              <p class="text-stone-700 leading-relaxed">
+                Mr. Selvyn Roy is a postgraduate <strong>Clinical Psychologist</strong> with diplomas in psychological counseling and guidance.
+              </p>
+              <p class="text-stone-700 leading-relaxed">
+                Before establishing Prema Vasam, he dedicated his career at <strong>MITHRA</strong> (Rehabilitation of Mentally &amp; Physically Challenged Children), served at the <strong>Clarke School for the Deaf and Dumb</strong>, and volunteered at the renowned <strong>Prithipura Infant Home in Sri Lanka</strong>.
+              </p>
+              <p class="text-stone-700 leading-relaxed">
+                For 25+ continuous years, he has guided Prema Vasam with an open-door policy &mdash; never turning down any child in need, irrespective of caste, religion, or severity of disability.
+              </p>
+            </div>
+            <div class="lg:col-span-5">
+              <img src="/images/selvyn_roy.jpg" alt="Mr. Selvyn Roy Founder" class="w-full h-80 object-cover rounded-2xl shadow-md border-2 border-white">
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 5: Coordinator Miss Mumtaj -->
+        <div id="tab-mumtaj" class="tab-pane bg-[#FFFDF9] p-8 lg:p-10 rounded-3xl border border-amber-200/90 shadow-sm">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-7 space-y-4">
+              <span class="text-xs font-bold text-amber-800 uppercase tracking-widest">CHAPTER 5 &bull; THE HEART OF OPERATIONS</span>
+              <h3 class="font-heading text-2xl lg:text-3xl font-bold text-stone-900">Coordinator &mdash; Miss Mumtaj</h3>
+              <p class="text-stone-700 leading-relaxed">
+                Miss Mumtaj is a certified <strong>Multi-Rehabilitational Worker</strong> who has worked tirelessly and selflessly at Prema Vasam since the year 2000.
+              </p>
+              <p class="text-stone-700 leading-relaxed">
+                She oversees all clinical rehabilitation, medical interventions, accounts, volunteer orientations, and daily food provisions. When any child falls sick, she instructs nurses with intimate knowledge of each special child's medical condition.
+              </p>
+              <div class="bg-amber-100/60 p-4 rounded-xl border border-amber-200 text-stone-800 text-sm">
+                📞 <strong>Direct Office Contact:</strong> Reach Miss Mumtaj daily from 9:00 AM to 8:00 PM at <a href="tel:+919677238998" class="text-amber-800 font-bold hover:underline">+91 96772 38998</a>.
+              </div>
+            </div>
+            <div class="lg:col-span-5">
+              <img src="/images/mumtaj.jpg" alt="Miss Mumtaj Coordinator" class="w-full h-80 object-cover rounded-2xl shadow-md border-2 border-white">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════
+         4. INTERACTIVE MEALS SPONSORSHIP PLANNER
+    ════════════════════════════════════════════════════════════ -->
+    <section id="meals-planner" class="py-20 bg-[#FEF9F2]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <span class="text-xs font-bold text-amber-800 uppercase tracking-wider bg-amber-100 px-3.5 py-1.5 rounded-full border border-amber-300">FEAST SPONSORSHIP</span>
+          <h2 class="font-heading text-3xl sm:text-4xl font-bold text-stone-900 mt-3">Interactive Meals Sponsorship Planner</h2>
+          <p class="text-stone-600 mt-2 text-base">Select the meals you wish to sponsor for our 200+ children. The live tally calculates your total and transfers your choices to the booking form below.</p>
+        </div>
+
+        <!-- Quick Presets -->
+        <div class="flex flex-wrap items-center justify-center gap-2.5 mb-8">
+          <span class="text-xs font-bold text-stone-500 uppercase tracking-wide mr-2">Quick Presets:</span>
+          <button onclick="applyMealPreset('lunch')" class="bg-white hover:bg-amber-50 text-stone-800 px-3.5 py-1.5 rounded-lg border border-amber-300 text-xs font-bold shadow-2xs">☀️ Lunch Feast (₹6,500)</button>
+          <button onclick="applyMealPreset('fullday')" class="bg-white hover:bg-amber-50 text-stone-800 px-3.5 py-1.5 rounded-lg border border-amber-300 text-xs font-bold shadow-2xs">🌟 Full Day (₹20,000)</button>
+          <button onclick="applyMealPreset('breakfast')" class="bg-white hover:bg-amber-50 text-stone-800 px-3.5 py-1.5 rounded-lg border border-amber-300 text-xs font-bold shadow-2xs">🌅 Breakfast Feast (₹4,000)</button>
+          <button onclick="applyMealPreset('treats')" class="bg-white hover:bg-amber-50 text-stone-800 px-3.5 py-1.5 rounded-lg border border-amber-300 text-xs font-bold shadow-2xs">🍦 Snacks &amp; Ice Cream (₹7,000)</button>
+        </div>
+
+        <!-- Category Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+          
+          <!-- Breakfast Usual -->
+          <div class="meal-calc-card bg-white p-5 rounded-2xl border-2 border-stone-200/90 shadow-xs relative" data-id="b_usual" onclick="toggleMealItem(this)">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="text-xs font-bold text-amber-700 uppercase">🌅 8:00 AM</span>
+                <h4 class="font-heading font-bold text-lg text-stone-900 mt-0.5">Usual Breakfast</h4>
+                <p class="text-xs text-stone-600 mt-1">Idli, Vada, Sambar, Chutney &bull; Warm South Indian breakfast</p>
+              </div>
+              <div class="meal-check w-7 h-7 rounded-full border-2 border-stone-300 flex items-center justify-center text-xs font-bold shrink-0">✓</div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-stone-100 flex justify-between items-center">
+              <span class="text-xs text-stone-500 font-medium">All 200 children</span>
+              <span class="text-lg font-bold text-amber-700">₹3,500</span>
+            </div>
+          </div>
+
+          <!-- Breakfast Sweet -->
+          <div class="meal-calc-card bg-white p-5 rounded-2xl border-2 border-stone-200/90 shadow-xs relative" data-id="b_sweet" onclick="toggleMealItem(this)">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="text-xs font-bold text-amber-700 uppercase">🌅 8:00 AM</span>
+                <h4 class="font-heading font-bold text-lg text-stone-900 mt-0.5">Breakfast with Sweet</h4>
+                <p class="text-xs text-stone-600 mt-1">Hot breakfast + Kesari or Sweet dessert treat</p>
+              </div>
+              <div class="meal-check w-7 h-7 rounded-full border-2 border-stone-300 flex items-center justify-center text-xs font-bold shrink-0">✓</div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-stone-100 flex justify-between items-center">
+              <span class="text-xs text-stone-500 font-medium">All 200 children</span>
+              <span class="text-lg font-bold text-amber-700">₹4,000</span>
+            </div>
+          </div>
+
+          <!-- Lunch Usual -->
+          <div class="meal-calc-card bg-white p-5 rounded-2xl border-2 border-stone-200/90 shadow-xs relative" data-id="l_usual" onclick="toggleMealItem(this)">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="text-xs font-bold text-amber-700 uppercase">☀️ 12:30 PM</span>
+                <h4 class="font-heading font-bold text-lg text-stone-900 mt-0.5">Usual Veg Lunch</h4>
+                <p class="text-xs text-stone-600 mt-1">Balanced nutrition: Rice, Sambar, Rasam, Kootu, Curd</p>
+              </div>
+              <div class="meal-check w-7 h-7 rounded-full border-2 border-stone-300 flex items-center justify-center text-xs font-bold shrink-0">✓</div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-stone-100 flex justify-between items-center">
+              <span class="text-xs text-stone-500 font-medium">All 200 children</span>
+              <span class="text-lg font-bold text-amber-700">₹5,000</span>
+            </div>
+          </div>
+
+          <!-- Lunch Festive (Most Popular) -->
+          <div class="meal-calc-card selected bg-white p-5 rounded-2xl border-2 border-stone-200/90 shadow-xs relative ring-1 ring-amber-400" data-id="l_festive" onclick="toggleMealItem(this)">
+            <span class="absolute -top-2.5 right-4 bg-amber-600 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">MOST POPULAR</span>
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="text-xs font-bold text-amber-700 uppercase">☀️ 12:30 PM</span>
+                <h4 class="font-heading font-bold text-lg text-stone-900 mt-0.5">Festive Lunch with Vadai &amp; Payasam</h4>
+                <p class="text-xs text-stone-600 mt-1">Celebratory feast: Hot medu vada, sweet payasam, full veg spread</p>
+              </div>
+              <div class="meal-check w-7 h-7 rounded-full border-2 border-stone-300 flex items-center justify-center text-xs font-bold shrink-0">✓</div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-stone-100 flex justify-between items-center">
+              <span class="text-xs text-stone-500 font-medium">All 200 children</span>
+              <span class="text-lg font-bold text-amber-700">₹6,500</span>
+            </div>
+          </div>
+
+          <!-- Lunch Non-Veg -->
+          <div class="meal-calc-card bg-white p-5 rounded-2xl border-2 border-stone-200/90 shadow-xs relative" data-id="l_nonveg" onclick="toggleMealItem(this)">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="text-xs font-bold text-amber-700 uppercase">☀️ 12:30 PM</span>
+                <h4 class="font-heading font-bold text-lg text-stone-900 mt-0.5">Special Non-Veg Lunch</h4>
+                <p class="text-xs text-stone-600 mt-1">Freshly prepared Chicken / Fish curry meal feast</p>
+              </div>
+              <div class="meal-check w-7 h-7 rounded-full border-2 border-stone-300 flex items-center justify-center text-xs font-bold shrink-0">✓</div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-stone-100 flex justify-between items-center">
+              <span class="text-xs text-stone-500 font-medium">All 200 children</span>
+              <span class="text-lg font-bold text-amber-700">₹9,000</span>
+            </div>
+          </div>
+
+          <!-- Dinner Festive -->
+          <div class="meal-calc-card bg-white p-5 rounded-2xl border-2 border-stone-200/90 shadow-xs relative" data-id="d_festive" onclick="toggleMealItem(this)">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="text-xs font-bold text-amber-700 uppercase">🌙 7:30 PM</span>
+                <h4 class="font-heading font-bold text-lg text-stone-900 mt-0.5">Dinner with Vadai &amp; Payasam</h4>
+                <p class="text-xs text-stone-600 mt-1">Warm wholesome dinner with hot medu vadai and sweet payasam</p>
+              </div>
+              <div class="meal-check w-7 h-7 rounded-full border-2 border-stone-300 flex items-center justify-center text-xs font-bold shrink-0">✓</div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-stone-100 flex justify-between items-center">
+              <span class="text-xs text-stone-500 font-medium">All 200 children</span>
+              <span class="text-lg font-bold text-amber-700">₹6,500</span>
+            </div>
+          </div>
+
+          <!-- Evening Snacks -->
+          <div class="meal-calc-card bg-white p-5 rounded-2xl border-2 border-stone-200/90 shadow-xs relative" data-id="s_snacks" onclick="toggleMealItem(this)">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="text-xs font-bold text-amber-700 uppercase">🍵 4:30 PM</span>
+                <h4 class="font-heading font-bold text-lg text-stone-900 mt-0.5">Evening Snacks &amp; Tea/Milk</h4>
+                <p class="text-xs text-stone-600 mt-1">Sundal, bajji, biscuits with warm milk and tea after school</p>
+              </div>
+              <div class="meal-check w-7 h-7 rounded-full border-2 border-stone-300 flex items-center justify-center text-xs font-bold shrink-0">✓</div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-stone-100 flex justify-between items-center">
+              <span class="text-xs text-stone-500 font-medium">All 200 children</span>
+              <span class="text-lg font-bold text-amber-700">₹2,500</span>
+            </div>
+          </div>
+
+          <!-- Ice Cream Treats -->
+          <div class="meal-calc-card bg-white p-5 rounded-2xl border-2 border-stone-200/90 shadow-xs relative" data-id="s_icecream" onclick="toggleMealItem(this)">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="text-xs font-bold text-amber-700 uppercase">🍨 SPECIAL JOY</span>
+                <h4 class="font-heading font-bold text-lg text-stone-900 mt-0.5">Special Ice Cream Cups</h4>
+                <p class="text-xs text-stone-600 mt-1">Joyful ice cream cups distributed to all 200 smiling children</p>
+              </div>
+              <div class="meal-check w-7 h-7 rounded-full border-2 border-stone-300 flex items-center justify-center text-xs font-bold shrink-0">✓</div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-stone-100 flex justify-between items-center">
+              <span class="text-xs text-stone-500 font-medium">200 cups</span>
+              <span class="text-lg font-bold text-amber-700">₹4,500</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Live Tally & Booking Form Block -->
+        <div class="bg-white rounded-3xl p-8 lg:p-10 border border-amber-200 shadow-lg">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            
+            <!-- Left: Live Tally Summary -->
+            <div class="lg:col-span-5 bg-gradient-to-br from-amber-50 to-amber-100/40 p-6 rounded-2xl border border-amber-200/80 flex flex-col justify-between">
+              <div>
+                <span class="text-xs font-bold text-amber-800 uppercase tracking-wider">LIVE TOTAL TALLY</span>
+                <div class="mt-2 flex items-baseline gap-2">
+                  <span id="calcTotalDisplay" class="font-heading text-4xl font-extrabold text-amber-800">₹6,500</span>
+                  <span class="text-xs text-stone-600 font-semibold">INR</span>
+                </div>
+                <p id="calcCountDisplay" class="text-xs text-stone-600 mt-0.5 font-medium">1 meal option selected</p>
+
+                <div class="mt-6 pt-4 border-t border-amber-200">
+                  <span class="block text-xs font-bold text-stone-700 uppercase mb-2">Selected Packages:</span>
+                  <div id="selectedItemsSummary" class="space-y-1.5"></div>
+                </div>
+              </div>
+
+              <!-- Quick Bank A/C Prompt -->
+              <div class="mt-6 pt-4 border-t border-amber-200/80 text-xs text-stone-600 space-y-1">
+                <span class="font-bold text-stone-800 block">Bank Details for Direct Transfer:</span>
+                <span>Bank of Baroda &bull; A/C: <strong>20460100001458</strong> (Kovoor)</span>
+                <span class="block">IFSC: <strong>BARB0KOVOOR</strong></span>
+              </div>
+            </div>
+
+            <!-- Right: Reservation Form -->
+            <div class="lg:col-span-7">
+              <h3 class="font-heading text-2xl font-bold text-stone-900 mb-1">Book Your Special Meal Date</h3>
+              <p class="text-stone-600 text-sm mb-6">Fill in your information to reserve the date. Our children will recite special prayers in your name!</p>
+
+              <form onsubmit="handleMealBookingSubmit(event)" class="space-y-4">
+                <input type="hidden" id="mealFormAmount" value="6500">
+                <input type="hidden" id="mealFormItems" value="Festive Lunch with Vadai & Payasam">
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Your Full Name *</label>
+                    <input type="text" id="mealSponsorName" required placeholder="e.g. Rajesh Subramanian" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-500/20 text-sm">
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Phone Number (WhatsApp) *</label>
+                    <input type="tel" id="mealSponsorPhone" required placeholder="+91 98401 23456" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-500/20 text-sm">
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Email Address</label>
+                    <input type="email" id="mealSponsorEmail" placeholder="rajesh@example.com" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-500/20 text-sm">
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Sponsorship Date *</label>
+                    <input type="date" id="mealSponsorDate" required class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-500/20 text-sm">
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Occasion / Reason</label>
+                  <select id="mealOccasion" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-500/20 text-sm bg-white">
+                    <option value="Birthday Celebration">Birthday Celebration</option>
+                    <option value="Wedding Anniversary">Wedding Anniversary</option>
+                    <option value="In Memory Of / Remembrance">In Memory Of / Remembrance</option>
+                    <option value="New Business / Job Promotion">New Business / Job Promotion</option>
+                    <option value="Special Festival / Auspicious Day">Special Festival / Auspicious Day</option>
+                    <option value="General Wellbeing & Thanksgiving">General Wellbeing &amp; Thanksgiving</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Special Notes / Family Names to Pray For</label>
+                  <textarea id="mealNotes" rows="2" placeholder="e.g. Please pray for my son Anirudh's birthday. We will visit at 12:30 PM." class="w-full px-4 py-2 rounded-xl border border-stone-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-500/20 text-sm"></textarea>
+                </div>
+
+                <button type="submit" id="mealSubmitBtn" class="w-full bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-700 hover:to-amber-600 text-white font-bold py-3.5 px-6 rounded-xl shadow-md transition flex items-center justify-center gap-2">
+                  <i data-lucide="calendar-check" class="w-5 h-5"></i>
+                  <span>Confirm Meal Reservation &amp; View Bank Transfer Details</span>
+                </button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════
+         5. OUR THREE CAMPUSES
+    ════════════════════════════════════════════════════════════ -->
+    <section id="campuses" class="py-20 bg-white border-y border-amber-200/70">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-xs font-bold text-amber-800 uppercase tracking-wider bg-amber-100 px-3.5 py-1.5 rounded-full border border-amber-300">EXPANDED HOMES</span>
+          <h2 class="font-heading text-3xl sm:text-4xl font-bold text-stone-900 mt-3">Our Three Dedicated Campuses</h2>
+          <p class="text-stone-600 mt-2 text-base">To provide age-appropriate, gender-sensitive care and vocational education as children grow into adulthood.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <!-- Campus 1 -->
+          <div class="bg-[#FFFDF9] rounded-3xl p-6 border border-amber-200/80 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="h-48 rounded-2xl overflow-hidden mb-5">
+                <img src="/images/achieve_building.jpg" alt="Main Prema Vasam Campus" class="w-full h-full object-cover">
+              </div>
+              <span class="text-xs font-bold text-amber-700 uppercase">Est. June 1999 &bull; Headquarters</span>
+              <h3 class="font-heading text-2xl font-bold text-stone-900 mt-1">Prema Vasam (Main Home)</h3>
+              <p class="text-sm text-stone-600 mt-2 leading-relaxed">
+                Located on Thiru V.K.A. Road in Gerugambakkam, Chennai. Accommodates 200+ differently-abled children, clinical physiotherapy center, special school, and hygienic steam kitchen.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-amber-100 text-xs text-stone-500 font-medium">
+              📍 Gerugambakkam, Chennai &bull; Tamil Nadu
+            </div>
+          </div>
+
+          <!-- Campus 2 -->
+          <div class="bg-[#FFFDF9] rounded-3xl p-6 border border-amber-200/80 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="h-48 rounded-2xl overflow-hidden mb-5">
+                <img src="/images/dance1.jpg" alt="Prem Niketan Campus" class="w-full h-full object-cover">
+              </div>
+              <span class="text-xs font-bold text-amber-700 uppercase">Est. 2011 &bull; Boys Home</span>
+              <h3 class="font-heading text-2xl font-bold text-stone-900 mt-1">Prem Niketan</h3>
+              <p class="text-sm text-stone-600 mt-2 leading-relaxed">
+                Situated in Manjampadi near Arakonam. Built as an extension of service catering to 30+ young boys advancing past 8th standard, focusing on vocational independence and secondary education.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-amber-100 text-xs text-stone-500 font-medium">
+              📍 Manjampadi, Arakonam &bull; Tamil Nadu
+            </div>
+          </div>
+
+          <!-- Campus 3 -->
+          <div class="bg-[#FFFDF9] rounded-3xl p-6 border border-amber-200/80 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="h-48 rounded-2xl overflow-hidden mb-5">
+                <img src="/images/indra.jpg" alt="Prem Illam Campus" class="w-full h-full object-cover">
+              </div>
+              <span class="text-xs font-bold text-amber-700 uppercase">Est. 2017 &bull; Girls Home</span>
+              <h3 class="font-heading text-2xl font-bold text-stone-900 mt-1">Prem Illam</h3>
+              <p class="text-sm text-stone-600 mt-2 leading-relaxed">
+                Located in Sirunallur Village near Maduranthakam. Headed by Director Indra, offering a loving, safe sanctuary for older girls and young adult special women.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-amber-100 text-xs text-stone-500 font-medium">
+              📍 Sirunallur Village, Maduranthakam &bull; Tamil Nadu
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════
+         6. THERAPIES & REHABILITATION
+    ════════════════════════════════════════════════════════════ -->
+    <section id="therapies" class="py-20 bg-[#FEF9F2]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-xs font-bold text-amber-800 uppercase tracking-wider bg-amber-100 px-3.5 py-1.5 rounded-full border border-amber-300">CLINICAL EXCELLENCE</span>
+          <h2 class="font-heading text-3xl sm:text-4xl font-bold text-stone-900 mt-3">Therapies &amp; Rehabilitation Programs</h2>
+          <p class="text-stone-600 mt-2 text-base">Qualified therapists administer individualized treatments daily to help children talk, walk, and achieve everyday independence.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Physiotherapy -->
+          <div class="bg-white p-6 rounded-3xl border border-amber-200/70 shadow-xs">
+            <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center mb-4">
+              <i data-lucide="activity" class="w-6 h-6"></i>
+            </div>
+            <h4 class="font-heading text-xl font-bold text-stone-900">Pediatric Physiotherapy</h4>
+            <p class="text-xs text-amber-800 font-semibold mt-1">Led daily by Mr. Robinson (9:30 AM &ndash; 3:30 PM)</p>
+            <p class="text-sm text-stone-600 mt-3 leading-relaxed">
+              Equipped with electro care stimulation machines, parallel walking bars, static cycles, and physioballs. Children like <strong>Rohit</strong> (bedridden with cerebral palsy) now walk after 2 years of care!
+            </p>
+          </div>
+
+          <!-- Occupational Therapy -->
+          <div class="bg-white p-6 rounded-3xl border border-amber-200/70 shadow-xs">
+            <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center mb-4">
+              <i data-lucide="hand" class="w-6 h-6"></i>
+            </div>
+            <h4 class="font-heading text-xl font-bold text-stone-900">Occupational Therapy</h4>
+            <p class="text-xs text-amber-800 font-semibold mt-1">Sensory &amp; Milestone Normalization</p>
+            <p class="text-sm text-stone-600 mt-3 leading-relaxed">
+              Uses standing frames, CP chairs, musical toys, and sensory input to normalize muscle tone, stretch tight contractures, and cultivate milestone grip and grasping abilities.
+            </p>
+          </div>
+
+          <!-- Speech & Communication -->
+          <div class="bg-white p-6 rounded-3xl border border-amber-200/70 shadow-xs">
+            <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center mb-4">
+              <i data-lucide="message-square" class="w-6 h-6"></i>
+            </div>
+            <h4 class="font-heading text-xl font-bold text-stone-900">Speech &amp; Communication</h4>
+            <p class="text-xs text-amber-800 font-semibold mt-1">Language &amp; Articulation Training</p>
+            <p class="text-sm text-stone-600 mt-3 leading-relaxed">
+              Phonetic exercises, oral-motor stimulation, and expressive communication cards allowing non-verbal children to articulate needs and recite cheerful rhymes.
+            </p>
+          </div>
+
+          <!-- Special & Inclusive Schooling -->
+          <div class="bg-white p-6 rounded-3xl border border-amber-200/70 shadow-xs">
+            <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center mb-4">
+              <i data-lucide="book-open" class="w-6 h-6"></i>
+            </div>
+            <h4 class="font-heading text-xl font-bold text-stone-900">Inclusive Schooling</h4>
+            <p class="text-xs text-amber-800 font-semibold mt-1">IQ Categorization &amp; ADL Training</p>
+            <p class="text-sm text-stone-600 mt-3 leading-relaxed">
+              Activities of Daily Living (ADL), clay modeling, arithmetic, plus classical <strong>Bharatha Natyam taught by Kalakshetra dance gurus</strong>, and vocal music.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════
+         7. PHOTO GALLERY
+    ════════════════════════════════════════════════════════════ -->
+    <section id="gallery" class="py-20 bg-white border-y border-amber-200/70">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-10">
+          <span class="text-xs font-bold text-amber-800 uppercase tracking-wider bg-amber-100 px-3.5 py-1.5 rounded-full border border-amber-300">JOY IN EVERY FRAME</span>
+          <h2 class="font-heading text-3xl sm:text-4xl font-bold text-stone-900 mt-3">Moments of Joy &amp; Triumph</h2>
+          <p class="text-stone-600 mt-2 text-base">Filter across celebrations, schooling, and achievements below. Click on any photo to open full-screen view.</p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="flex flex-wrap items-center justify-center gap-2 mb-10">
+          <button onclick="filterGallery('all', this)" class="gal-filter-btn active px-4 py-2 rounded-xl text-xs font-bold bg-stone-100 text-stone-700 hover:bg-amber-100">All Photos</button>
+          <button onclick="filterGallery('daily', this)" class="gal-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-stone-100 text-stone-700 hover:bg-amber-100">Daily Life</button>
+          <button onclick="filterGallery('celebration', this)" class="gal-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-stone-100 text-stone-700 hover:bg-amber-100">Celebrations &amp; Diwali</button>
+          <button onclick="filterGallery('sports', this)" class="gal-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-stone-100 text-stone-700 hover:bg-amber-100">Sports Meet</button>
+          <button onclick="filterGallery('education', this)" class="gal-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-stone-100 text-stone-700 hover:bg-amber-100">Special Education</button>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════
+         8. SHARE & CARE (PROVISIONS WISHLIST)
+    ════════════════════════════════════════════════════════════ -->
+    <section id="share-care" class="py-20 bg-[#FEF9F2]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-xs font-bold text-amber-800 uppercase tracking-wider bg-amber-100 px-3.5 py-1.5 rounded-full border border-amber-300">MATERIAL &amp; HUMAN SERVICE</span>
+          <h2 class="font-heading text-3xl sm:text-4xl font-bold text-stone-900 mt-3">Share &amp; Care &mdash; In-Kind Wishlist</h2>
+          <p class="text-stone-600 mt-2 text-base">You can bring provisions directly to our Gerugambakkam home or ship them via delivery services.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <div class="bg-white p-6 rounded-3xl border border-amber-200/70 shadow-xs">
+            <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center mb-3">
+              <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-heading font-bold text-lg text-stone-900">Kitchen Provisions</h4>
+            <ul class="text-xs text-stone-600 mt-3 space-y-1.5">
+              <li>&bull; Rice (Ponni / Idli rice)</li>
+              <li>&bull; Wheat flour (Atta)</li>
+              <li>&bull; Toor dhal, Moong dhal, Urad dhal</li>
+              <li>&bull; Cooking oil (Sunflower / Gingelly)</li>
+              <li>&bull; Sugar, Tamarind, Mustard, Spices</li>
+            </ul>
+          </div>
+
+          <div class="bg-white p-6 rounded-3xl border border-amber-200/70 shadow-xs">
+            <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center mb-3">
+              <i data-lucide="coffee" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-heading font-bold text-lg text-stone-900">Health Drinks &amp; Mix</h4>
+            <ul class="text-xs text-stone-600 mt-3 space-y-1.5">
+              <li>&bull; Horlicks &amp; Boost</li>
+              <li>&bull; Mannah Health Mix</li>
+              <li>&bull; Milk powder</li>
+              <li>&bull; Ragi flour &amp; Oats</li>
+              <li>&bull; Multivitamin supplements</li>
+            </ul>
+          </div>
+
+          <div class="bg-white p-6 rounded-3xl border border-amber-200/70 shadow-xs">
+            <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center mb-3">
+              <i data-lucide="shirt" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-heading font-bold text-lg text-stone-900">Clothing &amp; Bedding</h4>
+            <ul class="text-xs text-stone-600 mt-3 space-y-1.5">
+              <li>&bull; New dresses for festival days</li>
+              <li>&bull; Cotton bedsheets &amp; pillows</li>
+              <li>&bull; Towels and night wear</li>
+              <li>&bull; Adult &amp; child diapers</li>
+              <li>&bull; Antiseptic soaps &amp; detergents</li>
+            </ul>
+          </div>
+
+          <div class="bg-white p-6 rounded-3xl border border-amber-200/70 shadow-xs">
+            <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center mb-3">
+              <i data-lucide="pencil" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-heading font-bold text-lg text-stone-900">School &amp; Play Therapy</h4>
+            <ul class="text-xs text-stone-600 mt-3 space-y-1.5">
+              <li>&bull; Notebooks, crayons &amp; sketch pens</li>
+              <li>&bull; Modeling clay &amp; jigsaw puzzles</li>
+              <li>&bull; Musical and sensory toys</li>
+              <li>&bull; Sports balls &amp; skipping ropes</li>
+              <li>&bull; Storybooks with large pictures</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════
+         9. DONATION HUB (BANK DETAILS & 80G REGISTRATION)
+    ════════════════════════════════════════════════════════════ -->
+    <section id="donate" class="py-20 bg-white border-y border-amber-200/70">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-xs font-bold text-amber-800 uppercase tracking-wider bg-amber-100 px-3.5 py-1.5 rounded-full border border-amber-300">TAX EXEMPTION 80G</span>
+          <h2 class="font-heading text-3xl sm:text-4xl font-bold text-stone-900 mt-3">Direct Bank Donation Hub</h2>
+          <p class="text-stone-600 mt-2 text-base">100% of contributions directly support medical care, special schooling, and nutrition. Every domestic Indian donation qualifies for 80G income tax deduction.</p>
+        </div>
+
+        <!-- Bank Accounts Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+          
+          <!-- Domestic Account -->
+          <div class="bg-[#FFFDF8] rounded-3xl p-8 border-2 border-amber-200 shadow-sm relative">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-12 h-12 rounded-xl bg-amber-600 text-white flex items-center justify-center">
+                <i data-lucide="landmark" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <span class="text-xs font-bold text-amber-700 uppercase tracking-wide">DOMESTIC TRANSFERS (INDIA)</span>
+                <h3 class="font-heading text-2xl font-bold text-stone-900">Bank of Baroda</h3>
+              </div>
+            </div>
+
+            <div class="space-y-3.5 text-sm">
+              <div class="flex justify-between items-center py-2 border-b border-amber-100">
+                <span class="text-stone-500 font-medium">Account Name</span>
+                <span class="font-bold text-stone-900">PREMA VASAM</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-amber-100">
+                <span class="text-stone-500 font-medium">Account Number</span>
+                <div class="flex items-center gap-2">
+                  <span class="font-mono font-bold text-amber-800 text-base">20460100001458</span>
+                  <button onclick="copyToClipboard('20460100001458', 'Account number')" class="text-xs bg-amber-100 hover:bg-amber-200 text-amber-800 px-2.5 py-1 rounded-md font-semibold transition" title="Copy Account Number">Copy</button>
+                </div>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-amber-100">
+                <span class="text-stone-500 font-medium">IFSC Code</span>
+                <div class="flex items-center gap-2">
+                  <span class="font-mono font-bold text-stone-900">BARB0KOVOOR</span>
+                  <button onclick="copyToClipboard('BARB0KOVOOR', 'IFSC code')" class="text-xs bg-amber-100 hover:bg-amber-200 text-amber-800 px-2.5 py-1 rounded-md font-semibold transition" title="Copy IFSC">Copy</button>
+                </div>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-amber-100">
+                <span class="text-stone-500 font-medium">Branch</span>
+                <span class="font-semibold text-stone-800">KOVOOR, CHENNAI</span>
+              </div>
+              <div class="flex justify-between items-center pt-2">
+                <span class="text-stone-500 font-medium">Tax Exemption</span>
+                <span class="font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full text-xs">Section 80G Eligible</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- NRI FCRA Account -->
+          <div class="bg-[#FFFDF8] rounded-3xl p-8 border-2 border-amber-200 shadow-sm relative">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-12 h-12 rounded-xl bg-amber-600 text-white flex items-center justify-center">
+                <i data-lucide="globe" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <span class="text-xs font-bold text-amber-700 uppercase tracking-wide">INTERNATIONAL / NRI DONORS (FCRA)</span>
+                <h3 class="font-heading text-2xl font-bold text-stone-900">State Bank of India</h3>
+              </div>
+            </div>
+
+            <div class="space-y-3.5 text-sm">
+              <div class="flex justify-between items-center py-2 border-b border-amber-100">
+                <span class="text-stone-500 font-medium">Account Name</span>
+                <span class="font-bold text-stone-900">PREM CHARITABLE TRUST</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-amber-100">
+                <span class="text-stone-500 font-medium">FCRA Account No.</span>
+                <div class="flex items-center gap-2">
+                  <span class="font-mono font-bold text-amber-800 text-base">40172248120</span>
+                  <button onclick="copyToClipboard('40172248120', 'FCRA Account')" class="text-xs bg-amber-100 hover:bg-amber-200 text-amber-800 px-2.5 py-1 rounded-md font-semibold transition" title="Copy FCRA Account">Copy</button>
+                </div>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-amber-100">
+                <span class="text-stone-500 font-medium">SWIFT Code</span>
+                <div class="flex items-center gap-2">
+                  <span class="font-mono font-bold text-stone-900">SBININBB104</span>
+                  <button onclick="copyToClipboard('SBININBB104', 'SWIFT code')" class="text-xs bg-amber-100 hover:bg-amber-200 text-amber-800 px-2.5 py-1 rounded-md font-semibold transition" title="Copy SWIFT">Copy</button>
+                </div>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-amber-100">
+                <span class="text-stone-500 font-medium">Bank &amp; Branch</span>
+                <span class="font-semibold text-stone-800 text-xs">SBI FCRA Cell, 4th Floor, 11 Sansad Marg, New Delhi</span>
+              </div>
+              <div class="flex justify-between items-center pt-2">
+                <span class="text-stone-500 font-medium">IFSC Code</span>
+                <span class="font-mono font-bold text-stone-800">SBIN0000691</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Real-Time Donation & 80G Record Form -->
+        <div class="max-w-3xl mx-auto bg-[#FEF9F2] p-8 lg:p-10 rounded-3xl border border-amber-300/80 shadow-md">
+          <div class="text-center mb-6">
+            <span class="text-xs font-bold text-amber-800 uppercase tracking-wider">OFFICIAL RECEIPT ISSUANCE</span>
+            <h3 class="font-heading text-2xl font-bold text-stone-900 mt-1">Register Your Donation for 80G Tax Receipt</h3>
+            <p class="text-stone-600 text-xs mt-1">Once you make a bank transfer or UPI payment, submit this form so our team can issue your tax exemption receipt.</p>
+          </div>
+
+          <!-- Quick Presets -->
+          <div class="flex flex-wrap items-center justify-center gap-2 mb-6">
+            <span class="text-xs font-semibold text-stone-500">Suggested:</span>
+            <button type="button" onclick="setDonationPreset(1000, this)" class="don-preset-btn bg-white px-3 py-1.5 rounded-lg border border-amber-300 text-xs font-bold text-stone-800">₹1,000</button>
+            <button type="button" onclick="setDonationPreset(2500, this)" class="don-preset-btn bg-white px-3 py-1.5 rounded-lg border border-amber-300 text-xs font-bold text-stone-800">₹2,500</button>
+            <button type="button" onclick="setDonationPreset(5000, this)" class="don-preset-btn bg-amber-600 text-white px-3 py-1.5 rounded-lg border border-amber-600 text-xs font-bold">₹5,000</button>
+            <button type="button" onclick="setDonationPreset(10000, this)" class="don-preset-btn bg-white px-3 py-1.5 rounded-lg border border-amber-300 text-xs font-bold text-stone-800">₹10,000</button>
+            <button type="button" onclick="setDonationPreset(25000, this)" class="don-preset-btn bg-white px-3 py-1.5 rounded-lg border border-amber-300 text-xs font-bold text-stone-800">₹25,000</button>
+          </div>
+
+          <div id="donSuccessBox" class="hidden mb-6 p-4 rounded-2xl bg-emerald-50 border border-emerald-300 text-emerald-800 text-sm">
+            🎉 <strong>Donation Registered with deep gratitude!</strong> Your record ID is <span id="donSuccessId" class="font-mono font-bold"></span>. Our office will verify the transaction and email your official 80G certificate.
+          </div>
+
+          <form id="donForm" onsubmit="handleDonationSubmit(event)" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Donor Name (As per PAN) *</label>
+                <input type="text" id="donName" required placeholder="Full Name" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-amber-600 text-sm bg-white">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-stone-700 uppercase mb-1">PAN Number (For 80G Exemption)</label>
+                <input type="text" id="donPan" maxlength="10" placeholder="ABCDE1234F" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-amber-600 text-sm bg-white uppercase font-mono">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Email Address *</label>
+                <input type="email" id="donEmail" required placeholder="donor@example.com" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-amber-600 text-sm bg-white">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Phone Number</label>
+                <input type="tel" id="donPhone" placeholder="+91 98400 11223" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-amber-600 text-sm bg-white">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Donation Amount (INR) *</label>
+                <input type="number" id="donAmountInput" required min="100" value="5000" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-amber-600 text-sm bg-white font-bold text-amber-800">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Transfer Mode</label>
+                <select id="donTransferType" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-amber-600 text-sm bg-white">
+                  <option value="Bank of Baroda NEFT/RTGS">Bank of Baroda NEFT/RTGS</option>
+                  <option value="UPI / GPay / PhonePe">UPI / GPay / PhonePe</option>
+                  <option value="SBI FCRA International Wire">SBI FCRA International Wire (NRI)</option>
+                  <option value="Cheque / DD">Cheque / Demand Draft</option>
+                  <option value="Direct Cash at Office">Direct Cash at Office</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Transaction Ref / UTR Number</label>
+                <input type="text" id="donRef" placeholder="e.g. UTR994821034 / UPI Ref" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-amber-600 text-sm bg-white font-mono">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Purpose / Dedicated In Name Of</label>
+              <input type="text" id="donNotes" placeholder="e.g. Physiotherapy care / In memory of parents" class="w-full px-4 py-2 rounded-xl border border-stone-300 focus:border-amber-600 text-sm bg-white">
+            </div>
+
+            <button type="submit" id="donSubmitBtn" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-md transition flex items-center justify-center gap-2">
+              <i data-lucide="check-circle" class="w-5 h-5"></i>
+              <span>Save Donation Record in System</span>
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════
+         10. VOLUNTEER & CONTACT (REAL-TIME FORMS)
+    ════════════════════════════════════════════════════════════ -->
+    <section id="volunteer" class="py-20 bg-[#FEF9F2]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          
+          <!-- Volunteer Application -->
+          <div class="bg-white p-8 lg:p-10 rounded-3xl border border-amber-200 shadow-sm flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-bold text-amber-800 uppercase tracking-wider bg-amber-100 px-3.5 py-1.5 rounded-full border border-amber-300">JOIN OUR FAMILY</span>
+              <h3 class="font-heading text-2xl lg:text-3xl font-bold text-stone-900 mt-3">Volunteer With Us</h3>
+              <p class="text-stone-600 text-sm mt-2 mb-6">
+                Physiotherapists, special educators, artists, doctors, and students &mdash; your presence enriches our children's lives. Join us for weekend mentoring or daily sessions.
+              </p>
+
+              <div id="volSuccessBox" class="hidden mb-6 p-4 rounded-2xl bg-emerald-50 border border-emerald-300 text-emerald-800 text-sm">
+                🤝 <strong>Application Submitted!</strong> Thank you for volunteering. Miss Mumtaj will reach out to coordinate orientation.
+              </div>
+
+              <form id="volForm" onsubmit="handleVolunteerSubmit(event)" class="space-y-4">
+                <div>
+                  <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Full Name *</label>
+                  <input type="text" id="volFullName" required placeholder="Your Name" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-amber-600 text-sm">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Phone Number *</label>
+                    <input type="tel" id="volPhone" required placeholder="+91 98400 00000" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-amber-600 text-sm">
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Email Address *</label>
+                    <input type="email" id="volEmail" required placeholder="you@example.com" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-amber-600 text-sm">
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Specialist Skills / Field of Study</label>
+                  <input type="text" id="volSkills" placeholder="e.g. Physiotherapy, Special Ed, Music, Art, General" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-amber-600 text-sm">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Availability &amp; Motivation</label>
+                  <textarea id="volMessage" rows="3" placeholder="Tell us how you would like to help..." class="w-full px-4 py-2 rounded-xl border border-stone-300 focus:border-amber-600 text-sm"></textarea>
+                </div>
+
+                <button type="submit" id="volSubmitBtn" class="w-full bg-stone-900 hover:bg-stone-800 text-white font-bold py-3 px-6 rounded-xl shadow-md transition flex items-center justify-center gap-2">
+                  <i data-lucide="send" class="w-4 h-4"></i>
+                  <span>Submit Volunteer Application</span>
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Contact Inquiries -->
+          <div id="contact" class="bg-white p-8 lg:p-10 rounded-3xl border border-amber-200 shadow-sm flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-bold text-amber-800 uppercase tracking-wider bg-amber-100 px-3.5 py-1.5 rounded-full border border-amber-300">GET IN TOUCH</span>
+              <h3 class="font-heading text-2xl lg:text-3xl font-bold text-stone-900 mt-3">Contact Prema Vasam</h3>
+              <p class="text-stone-600 text-sm mt-2 mb-6">
+                We invite you and your family to visit our home in Gerugambakkam, Chennai. Send us an inquiry and our coordinators will assist you promptly.
+              </p>
+
+              <div id="contactSuccessBox" class="hidden mb-6 p-4 rounded-2xl bg-emerald-50 border border-emerald-300 text-emerald-800 text-sm">
+                ✉️ <strong>Message Sent!</strong> Miss Mumtaj and the administrative team will respond promptly.
+              </div>
+
+              <form id="contactForm" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Your Name *</label>
+                    <input type="text" id="contactName" required placeholder="Name" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-amber-600 text-sm">
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Email Address *</label>
+                    <input type="email" id="contactEmail" required placeholder="you@example.com" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-amber-600 text-sm">
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Subject</label>
+                  <input type="text" id="contactSubject" placeholder="e.g. Campus Visit / Sponsoring groceries" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-amber-600 text-sm">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Message *</label>
+                  <textarea id="contactMessage" required rows="3" placeholder="Write your message here..." class="w-full px-4 py-2 rounded-xl border border-stone-300 focus:border-amber-600 text-sm"></textarea>
+                </div>
+
+                <button type="submit" id="contactSubmitBtn" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-6 rounded-xl shadow-md transition flex items-center justify-center gap-2">
+                  <i data-lucide="mail" class="w-4 h-4"></i>
+                  <span>Send Message to Office</span>
+                </button>
+              </form>
+            </div>
+
+            <!-- Address footer snippet -->
+            <div class="mt-6 pt-4 border-t border-stone-100 text-xs text-stone-500 space-y-1">
+              <span class="block text-stone-700 font-semibold">📍 Prema Vasam Campus</span>
+              <span>Thiru V.K.A. Road, Gerugambakkam, Chennai &ndash; 600 128. Tamil Nadu, India.</span>
+              <span class="block">📞 +91 96772 38998 &bull; ✉️ premavasam1999@gmail.com</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ════════════════════════════════════════════════════════════
+       CONFIRMATION MODAL FOR MEAL BOOKING
+  ════════════════════════════════════════════════════════════ -->
+  <div id="mealBookingModal" class="hidden fixed inset-0 z-50 bg-stone-900/70 backdrop-blur-sm items-center justify-center p-4">
+    <div class="bg-white max-w-lg w-full rounded-3xl p-6 sm:p-8 shadow-2xl border border-amber-300 relative animate-in fade-in zoom-in duration-200">
+      <button onclick="closeMealModal()" class="absolute top-5 right-5 text-stone-400 hover:text-stone-700 p-1">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+
+      <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mb-4">
+        <i data-lucide="check" class="w-6 h-6"></i>
+      </div>
+
+      <span class="text-xs font-bold text-amber-700 uppercase tracking-wider">BOOKING CONFIRMED &bull; RECORDED IN SQLITE</span>
+      <h3 class="font-heading text-2xl font-bold text-stone-900 mt-1">Thank You, <span id="confirmSponsorName"></span>!</h3>
+      <p class="text-sm text-stone-600 mt-1">Your meal booking reference is <strong id="confirmBookingId" class="text-amber-700 font-mono"></strong>.</p>
+
+      <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200/80 my-5 text-xs text-stone-700 space-y-2">
+        <div class="flex justify-between">
+          <span class="text-stone-500">Reserved Date:</span>
+          <strong id="confirmMealDate"></strong>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-stone-500">Selected Menu:</span>
+          <span id="confirmMealItems" class="font-semibold text-right max-w-[200px] truncate"></span>
+        </div>
+        <div class="flex justify-between text-sm pt-2 border-t border-amber-200">
+          <span class="font-bold text-stone-800">Total Sponsorship:</span>
+          <strong id="confirmAmount" class="font-heading text-base text-amber-800"></strong>
+        </div>
+      </div>
+
+      <!-- Copyable Bank Details in Modal -->
+      <div class="bg-stone-50 p-4 rounded-xl border border-stone-200 text-xs space-y-2 mb-6">
+        <span class="font-bold text-stone-800 block">Please transfer sponsorship amount to:</span>
+        <div class="flex justify-between items-center">
+          <span>Bank of Baroda A/C: <strong>20460100001458</strong></span>
+          <button onclick="copyToClipboard('20460100001458', 'Account number')" class="text-amber-700 font-bold hover:underline">Copy</button>
+        </div>
+        <div class="flex justify-between items-center">
+          <span>IFSC: <strong>BARB0KOVOOR</strong> (Kovoor, Chennai)</span>
+          <button onclick="copyToClipboard('BARB0KOVOOR', 'IFSC code')" class="text-amber-700 font-bold hover:underline">Copy</button>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button onclick="closeMealModal()" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 rounded-xl transition text-sm">
+          Done &bull; Return to Site
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       FULL-SCREEN GALLERY LIGHTBOX MODAL
+  ════════════════════════════════════════════════════════════ -->
+  <div id="lightboxModal" class="hidden fixed inset-0 z-50 bg-black/90 items-center justify-center p-4">
+    <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white hover:text-amber-400 p-2 z-10">
+      <i data-lucide="x" class="w-8 h-8"></i>
+    </button>
+    <button onclick="navigateLightbox(-1)" class="absolute left-6 text-white hover:text-amber-400 p-3 bg-white/10 rounded-full z-10">
+      <i data-lucide="chevron-left" class="w-8 h-8"></i>
+    </button>
+    <button onclick="navigateLightbox(1)" class="absolute right-6 text-white hover:text-amber-400 p-3 bg-white/10 rounded-full z-10">
+      <i data-lucide="chevron-right" class="w-8 h-8"></i>
+    </button>
+    <div class="max-w-4xl max-h-[85vh] text-center">
+      <img id="lightboxImg" src="" alt="Enlarged photo" class="max-w-full max-h-[75vh] object-contain mx-auto rounded-xl shadow-2xl">
+      <p id="lightboxTitle" class="text-amber-200 font-medium text-base mt-4"></p>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       FOOTER (CLEAN & WITHOUT ANY VISIBLE ADMIN REDIRECTS)
+  ════════════════════════════════════════════════════════════ -->
+  <footer class="bg-stone-900 text-amber-50 pt-16 pb-12 border-t border-stone-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-stone-800 text-sm">
+        
+        <div class="space-y-4 md:col-span-2">
+          <div class="flex items-center gap-3">
+            <img src="/images/logo.png" alt="Prema Vasam Logo" class="w-10 h-10 object-contain brightness-110">
+            <div>
+              <span class="block font-heading text-xl font-bold text-white tracking-tight">PREMA VASAM</span>
+              <span class="block text-xs font-semibold text-amber-400 uppercase">Where Love Resides &bull; Est. 1999</span>
+            </div>
+          </div>
+          <p class="text-stone-400 max-w-md leading-relaxed text-xs">
+            A loving sanctuary for mentally &amp; physically challenged and less fortunate children in Chennai, Tamil Nadu, India. Registered Charitable Trust Act No. 419 of 1999.
+          </p>
+        </div>
+
+        <div>
+          <span class="block font-heading font-bold text-white uppercase tracking-wider text-xs mb-3">Quick Navigation</span>
+          <ul class="space-y-2 text-stone-400 text-xs">
+            <li><a href="#about" class="hover:text-amber-400 transition">About Prema Vasam</a></li>
+            <li><a href="#meals-planner" class="hover:text-amber-400 transition">Sponsor Daily Meals</a></li>
+            <li><a href="#campuses" class="hover:text-amber-400 transition">Our 3 Campuses</a></li>
+            <li><a href="#therapies" class="hover:text-amber-400 transition">Therapies &amp; Care</a></li>
+            <li><a href="#gallery" class="hover:text-amber-400 transition">Photo Gallery</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="block font-heading font-bold text-white uppercase tracking-wider text-xs mb-3">Campus Address</span>
+          <p class="text-stone-400 text-xs leading-relaxed">
+            Thiru V.K.A. Road, Gerugambakkam,<br>
+            Chennai &ndash; 600 128. Tamil Nadu, India.<br>
+            <span class="block mt-2">📞 +91 96772 38998</span>
+            <span>✉️ premavasam1999@gmail.com</span>
+          </p>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
+        <p>&copy; 1999&ndash;2026 <strong>Prema Vasam Charitable Trust</strong>. All rights reserved. &bull; "To serve, not to be served."</p>
+        <p>Registered Charitable Trust No. 419/1999 &bull; Government of Tamil Nadu</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic -->
+  <script src="/js/app.js"></script>
+</body>
+</html>
