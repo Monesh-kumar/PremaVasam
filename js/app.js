@@ -371,18 +371,46 @@ window.handleContactSubmit = async function(e) {
 
 // ── 10. PHOTO GALLERY & FULLSCREEN LIGHTBOX ─────────────────
 const GALLERY_DATA = [
-  { src: '/images/gallery/diwali_1.jpg', title: 'Diwali Sparkles & Celebrations', cat: 'celebration' },
-  { src: '/images/gallery/diwali_2.jpg', title: 'Sweet Treat Distribution', cat: 'celebration' },
-  { src: '/images/gallery/diwali_3.jpg', title: 'Lighting Festive Diyas', cat: 'celebration' },
-  { src: '/images/gallery/school_1.jpg', title: 'Inclusive Classroom Learning', cat: 'education' },
-  { src: '/images/gallery/school_2.jpg', title: 'Creative Art & Clay Sessions', cat: 'education' },
-  { src: '/images/gallery/school_3.jpg', title: 'Sensory & Special Education', cat: 'education' },
-  { src: '/images/gallery/sports_1.jpg', title: 'World Disabled Day Sports Meet', cat: 'sports' },
-  { src: '/images/gallery/sports_2.jpg', title: 'Track & Wheelchair Sprint', cat: 'sports' },
-  { src: '/images/gallery/sports_3.jpg', title: 'Medal & Trophy Ceremony', cat: 'sports' },
-  { src: '/images/gallery/children_1.jpg', title: 'Morning Smiles & Tender Care', cat: 'daily' },
-  { src: '/images/gallery/children_2.jpg', title: 'Courtyard Laughter & Play', cat: 'daily' },
-  { src: '/images/gallery/children_3.jpg', title: 'Loving Companionship', cat: 'daily' }
+  // Happy Schooling & Education (all 5 photos)
+  { src: '/images/gallery/school_1.jpg', title: 'Classroom Learning & Alphabet ADL', cat: 'education' },
+  { src: '/images/gallery/school_2.jpg', title: 'Creative Art & Clay Modeling', cat: 'education' },
+  { src: '/images/gallery/school_3.jpg', title: 'Group Study & Interaction', cat: 'education' },
+  { src: '/images/gallery/school_4.jpg', title: 'Sensory Teaching & Special Aids', cat: 'education' },
+  { src: '/images/gallery/school_5.jpg', title: 'Focused Guidance & Writing Skills', cat: 'education' },
+  { src: '/images/dance1.jpg', title: 'Kalakshetra Classical Bharatha Natyam', cat: 'education' },
+  { src: '/images/dance2.jpg', title: 'Traditional Cultural Dance Performance', cat: 'education' },
+  { src: '/images/achieve2_music.jpg', title: 'Drums & Rhythm Session', cat: 'education' },
+
+  // Diwali 2024 & Celebrations (all 6 photos + Diwali special)
+  { src: '/images/gallery/diwali_1.jpg', title: 'Festival of Lights Gathering', cat: 'celebration' },
+  { src: '/images/gallery/diwali_2.jpg', title: 'Sweet Distribution & Festivities', cat: 'celebration' },
+  { src: '/images/gallery/diwali_3.jpg', title: 'Joyful Family Gathering', cat: 'celebration' },
+  { src: '/images/gallery/diwali_4.jpg', title: 'Lighting Festive Diyas Together', cat: 'celebration' },
+  { src: '/images/gallery/diwali_5.jpg', title: 'Evening Sparklers & Crackers', cat: 'celebration' },
+  { src: '/images/gallery/diwali_6.jpg', title: 'Diwali Sparkles & Joyful Smiles', cat: 'celebration' },
+  { src: '/images/swathidiwali.png', title: 'Community Diwali Celebration with Swathi', cat: 'celebration' },
+  { src: '/images/img_9718.jpg', title: 'Annual Day Celebrations & Speeches', cat: 'celebration' },
+
+  // Sports Meet & Physical Activities (all 6 photos + play therapy)
+  { src: '/images/gallery/sports_1.jpg', title: 'Opening Ceremony & March Past', cat: 'sports' },
+  { src: '/images/gallery/sports_2.jpg', title: 'Track Events & Running Race', cat: 'sports' },
+  { src: '/images/gallery/sports_3.jpg', title: 'Wheelchair Races & Champion Spirit', cat: 'sports' },
+  { src: '/images/gallery/sports_4.jpg', title: 'Cheering Squad & Enthusiastic Support', cat: 'sports' },
+  { src: '/images/gallery/sports_5.jpg', title: 'Medal & Trophy Distribution Ceremony', cat: 'sports' },
+  { src: '/images/gallery/sports_6.jpg', title: 'Group Sports Victory Celebration', cat: 'sports' },
+  { src: '/images/play_therapy.jpg', title: 'Play Therapy & Active Outdoor Games', cat: 'sports' },
+  { src: '/images/play_therapy_sports.jpg', title: 'Athletic Training & Parallel Bar Walking', cat: 'sports' },
+
+  // Our Children & Daily Life (all 5 photos + individual care)
+  { src: '/images/gallery/children_1.jpg', title: 'Morning Smiles & Fresh Day Care', cat: 'daily' },
+  { src: '/images/gallery/children_2.jpg', title: 'Courtyard Laughter & Free Play', cat: 'daily' },
+  { src: '/images/gallery/children_3.jpg', title: 'Tender Companionship & Friendship', cat: 'daily' },
+  { src: '/images/gallery/children_4.jpg', title: 'Moments of Pure Innocent Joy', cat: 'daily' },
+  { src: '/images/gallery/children_5.jpg', title: 'Embraced with Compassion & Love', cat: 'daily' },
+  { src: '/images/individual_care1.jpg', title: 'Dedicated Motherly Care & Feeding', cat: 'daily' },
+  { src: '/images/individual_care3.jpg', title: 'Individual Physical Rehabilitation', cat: 'daily' },
+  { src: '/images/individual_care4.jpg', title: 'Warm Affection & Daily Nursing', cat: 'daily' },
+  { src: '/images/achieve_praveena.jpg', title: 'Milestone Walk: Praveena Triumphs', cat: 'daily' }
 ];
 
 let curLightboxIdx = 0;
@@ -466,4 +494,74 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Render gallery
   renderGalleryGrid();
+
+  // Initialize Hero Carousel
+  if (window.initHeroCarousel) window.initHeroCarousel();
 });
+// ── 12. HERO IMAGE CAROUSEL CONTROLLER ──────────────────────
+let curHeroSlide = 0;
+let heroCarouselTimer = null;
+
+window.initHeroCarousel = function() {
+  const container = document.getElementById('heroCarousel');
+  const dotsBox = document.getElementById('heroDotsContainer');
+  if (!container) return;
+
+  const slides = container.querySelectorAll('.hero-slide');
+  if (slides.length <= 1) return;
+
+  if (dotsBox) {
+    dotsBox.innerHTML = '';
+    slides.forEach((_, idx) => {
+      const dot = document.createElement('button');
+      dot.className = `w-2 h-2 rounded-full transition-all ${idx === 0 ? 'w-5 bg-amber-400' : 'bg-white/60 hover:bg-white'}`;
+      dot.setAttribute('aria-label', `Slide ${idx + 1}`);
+      dot.onclick = () => { goToHeroSlide(idx); resetHeroTimer(); };
+      dotsBox.appendChild(dot);
+    });
+  }
+
+  function goToHeroSlide(idx) {
+    curHeroSlide = (idx + slides.length) % slides.length;
+    slides.forEach((slide, i) => {
+      if (i === curHeroSlide) {
+        slide.classList.remove('opacity-0', 'pointer-events-none');
+        slide.classList.add('opacity-100');
+      } else {
+        slide.classList.remove('opacity-100');
+        slide.classList.add('opacity-0', 'pointer-events-none');
+      }
+    });
+
+    if (dotsBox) {
+      const dots = dotsBox.querySelectorAll('button');
+      dots.forEach((dot, i) => {
+        if (i === curHeroSlide) {
+          dot.className = 'w-5 h-2 rounded-full bg-amber-400 transition-all';
+        } else {
+          dot.className = 'w-2 h-2 rounded-full bg-white/60 hover:bg-white transition-all';
+        }
+      });
+    }
+  }
+
+  function resetHeroTimer() {
+    clearInterval(heroCarouselTimer);
+    heroCarouselTimer = setInterval(() => {
+      goToHeroSlide(curHeroSlide + 1);
+    }, 4500);
+  }
+
+  window.nextHeroSlide = function() {
+    goToHeroSlide(curHeroSlide + 1);
+    resetHeroTimer();
+  };
+
+  window.prevHeroSlide = function() {
+    goToHeroSlide(curHeroSlide - 1);
+    resetHeroTimer();
+  };
+
+  resetHeroTimer();
+};
+

@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="theme-color" content="#C17F24">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Premavasam">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="https://www.premavasam.org/sites/default/files/logo_0.png">
+  <title>Sponsor Meals | Premavasam &bull; A Home of Love</title>
+  <meta name="description" content="Tariffs for sponsoring breakfast, lunch, dinner, evening snacks, and payasam for 200 children at Prema Vasam.">
+  <link rel="shortcut icon" href="https://www.premavasam.org/sites/default/files/logo_0.png" type="image/png">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+
+<!-- ══ TOP ANNOUNCEMENT TICKER ═════════════════════════════ -->
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <div class="top-badge">💛 A Home of Love Since 1999</div>
+    <div class="top-ticker" aria-live="polite">
+      <span class="ticker-dot"></span>
+      <span class="ticker-text" id="topTickerText">Sports Meet on World Disabled Day &bull; Rohit (Cerebral Palsy) walks after 2 years of physiotherapy!</span>
+    </div>
+    <div class="top-contact-quick">
+      <a href="tel:+919677238998">📞 +91 96772 38998</a>
+      <span class="sep">&bull;</span>
+      <a href="mailto:premavasam1999@gmail.com">✉️ premavasam1999@gmail.com</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ NAVBAR ══════════════════════════════════════════════ -->
+<header id="navbar">
+  <div class="nav-wrap">
+    <a href="/" class="nav-logo" aria-label="Premavasam Home">
+      <img class="logo-img" src="https://www.premavasam.org/sites/all/themes/trust/logo.png" alt="Premavasam Logo">
+      <div class="logo-brand">
+        <span class="logo-name">PREMAVASAM</span>
+        <span class="logo-sub">Where Love Resides &bull; Est. 1999</span>
+      </div>
+    </a>
+
+    <div class="nav-spacer"></div>
+
+    <ul class="nav-links" id="navLinks" role="menubar">
+      <li><a href="/" class="" role="menuitem">Home</a></li>
+      
+      <li class="has-sub">
+        <a href="/about" class="" role="menuitem">About Us</a>
+        <ul class="nav-drop" role="menu">
+          <li><a href="/whoweare" class="">Who We Are</a></li>
+          <li><a href="/projects" class="">Our Projects</a></li>
+          <li><a href="/achievements" class="">Achievements</a></li>
+        </ul>
+      </li>
+
+      <li><a href="/activities" class="" role="menuitem">Activities</a></li>
+
+      <li class="has-sub">
+        <a href="/volunteers" class="" role="menuitem">Echo</a>
+        <ul class="nav-drop" role="menu">
+          <li><a href="/volunteers" class="">Volunteers' Love</a></li>
+          <li><a href="/press" class="">Press &amp; Media</a></li>
+        </ul>
+      </li>
+
+      <li class="has-sub">
+        <a href="/sponsormeals" class="" role="menuitem">Shoulder Us</a>
+        <ul class="nav-drop" role="menu">
+          <li><a href="/sponsormeals" class="active">🍲 Sponsor Meals</a></li>
+          <li><a href="/sharecare" class="">🎁 Share &amp; Care</a></li>
+          <li><a href="/howhelp" class="">💳 Bank &amp; NRI Transfer</a></li>
+        </ul>
+      </li>
+
+      <li><a href="/contact" class="" role="menuitem">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="search-trigger" id="searchTriggerBtn" title="Search Premavasam" aria-label="Open search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
+      <a href="/howhelp" class="nav-cta">
+        <span>Donate Now</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ══ SEARCH MODAL ════════════════════════════════════════ -->
+<div class="search-modal" id="searchModal" role="dialog" aria-modal="true" aria-label="Search site">
+  <div class="search-modal-backdrop" id="searchBackdrop"></div>
+  <div class="search-modal-card">
+    <div class="search-input-wrap">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input type="search" id="siteSearchInput" placeholder="Search activities, donations, history, projects..." autocomplete="off">
+      <button id="searchCloseBtn" class="search-close-btn" aria-label="Close search">&times;</button>
+    </div>
+    <div id="searchResults" class="search-results-list">
+      <div class="search-hint">Type keyword (e.g. <em>physiotherapy, meals, indra, bank, prem</em>)</div>
+    </div>
+  </div>
+</div>
+
+
+<main id="main" tabindex="-1">
+
+  <!-- ══ PAGE HERO ═══════════════════════════════════════════ -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span>/</span> <a href="/howhelp">How Can You Help</a> <span>/</span> <strong>Sponsor Meals</strong>
+      </nav>
+      <span class="hero-tag">FEEDING 200+ PRECIOUS SOULS DAILY</span>
+      <h1 class="page-title">Sponsor Meals Program</h1>
+      <p class="page-lead">Honor your special occasions &mdash; birthdays, weddings, anniversaries, or memorial days &mdash; by blessing our 200+ special and underprivileged children with a joyful feast.</p>
+    </div>
+  </section>
+
+  <!-- ══ 1. HOW TO BOOK A MEAL DATE (TOP GUIDANCE) ═════════════ -->
+  <section class="booking-guide-section" id="how-to-book" style="padding: 38px 0 16px; background: #fffcf8; border-bottom: 1px solid var(--border-soft);">
+    <div class="section-inner" style="max-width: 1280px; margin: 0 auto; padding: 0 24px;">
+      <div class="booking-guide reveal" style="margin-top: 0; box-shadow: var(--sh-sm); border: 1px solid rgba(193,127,36,0.22); background: linear-gradient(135deg, #FFFDF8 0%, #FEF5EA 100%); border-radius: var(--r-2xl); padding: 34px 28px;">
+        <div style="text-align: center; margin-bottom: 24px;">
+          <span class="section-label" style="display:inline-block; margin-bottom:6px; letter-spacing:0.08em;">STEP-BY-STEP PROCESS</span>
+          <h2 style="font-family: var(--font-display); font-size: 1.75rem; color: var(--navy); margin: 0 0 8px;">How to Book a Meal Date:</h2>
+          <p style="color: var(--txt-mid); font-size: 0.95rem; margin: 0 auto; max-width: 620px;">Celebrate birthdays, weddings, anniversaries, and memorial days with our 200+ children in 3 simple steps.</p>
+        </div>
+        <div class="steps-row">
+          <div class="step-col" style="background: #ffffff; border: 1px solid rgba(193,127,36,0.18); border-radius: var(--r-xl); padding: 24px 20px; box-shadow: var(--sh-xs); text-align: center;">
+            <span class="step-num" style="background: var(--brand); color: #fff; width: 42px; height: 42px; line-height: 42px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; margin: 0 auto 12px; box-shadow: 0 4px 10px rgba(193,127,36,0.25);">1</span>
+            <strong style="display:block; font-size: 1.02rem; color: var(--navy); margin-bottom: 6px;">Select Date &amp; Meal</strong>
+            <p style="font-size: 0.88rem; color: var(--txt-mid); line-height: 1.55; margin: 0;">Pick your preferred date and select the meal packages (Breakfast, Lunch, Dinner, or Treats) using the interactive calculator below.</p>
+          </div>
+          <div class="step-col" style="background: #ffffff; border: 1px solid rgba(193,127,36,0.18); border-radius: var(--r-xl); padding: 24px 20px; box-shadow: var(--sh-xs); text-align: center;">
+            <span class="step-num" style="background: var(--brand); color: #fff; width: 42px; height: 42px; line-height: 42px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; margin: 0 auto 12px; box-shadow: 0 4px 10px rgba(193,127,36,0.25);">2</span>
+            <strong style="display:block; font-size: 1.02rem; color: var(--navy); margin-bottom: 6px;">Transfer via Bank / UPI</strong>
+            <p style="font-size: 0.88rem; color: var(--txt-mid); line-height: 1.55; margin: 0;">Transfer your contribution to <em>Bank of Baroda A/C: 20460100001458 (IFSC: BARB0KOVOOR)</em> or direct UPI transfer, and note down your reference/UTR.</p>
+          </div>
+          <div class="step-col" style="background: #ffffff; border: 1px solid rgba(193,127,36,0.18); border-radius: var(--r-xl); padding: 24px 20px; box-shadow: var(--sh-xs); text-align: center;">
+            <span class="step-num" style="background: var(--brand); color: #fff; width: 42px; height: 42px; line-height: 42px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; margin: 0 auto 12px; box-shadow: 0 4px 10px rgba(193,127,36,0.25);">3</span>
+            <strong style="display:block; font-size: 1.02rem; color: var(--navy); margin-bottom: 6px;">Submit Pledge &amp; Call Us</strong>
+            <p style="font-size: 0.88rem; color: var(--txt-mid); line-height: 1.55; margin: 0;">Register your pledge below and call Miss Mumtaj at <a href="tel:+919677238998" style="color:var(--brand); font-weight:700;">+91 96772 38998</a> so our children and staff say a prayer in your honor!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 2. INTERACTIVE MEALS CALCULATOR SECTION ═══════════════ -->
+  <section class="meals-calc-section" id="meals-calculator">
+    <div class="section-inner" style="max-width:1280px; margin:0 auto;">
+      <div class="section-header centered reveal">
+        <span class="section-label">INTERACTIVE MEALS CALCULATOR</span>
+        <h2 class="section-title">Calculate &amp; Customize Your Sponsorship</h2>
+        <p class="section-sub">Select the meals you wish to sponsor below. The live calculator calculates your total and transfers your choices directly to the registration tab.</p>
+      </div>
+
+      <!-- QUICK PRESETS -->
+      <div class="calc-presets-bar reveal">
+        <span class="calc-preset-tag">⚡ Quick Presets:</span>
+        <button class="preset-chip" onclick="applyPreset('lunch')">☀️ Sponsor Lunch Feast (₹6,500)</button>
+        <button class="preset-chip" onclick="applyPreset('fullday')">🌟 Full Day Sponsorship (₹20,000)</button>
+        <button class="preset-chip" onclick="applyPreset('breakfast')">🌅 Breakfast Feast (₹4,000)</button>
+        <button class="preset-chip" onclick="applyPreset('treats')">🍦 Joyful Treats (₹7,000)</button>
+        <button class="preset-clear" onclick="clearCalculator()">🔄 Clear All</button>
+      </div>
+
+      <!-- CALCULATOR SPLIT LAYOUT -->
+      <div class="calc-grid-layout reveal">
+        
+        <!-- LEFT: MEAL SELECTION GROUPS -->
+        <div class="calc-options-panel">
+
+          <!-- BREAKFAST GROUP -->
+          <div class="calc-category-group">
+            <div class="calc-cat-header">
+              <span class="calc-cat-title">🌅 Breakfast</span>
+              <span class="calc-cat-badge">Served at 8:00 AM</span>
+            </div>
+            <div class="calc-items-list">
+              <div class="calc-item" data-id="b_usual" data-price="3500" data-name="Usual Breakfast (Idli, Vada, Sambar / Pongal)" onclick="toggleMealItem(this)">
+                <div class="calc-item-left">
+                  <div class="calc-checkbox">✓</div>
+                  <div class="calc-item-text">
+                    <strong>Usual Breakfast</strong>
+                    <p>Idli, Vada, Sambar, Chutney / Pongal for all children</p>
+                  </div>
+                </div>
+                <span class="calc-item-price">₹3,500</span>
+              </div>
+
+              <div class="calc-item" data-id="b_sweet" data-price="4000" data-name="Breakfast with Sweet (Hot Breakfast + Kesari/Payasam)" onclick="toggleMealItem(this)">
+                <div class="calc-item-left">
+                  <div class="calc-checkbox">✓</div>
+                  <div class="calc-item-text">
+                    <strong>Breakfast with Sweet</strong>
+                    <p>Hot South Indian breakfast + Kesari / Sweet dessert treat</p>
+                  </div>
+                </div>
+                <span class="calc-item-price">₹4,000</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- LUNCH GROUP -->
+          <div class="calc-category-group">
+            <div class="calc-cat-header">
+              <span class="calc-cat-title">☀️ Nutritious Lunch Feast</span>
+              <span class="calc-cat-badge" style="color:#C17F24; font-weight:800;">★ Most Popular</span>
+            </div>
+            <div class="calc-items-list">
+              <div class="calc-item" data-id="l_usual" data-price="5000" data-name="Usual Lunch (Rice, Sambar, Rasam, Kootu, Curd)" onclick="toggleMealItem(this)">
+                <div class="calc-item-left">
+                  <div class="calc-checkbox">✓</div>
+                  <div class="calc-item-text">
+                    <strong>Usual Lunch</strong>
+                    <p>Wholesome balanced meal: Rice, Sambar, Rasam, Poriyal, Curd</p>
+                  </div>
+                </div>
+                <span class="calc-item-price">₹5,000</span>
+              </div>
+
+              <div class="calc-item selected" data-id="l_festive" data-price="6500" data-name="Festive Lunch with Vadai &amp; Payasam" onclick="toggleMealItem(this)">
+                <div class="calc-item-left">
+                  <div class="calc-checkbox">✓</div>
+                  <div class="calc-item-text">
+                    <strong>Lunch with Vadai &amp; Payasam (Festive Feast)</strong>
+                    <p>Traditional celebratory feast with Medu Vadai &amp; Sweet Payasam</p>
+                  </div>
+                </div>
+                <span class="calc-item-price">₹6,500</span>
+              </div>
+
+              <div class="calc-item" data-id="l_nonveg" data-price="9000" data-name="Special Non-Veg Lunch Feast (Chicken / Egg)" onclick="toggleMealItem(this)">
+                <div class="calc-item-left">
+                  <div class="calc-checkbox">✓</div>
+                  <div class="calc-item-text">
+                    <strong>Special Non-Veg Lunch Feast</strong>
+                    <p>Special chicken / egg curry cooked freshly in our steam kitchen</p>
+                  </div>
+                </div>
+                <span class="calc-item-price">₹9,000</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- DINNER GROUP -->
+          <div class="calc-category-group">
+            <div class="calc-cat-header">
+              <span class="calc-cat-title">🌙 Warm Dinner</span>
+              <span class="calc-cat-badge">Served at 7:30 PM</span>
+            </div>
+            <div class="calc-items-list">
+              <div class="calc-item" data-id="d_usual" data-price="5000" data-name="Usual Dinner (Tiffin: Chappathi / Dosa / Upma)" onclick="toggleMealItem(this)">
+                <div class="calc-item-left">
+                  <div class="calc-checkbox">✓</div>
+                  <div class="calc-item-text">
+                    <strong>Usual Dinner</strong>
+                    <p>Evening tiffin: Soft Chappathi, Dosa, Upma or Variety Rice</p>
+                  </div>
+                </div>
+                <span class="calc-item-price">₹5,000</span>
+              </div>
+
+              <div class="calc-item" data-id="d_festive" data-price="6500" data-name="Dinner with Vadai &amp; Payasam" onclick="toggleMealItem(this)">
+                <div class="calc-item-left">
+                  <div class="calc-checkbox">✓</div>
+                  <div class="calc-item-text">
+                    <strong>Dinner with Vadai &amp; Payasam</strong>
+                    <p>Evening feast with freshly made Vadai &amp; traditional Payasam</p>
+                  </div>
+                </div>
+                <span class="calc-item-price">₹6,500</span>
+              </div>
+
+              <div class="calc-item" data-id="d_nonveg" data-price="9000" data-name="Special Non-Veg Dinner" onclick="toggleMealItem(this)">
+                <div class="calc-item-left">
+                  <div class="calc-checkbox">✓</div>
+                  <div class="calc-item-text">
+                    <strong>Special Non-Veg Dinner</strong>
+                    <p>Complete evening non-vegetarian chicken feast</p>
+                  </div>
+                </div>
+                <span class="calc-item-price">₹9,000</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- SNACKS & TREATS GROUP -->
+          <div class="calc-category-group">
+            <div class="calc-cat-header">
+              <span class="calc-cat-title">🍦 Snacks &amp; Joyful Treats</span>
+              <span class="calc-cat-badge">Served at 4:30 PM</span>
+            </div>
+            <div class="calc-items-list">
+              <div class="calc-item" data-id="s_snacks" data-price="2500" data-name="Evening Tea &amp; Snacks (Sundal / Bajji / Biscuits)" onclick="toggleMealItem(this)">
+                <div class="calc-item-left">
+                  <div class="calc-checkbox">✓</div>
+                  <div class="calc-item-text">
+                    <strong>Evening Snacks &amp; Tea / Milk</strong>
+                    <p>Nutritious protein Sundal, hot Bajji or biscuits with fresh milk</p>
+                  </div>
+                </div>
+                <span class="calc-item-price">₹2,500</span>
+              </div>
+
+              <div class="calc-item" data-id="s_icecream" data-price="4500" data-name="Special Ice-Cream Treat for 200 Children" onclick="toggleMealItem(this)">
+                <div class="calc-item-left">
+                  <div class="calc-checkbox">✓</div>
+                  <div class="calc-item-text">
+                    <strong>Special Ice-Cream Treat</strong>
+                    <p>Delicious ice cream cups bringing joyful smiles to all 200 children!</p>
+                  </div>
+                </div>
+                <span class="calc-item-price">₹4,500</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT: LIVE SUMMARY & REGISTRATION TRIGGER (STICKY) -->
+        <div class="calc-summary-card">
+          <div class="calc-summary-header">
+            <h3>Sponsorship Summary</h3>
+            <p>Direct impact feeding 200+ special children in Chennai</p>
+          </div>
+
+          <div class="calc-summary-body">
+            <div class="calc-chosen-list" id="calcChosenList">
+              <!-- Dynamically populated -->
+            </div>
+
+            <div class="calc-total-box">
+              <span class="calc-total-label">CALCULATED TOTAL PLEDGE</span>
+              <div class="calc-total-amount" id="calcTotalAmount">₹6,500</div>
+            </div>
+
+            <button class="calc-proceed-btn" id="proceedToRegBtn" onclick="goToRegistrationTab()">
+              <span>Proceed to Sponsor Registration</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+            </button>
+
+            <span class="calc-note-sub">🔒 Pre-fills registration form automatically below</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 2. SPONSOR REGISTRATION SECTION (TABS) ════════════════ -->
+  <section class="sponsor-reg-section" id="sponsor-register">
+    <div class="section-inner" style="max-width:1280px; margin:0 auto;">
+      
+      <div class="reg-card-wrap reveal">
+        <div class="reg-header">
+          <span class="album-tag">REGISTRATION &amp; BOOKING</span>
+          <h2>Sponsor Meals Registration</h2>
+          <p>Please provide your occasion details. Our administrator Miss Mumtaj will confirm your booking and ensure prayers are offered in your name.</p>
+        </div>
+
+        <div class="reg-form-body">
+          
+          <!-- SUCCESS CONFIRMATION BOX -->
+          <div class="reg-success-box" id="regSuccessBox">
+            <span class="reg-success-icon">💛</span>
+            <h3>Meal Pledge Received with Gratitude!</h3>
+            <p>Thank you, <strong id="successDonorName"></strong>! Your pledge of <strong id="successAmount"></strong> for <strong id="successMealPackage"></strong> on <strong id="successDate"></strong> has been recorded in our database.</p>
+            
+            <div class="reg-bank-card">
+              <h4 style="margin:0 0 10px; color:#1E4620;">Next Step: Complete Payment via Bank / UPI</h4>
+              <p style="margin:0 0 6px; font-size:.88rem; color:#2C1810;"><strong>Bank of Baroda</strong> &bull; A/C: <code>20460100001458</code> &bull; IFSC: <code>BARB0KOVOOR</code> &bull; Branch: Kovoor, Chennai</p>
+              <p style="margin:0; font-size:.85rem; color:#5C4A38;">Please send screenshot to WhatsApp at <strong>+91 96772 38998</strong> or email <strong>premavasam1999@gmail.com</strong>.</p>
+            </div>
+
+            <button class="btn btn-primary" style="margin-top:20px;" onclick="resetRegistrationForm()">Book Another Date</button>
+          </div>
+
+          <!-- REGISTRATION FORM -->
+          <form id="mainSponsorForm" onsubmit="handleRegistrationSubmit(event)">
+            
+            <div class="reg-grid">
+              <div>
+                <label class="reg-label" for="regName">Your Full Name *</label>
+                <input type="text" class="reg-input" id="regName" required placeholder="e.g. Ramesh Kumar" autocomplete="name">
+              </div>
+
+              <div>
+                <label class="reg-label" for="regPhone">Phone / WhatsApp Number *</label>
+                <input type="tel" class="reg-input" id="regPhone" required placeholder="+91 98765 43210" autocomplete="tel">
+              </div>
+
+              <div>
+                <label class="reg-label" for="regEmail">Email Address (Optional)</label>
+                <input type="email" class="reg-input" id="regEmail" placeholder="for 80G tax receipt" autocomplete="email">
+              </div>
+
+              <div>
+                <label class="reg-label" for="regDate">Occasion &amp; Desired Date *</label>
+                <input type="text" class="reg-input" id="regDate" required placeholder="e.g. Daughter's Birthday on 20th Nov">
+              </div>
+
+              <div class="reg-full">
+                <label class="reg-label" for="regMealPackage">Selected Meal Package</label>
+                <input type="text" class="reg-input" id="regMealPackage" readonly value="Festive Lunch with Vadai &amp; Payasam">
+              </div>
+
+              <div class="reg-full">
+                <label class="reg-label" for="regAmountDisplay">Calculated Total Sponsorship Amount (₹)</label>
+                <input type="text" class="reg-input" id="regAmountDisplay" readonly value="₹6,500">
+                <input type="hidden" id="regAmountRaw" value="6500">
+              </div>
+
+              <div class="reg-full">
+                <label class="reg-label" for="regNotes">Special Dedication / Prayer Notes (Optional)</label>
+                <textarea class="reg-input" id="regNotes" rows="2" placeholder="e.g. In loving memory of father / Please recite prayers during morning meal" style="resize:vertical;"></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="reg-submit-btn" id="regSubmitBtn">
+              Confirm &amp; Submit Meal Pledge (₹6,500) &rarr;
+            </button>
+
+            <p style="text-align:center; font-size:.8rem; color:var(--txt-muted); margin-top:12px;">
+              🛡️ All records are stored securely in our official database. We never share your contact details.
+            </p>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ 3. TARIFF SCHEDULE REFERENCE ══════════════════════════ -->
+  <section class="section" style="padding-top:40px;">
+    <div class="section-inner">
+      <div class="section-header centered reveal">
+        <span class="section-label">DAILY TARIFF SCHEDULE</span>
+        <h2 class="section-title">Meals Program Per Day (Reference)</h2>
+        <p class="section-sub">All meals are cooked fresh in our hygienic steam kitchen, tailored to the nutritional needs of special children.</p>
+      </div>
+
+      <div class="meals-grid reveal delay-1">
+
+        <!-- BREAKFAST -->
+        <div class="meal-plan-card">
+          <div class="mp-header">
+            <span class="mp-icon">🌅</span>
+            <h3>Breakfast</h3>
+            <span class="mp-time">Served at 8:00 AM</span>
+          </div>
+          <div class="mp-body">
+            <div class="mp-option">
+              <div>
+                <strong>Usual Breakfast</strong>
+                <p>Idli, Vada, Sambar, Chutney / Pongal</p>
+              </div>
+              <span class="mp-price">₹3,500</span>
+            </div>
+            <div class="mp-option highlight">
+              <div>
+                <strong>Breakfast with Sweet</strong>
+                <p>Hot breakfast + Kesari / Payasam sweet</p>
+              </div>
+              <span class="mp-price">₹4,000</span>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-sm mp-btn" onclick="applyPreset('breakfast')">Sponsor Breakfast</button>
+        </div>
+
+        <!-- LUNCH -->
+        <div class="meal-plan-card featured">
+          <div class="mp-badge">MOST POPULAR</div>
+          <div class="mp-header">
+            <span class="mp-icon">☀️</span>
+            <h3>Nutritious Lunch</h3>
+            <span class="mp-time">Served at 12:30 PM</span>
+          </div>
+          <div class="mp-body">
+            <div class="mp-option">
+              <div>
+                <strong>Usual Lunch</strong>
+                <p>Rice, Sambar, Rasam, Poriyal, Kootu, Curd</p>
+              </div>
+              <span class="mp-price">₹5,000</span>
+            </div>
+            <div class="mp-option highlight">
+              <div>
+                <strong>Lunch with Vadai &amp; Payasam</strong>
+                <p>Traditional festive vegetarian feast</p>
+              </div>
+              <span class="mp-price">₹6,500</span>
+            </div>
+            <div class="mp-option">
+              <div>
+                <strong>Non-Veg Lunch</strong>
+                <p>Special chicken/egg curry feast</p>
+              </div>
+              <span class="mp-price">₹9,000</span>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-sm mp-btn" onclick="applyPreset('lunch')">Sponsor Lunch Feast</button>
+        </div>
+
+        <!-- DINNER -->
+        <div class="meal-plan-card">
+          <div class="mp-header">
+            <span class="mp-icon">🌙</span>
+            <h3>Warm Dinner</h3>
+            <span class="mp-time">Served at 7:30 PM</span>
+          </div>
+          <div class="mp-body">
+            <div class="mp-option">
+              <div>
+                <strong>Usual Dinner</strong>
+                <p>Tiffin (Chappathi / Dosa / Upma / Variety rice)</p>
+              </div>
+              <span class="mp-price">₹5,000</span>
+            </div>
+            <div class="mp-option highlight">
+              <div>
+                <strong>Dinner with Vadai &amp; Payasam</strong>
+                <p>Evening feast with sweets &amp; savories</p>
+              </div>
+              <span class="mp-price">₹6,500</span>
+            </div>
+            <div class="mp-option">
+              <div>
+                <strong>Non-Veg Dinner</strong>
+                <p>Complete evening non-vegetarian dinner</p>
+              </div>
+              <span class="mp-price">₹9,000</span>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-sm mp-btn" onclick="applyPreset('dinner')">Sponsor Dinner</button>
+        </div>
+
+        <!-- SNACKS -->
+        <div class="meal-plan-card">
+          <div class="mp-header">
+            <span class="mp-icon">🍦</span>
+            <h3>Snacks &amp; Treats</h3>
+            <span class="mp-time">Served at 4:30 PM</span>
+          </div>
+          <div class="mp-body">
+            <div class="mp-option">
+              <div>
+                <strong>Evening Snacks</strong>
+                <p>Sundal / Bajji / Biscuits + Milk / Tea</p>
+              </div>
+              <span class="mp-price">₹2,500</span>
+            </div>
+            <div class="mp-option highlight">
+              <div>
+                <strong>Special Ice-Cream Treat</strong>
+                <p>Joyful ice cream cups for all 200 children!</p>
+              </div>
+              <span class="mp-price">₹4,500</span>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-sm mp-btn" onclick="applyPreset('treats')">Sponsor Treats</button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+
+<!-- ══ FOOTER ══════════════════════════════════════════════ -->
+<footer id="footer">
+  <div class="footer-warm-banner">
+    <div class="footer-warm-inner">
+      <div class="footer-warm-text">
+        <span class="f-eyebrow">♥ MAKE A DIRECT IMPACT TODAY</span>
+        <h3>Every child who knocks on our door is embraced with tender love.</h3>
+        <p>No contribution is too small. Together, we can provide physiotherapy, warm nutrition, education, and eternal dignity.</p>
+      </div>
+      <div class="footer-warm-actions">
+        <a href="/sponsormeals" class="btn btn-primary">🍲 Sponsor a Meal Today</a>
+        <a href="/howhelp" class="btn btn-outline-light">Bank &amp; NRI Details</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-grid">
+    <div class="footer-brand-col">
+      <a href="/" class="f-logo-link">
+        <img src="https://www.premavasam.org/sites/all/themes/trust/logo.png" alt="Premavasam">
+        <div>
+          <h4>PREMAVASAM</h4>
+          <span>A Home Where Love Resides</span>
+        </div>
+      </a>
+      <p class="f-mission">
+        A registered charitable residential home caring for 200+ mentally challenged, differently-abled, and less-fortunate children in Chennai.
+      </p>
+      <div class="f-reg-info">
+        <span>📜 Registered Charitable Trust Act: <strong>No. 419 of 1999</strong></span>
+        <span>🇮🇳 100% Non-Profit Organization &bull; FCRA Approved</span>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Our Mission</h4>
+      <ul>
+        <li><a href="/whoweare">Who We Are &bull; Inception</a></li>
+        <li><a href="/about">About Prema Vasam</a></li>
+        <li><a href="/projects">Our Projects &bull; Prem Niketan &amp; Prem Illam</a></li>
+        <li><a href="/achievements">Milestones &amp; Dreams</a></li>
+        <li><a href="/activities">Therapies &amp; Education</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Shoulder Us</h4>
+      <ul>
+        <li><a href="/sponsormeals">Sponsor Daily Meals (Breakfast / Lunch / Dinner)</a></li>
+        <li><a href="/sharecare">Share &amp; Care (Provisions &amp; Clothing)</a></li>
+        <li><a href="/howhelp">Bank Transfer &bull; Bank of Baroda</a></li>
+        <li><a href="/howhelp#nri">NRI Donors &bull; SBI FCRA Account</a></li>
+        <li><a href="/volunteers">Volunteer Experience Stories</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact &amp; Location</h4>
+      <div class="f-contact-item">
+        <span class="f-icon">📍</span>
+        <span>Thiru V.K.A. Road, Gerugambakkam, Chennai &ndash; 600 128, Tamil Nadu, India</span>
+      </div>
+      <div class="f-contact-item">
+        <span class="f-icon">📞</span>
+        <span><a href="tel:+919677238998">+91 96772 38998</a> (9 AM &ndash; 8 PM)<br>044-23820771 &bull; 044-23820330</span>
+      </div>
+      <div class="f-contact-item">
+        <span class="f-icon">✉️</span>
+        <span><a href="mailto:premavasam1999@gmail.com">premavasam1999@gmail.com</a></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <p>&copy; 1999&ndash;2026 <strong>Premavasam Charitable Trust</strong>. All rights reserved. &bull; "To serve, not to be served."</p>
+      <div class="footer-legal">
+        <span>Designed with Light Warm UI &bull; Fast, Accessible &amp; Modern</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button id="back-top" aria-label="Back to top of page" title="Scroll to top">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+</button>
+
+<script src="/js/main.js"></script>
+
+
+<script>
+  // ── MEALS CALCULATOR INTERACTIVE ENGINE ─────────────────────
+  let selectedMealItems = [];
+
+  function initCalculator() {
+    // Default select Lunch with Vadai & Payasam
+    const defaultLunch = document.querySelector('.calc-item[data-id="l_festive"]');
+    if (defaultLunch) {
+      defaultLunch.classList.add('selected');
+    }
+    recalculateMeals();
+  }
+
+  function toggleMealItem(el) {
+    el.classList.toggle('selected');
+    recalculateMeals();
+  }
+
+  function clearCalculator() {
+    document.querySelectorAll('.calc-item').forEach(item => item.classList.remove('selected'));
+    recalculateMeals();
+  }
+
+  function applyPreset(presetName) {
+    document.querySelectorAll('.calc-item').forEach(item => item.classList.remove('selected'));
+
+    if (presetName === 'lunch') {
+      const l = document.querySelector('.calc-item[data-id="l_festive"]');
+      if (l) l.classList.add('selected');
+    } else if (presetName === 'fullday') {
+      ['b_sweet', 'l_festive', 'd_festive', 's_icecream'].forEach(id => {
+        const item = document.querySelector(`.calc-item[data-id="${id}"]`);
+        if (item) item.classList.add('selected');
+      });
+    } else if (presetName === 'breakfast') {
+      const b = document.querySelector('.calc-item[data-id="b_sweet"]');
+      if (b) b.classList.add('selected');
+    } else if (presetName === 'dinner') {
+      const d = document.querySelector('.calc-item[data-id="d_festive"]');
+      if (d) d.classList.add('selected');
+    } else if (presetName === 'treats') {
+      ['s_snacks', 's_icecream'].forEach(id => {
+        const item = document.querySelector(`.calc-item[data-id="${id}"]`);
+        if (item) item.classList.add('selected');
+      });
+    }
+
+    recalculateMeals();
+    goToRegistrationTab();
+  }
+
+  function recalculateMeals() {
+    const selectedEls = document.querySelectorAll('.calc-item.selected');
+    selectedMealItems = [];
+    let total = 0;
+
+    selectedEls.forEach(el => {
+      const id = el.getAttribute('data-id');
+      const name = el.getAttribute('data-name');
+      const price = parseInt(el.getAttribute('data-price'), 10) || 0;
+      selectedMealItems.push({ id, name, price });
+      total += price;
+    });
+
+    // Update list in summary card
+    const listEl = document.getElementById('calcChosenList');
+    if (selectedMealItems.length === 0) {
+      listEl.innerHTML = '<div class="calc-empty-hint">Please choose one or more meals above to calculate total sponsorship.</div>';
+    } else {
+      listEl.innerHTML = selectedMealItems.map(item => `
+        <div class="calc-chosen-item">
+          <strong>${escapeHtml(item.name)}</strong>
+          <span>₹${item.price.toLocaleString('en-IN')}</span>
+        </div>
+      `).join('');
+    }
+
+    // Update Total Display
+    const totalEl = document.getElementById('calcTotalAmount');
+    totalEl.innerText = '₹' + total.toLocaleString('en-IN');
+
+    // Update proceed button
+    const btn = document.getElementById('proceedToRegBtn');
+    btn.disabled = (total === 0);
+
+    // Sync to registration form inputs
+    syncToRegistrationForm(total);
+  }
+
+  function syncToRegistrationForm(total) {
+    const pkgInput = document.getElementById('regMealPackage');
+    const amtDisplay = document.getElementById('regAmountDisplay');
+    const amtRaw = document.getElementById('regAmountRaw');
+    const submitBtn = document.getElementById('regSubmitBtn');
+
+    if (selectedMealItems.length === 0) {
+      if (pkgInput) pkgInput.value = 'General Meal Sponsorship';
+      if (amtDisplay) amtDisplay.value = '₹0';
+      if (amtRaw) amtRaw.value = 0;
+      if (submitBtn) submitBtn.innerText = 'Confirm & Submit Meal Pledge';
+    } else {
+      const names = selectedMealItems.map(i => i.name).join(' + ');
+      if (pkgInput) pkgInput.value = names;
+      if (amtDisplay) amtDisplay.value = '₹' + total.toLocaleString('en-IN');
+      if (amtRaw) amtRaw.value = total;
+      if (submitBtn) submitBtn.innerText = `Confirm & Submit Meal Pledge (₹${total.toLocaleString('en-IN')}) →`;
+    }
+  }
+
+  function goToRegistrationTab() {
+    const regSection = document.getElementById('sponsor-register');
+    if (regSection) {
+      regSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setTimeout(() => {
+        const nameInput = document.getElementById('regName');
+        if (nameInput) nameInput.focus();
+      }, 600);
+    }
+  }
+
+  async function handleRegistrationSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('regSubmitBtn');
+    btn.disabled = true;
+    btn.innerText = 'Recording Pledge in Database...';
+
+    const name = document.getElementById('regName').value.trim();
+    const phone = document.getElementById('regPhone').value.trim();
+    const email = document.getElementById('regEmail').value.trim();
+    const date = document.getElementById('regDate').value.trim();
+    const meal = document.getElementById('regMealPackage').value.trim();
+    const amount = parseInt(document.getElementById('regAmountRaw').value, 10) || 0;
+    const notes = document.getElementById('regNotes').value.trim();
+
+    try {
+      const res = await fetch('/api/sponsor-meal', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone, email, date, meal, amount, notes })
+      });
+      const data = await res.json();
+
+      if (data.ok) {
+        document.getElementById('mainSponsorForm').style.display = 'none';
+        document.getElementById('successDonorName').innerText = name;
+        document.getElementById('successAmount').innerText = '₹' + amount.toLocaleString('en-IN');
+        document.getElementById('successMealPackage').innerText = meal;
+        document.getElementById('successDate').innerText = date;
+        document.getElementById('regSuccessBox').style.display = 'block';
+
+        if (typeof showToast === 'function') {
+          showToast('💛 Meal pledge successfully recorded in database!');
+        }
+      } else {
+        alert('Error: ' + (data.error || 'Failed to record pledge. Please try again.'));
+        btn.disabled = false;
+        btn.innerText = 'Confirm & Submit Meal Pledge';
+      }
+    } catch (err) {
+      alert('Network error. Please try again or contact us directly.');
+      btn.disabled = false;
+      btn.innerText = 'Confirm & Submit Meal Pledge';
+    }
+  }
+
+  function resetRegistrationForm() {
+    document.getElementById('mainSponsorForm').reset();
+    document.getElementById('mainSponsorForm').style.display = 'block';
+    document.getElementById('regSuccessBox').style.display = 'none';
+    const btn = document.getElementById('regSubmitBtn');
+    btn.disabled = false;
+    btn.innerText = 'Confirm & Submit Meal Pledge';
+    recalculateMeals();
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  window.addEventListener('DOMContentLoaded', initCalculator);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="theme-color" content="#C17F24">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Premavasam">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="https://www.premavasam.org/sites/default/files/logo_0.png">
+  <title>Gallery | Premavasam &bull; A Home of Love</title>
+  <meta name="description" content="Photo albums of Happy Schooling, Diwali 2024, Sports Meet, and Our Children at Prema Vasam.">
+  <link rel="shortcut icon" href="/images/logo.png" type="image/png">
+  <link rel="stylesheet" href="/css/main.css?v=1792688918621">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    /* ── DIRECT GUARANTEED STYLES FOR COMPACT GALLERY CARDS ── */
+    .gallery-hero-clean {
+      background: linear-gradient(145deg, #1E120B 0%, #352115 50%, #25334E 100%);
+      padding: 130px 24px 44px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .ghm-ambient-glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 20%, rgba(255,216,138,.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .gallery-hero-clean .page-title {
+      font-family: 'Lora', serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      color: #FFFBF5;
+      margin: 0;
+      line-height: 1.15;
+    }
+    
+    /* Sticky Navigation Bar */
+    .gallery-album-nav {
+      position: sticky;
+      top: 72px;
+      z-index: 700;
+      background: rgba(254, 249, 242, 0.96);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border, #EADCC8);
+      padding: 14px 24px;
+      box-shadow: 0 4px 16px rgba(44, 24, 16, 0.05);
+    }
+    .gallery-nav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .album-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 20px;
+      border-radius: 999px;
+      background: #FFFFFF;
+      border: 1.5px solid var(--border, #EADCC8);
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--txt-mid, #5C4A38);
+      text-decoration: none;
+      transition: all 0.22s ease;
+      box-shadow: 0 2px 6px rgba(44, 24, 16, 0.04);
+    }
+    .album-pill:hover, .album-pill.active {
+      background: var(--brand, #C17F24);
+      color: #FFFFFF !important;
+      border-color: var(--brand, #C17F24);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(193, 127, 36, 0.35);
+    }
+
+    /* Album Section & Header */
+    .albums-container {
+      background: var(--bg, #FEF9F2);
+    }
+    .album-section {
+      scroll-margin-top: 140px;
+      padding: 60px 24px 30px;
+      border-bottom: 1px solid var(--border-soft, #F0E2D0);
+    }
+    .album-section:last-of-type {
+      border-bottom: none;
+      padding-bottom: 80px;
+    }
+    .album-section .section-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .album-header {
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .album-heading-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+    .album-tag {
+      font-size: .7rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      color: var(--brand, #C17F24);
+      text-transform: uppercase;
+    }
+    .album-heading {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      font-weight: 700;
+      color: var(--txt, #2C1810);
+      line-height: 1.2;
+      margin: 0;
+    }
+    .album-rule {
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(to right, rgba(193,127,36,.35), rgba(193,127,36,.04));
+      border-radius: 2px;
+    }
+
+    /* ── COMPACT SMALL CARDS GRID ── */
+    .compact-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+    .compact-card {
+      background: #FFFFFF;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border-soft, #EFE2CF);
+      box-shadow: 0 3px 10px rgba(44, 24, 16, 0.05);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+    .compact-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 28px -6px rgba(44, 24, 16, 0.12), 0 0 0 1.5px var(--brand, #C17F24);
+      border-color: var(--brand, #C17F24);
+    }
+    .compact-media {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      background: #1C110C;
+    }
+    .compact-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .compact-card:hover .compact-media img {
+      transform: scale(1.07);
+    }
+    .compact-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(28, 14, 7, 0.35);
+      backdrop-filter: blur(2px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.22s ease;
+    }
+    .compact-card:hover .compact-overlay {
+      opacity: 1;
+    }
+    .compact-zoom-pill {
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--brand-deep, #9A5E10);
+      font-size: .75rem;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      transform: translateY(4px);
+      transition: transform 0.22s ease;
+    }
+    .compact-card:hover .compact-zoom-pill {
+      transform: translateY(0);
+    }
+    .compact-info {
+      padding: 14px 16px;
+      background: #FFFFFF;
+      border-top: 1px solid var(--border-soft, #F5E8D8);
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+    .compact-title {
+      font-family: 'Lora', serif;
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--txt, #2C1810);
+      line-height: 1.35;
+      margin: 0;
+      transition: color 0.2s ease;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .compact-card:hover .compact-title {
+      color: var(--brand, #C17F24);
+    }
+
+    @media(max-width: 1100px) {
+      .compact-cards-grid { grid-template-columns: repeat(3, 1fr); gap: 18px; }
+      .compact-media { height: 170px; }
+    }
+    @media(max-width: 768px) {
+      .compact-cards-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+      .compact-media { height: 155px; }
+      .gallery-album-nav { padding: 10px 16px; top: 64px; }
+      .album-pill { padding: 7px 14px; font-size: .8rem; }
+      .album-section { padding: 40px 16px 20px; }
+      .compact-info { padding: 10px 12px; }
+      .compact-title { font-size: .88rem; }
+    }
+    @media(max-width: 440px) {
+      .compact-cards-grid { grid-template-columns: 1fr; }
+      .compact-media { height: 190px; }
+    }
+  </style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <div class="top-badge">💛 A Home of Love Since 1999</div>
+    <div class="top-ticker" aria-live="polite">
+      <span class="ticker-dot"></span>
+      <span class="ticker-text" id="topTickerText">Sports Meet on World Disabled Day &bull; Rohit (Cerebral Palsy) walks after 2 years of physiotherapy!</span>
+    </div>
+    <div class="top-contact-quick">
+      <a href="tel:+919677238998">📞 +91 96772 38998</a>
+      <span class="sep">&bull;</span>
+      <a href="mailto:premavasam1999@gmail.com">✉️ premavasam1999@gmail.com</a>
+    </div>
+  </div>
+</div>
+
+<header id="navbar">
+  <div class="nav-wrap">
+    <a href="/" class="nav-logo" aria-label="Premavasam Home">
+      <img class="logo-img" src="/images/logo.png" alt="Premavasam Logo">
+      <div class="logo-brand">
+        <span class="logo-name">PREMAVASAM</span>
+        <span class="logo-sub">Where Love Resides &bull; Est. 1999</span>
+      </div>
+    </a>
+
+    <div class="nav-spacer"></div>
+
+    <ul class="nav-links" id="navLinks" role="menubar">
+      <li><a href="/" class="" role="menuitem">Home</a></li>
+      
+      <li class="has-sub">
+        <a href="/about" class="" role="menuitem">About Us</a>
+        <ul class="nav-drop" role="menu">
+          <li><a href="/about" class="">Who We Are</a></li>
+          <li><a href="/projects" class="">Our Projects</a></li>
+          <li><a href="/achievements" class="">Achievements</a></li>
+        </ul>
+      </li>
+
+      <li><a href="/activities" class="" role="menuitem">Activities</a></li>
+
+      <li><a href="/gallery" class="active" role="menuitem">Gallery</a></li>
+
+      <li class="has-sub">
+        <a href="/howhelp" class="" role="menuitem">How Can You Help</a>
+        <ul class="nav-drop" role="menu">
+          <li><a href="/sponsormeals" class="">🍲 Sponsor Meals</a></li>
+          <li><a href="/sharecare" class="">🎁 Share &amp; Care</a></li>
+          <li><a href="/howhelp" class="">💳 Bank &amp; NRI Transfer</a></li>
+        </ul>
+      </li>
+
+      <li class="has-sub">
+        <a href="/volunteers" class="" role="menuitem">Echo</a>
+        <ul class="nav-drop" role="menu">
+          <li><a href="/volunteers" class="">Volunteers</a></li>
+          <li><a href="/press" class="">Press Release</a></li>
+        </ul>
+      </li>
+
+      <li><a href="/contact" class="" role="menuitem">Contact Us</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="search-trigger" id="searchBtn" aria-label="Search website" title="Search (Press /)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
+      <a href="/sponsormeals" class="nav-cta">Sponsor Meals</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+  <!-- ══ PAGE HERO ═══════════════════════════════════════════ -->
+  <section class="gallery-hero-clean">
+    <div class="ghm-ambient-glow"></div>
+    <div class="page-hero-inner" style="position:relative; z-index:2; text-align:center;">
+      <nav class="breadcrumb" style="justify-content:center; margin-bottom:14px;" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span>/</span> <strong style="color:#FFD88A;">Gallery</strong>
+      </nav>
+      <h1 class="page-title">
+        Photo Gallery
+      </h1>
+    </div>
+  </section>
+
+  <!-- ══ QUICK JUMP ALBUM NAVIGATION ═════════════════════════ -->
+  <nav class="gallery-album-nav" aria-label="Album navigation">
+    <div class="gallery-nav-inner">
+      <a href="#schooling" class="album-pill active">🎓 Happy Schooling</a>
+      <a href="#diwali" class="album-pill">🪔 Diwali 2024</a>
+      <a href="#sports" class="album-pill">🏆 Sports Meet</a>
+      <a href="#children" class="album-pill">💛 Our Children</a>
+    </div>
+  </nav>
+
+  <!-- ══ ALBUMS ARRANGED NEATLY BY HEADING (SMALL CARDS) ═════ -->
+  <div class="albums-container">
+    
+    <section class="album-section" id="schooling">
+      <div class="section-inner">
+        <div class="album-header">
+          <div class="album-heading-wrap">
+            <span class="album-tag">🎓 ALBUM</span>
+            <h2 class="album-heading">Happy Schooling</h2>
+          </div>
+          <div class="album-rule"></div>
+        </div>
+        <div class="compact-cards-grid">
+          
+      <article class="compact-card reveal" onclick="openLightbox(0)">
+        <div class="compact-media">
+          <img src="/images/gallery/school_1.jpg" alt="Classroom Learning" loading="lazy">
+          <div class="compact-overlay">
+            <span class="compact-zoom-pill">View Photo</span>
+          </div>
+        </div>
+        <div class="compact-info">
+          <h3 class="compact-title">Classroom Learning</h3>
+        </div>
+      </article>
+    
+
+      <article class="compact-card reveal" onclick="openLightbox(1)">
+        <div class="compact-media">
+          <img src="/images/gallery/school_2.jpg" alt="Creative Art Sessions" loading="lazy">
+          <div class="compact-overlay">
+            <span class="compact-zoom-pill">View Photo</span>
+          </div>
+        </div>
+        <div class="compact-info">
+          <h3 class="compact-title">Creative Art Sessions</h3>
+        </div>
+      </article>
+    
+
+      <article class="compact-card reveal" onclick="openLightbox(2)">
+        <div class="compact-media">
+          <img src="/images/gallery/school_3.jpg" alt="Group Study" loading="lazy">
+          <div class="compact-overlay">
+            <span class="compact-zoom-pill">View Photo</span>
+          </div>
+        </div>
+        <div class="compact-info">
+          <h3 class="compact-title">Group Study</h3>
+        </div>
+      </article>
+    
+
+      <article class="compact-card reveal" onclick="openLightbox(3)">
+        <div class="compact-media">
+          <img src="/images/gallery/school_4.jpg" alt="Sensory Teaching" loading="lazy">
+          <div class="compact-overlay">
+            <span class="compact-zoom-pill">View Photo</span>
+          </div>
+        </div>
+        <div class="compact-info">
+          <h3 class="compact-title">Sensory Teaching</h3>
+        </div>
+      </article>
+    
+
+      <article class="compact-card reveal" onclick="openLightbox(4)">
+        <div class="compact-media">
+          <img src="/images/gallery/school_5.jpg" alt="Focused Guidance" loading="lazy">
+          <div class="compact-overlay">
+            <span class="compact-zoom-pill">View Photo</span>
+          </div>
+        </div>
+        <div class="compact-info">
+          <h3 class="compact-title">Focused Guidance</h3>
+        </div>
+      </article>
+    
+        </div>
+      </div>
+    </section>
+  
+
+    <section class="album-section" id="diwali">
+      <div class="section-inner">
+        <div class="album-header">
+          <div class="album-heading-wrap">
+            <span class="album-tag">🪔 ALBUM</span>
+            <h2 class="album-heading">Diwali 2024</h2>
+          </div>
+          <div class="album-rule"></div>
+        </div>
+        <div class="compact-cards-grid">
+          
+      <article class="compact-card reveal" onclick="openLightbox(5)">
+        <div class="compact-media">
+          <img src="/images/gallery/diwali_1.jpg" alt="Festival of Lights" loading="lazy">
+          <div class="compact-overlay">
+            <span class="compact-zoom-pill">View Photo</span>
+          </div>
+        </div>
+        <div class="compact-info">
+          <h3 class="compact-title">Festival of Lights</h3>
+        </div>
+      </article>
+    
+
+      <article class="compact-card reveal" onclick="openLightbox(6)">
+        <div class="compact-media">
+          <img src="/images/gallery/diwali_2.jpg" alt="Sweet Distribution" loading="lazy">
+          <div class="compact-overlay">
+            <span class="compact-zoom-pill">View Photo</span>
+          </div>
+        </div>
+        <div class="compact-info">
+          <h3 class="compact-title">Sweet Distribution</h3>
+        </div>
+      </article>
+    
+
+      <article class="compact-card reveal" onclick="openLightbox(7)">
+        <div class="compact-media">
+          <img src="/images/gallery/diwali_3.jpg" alt="Joyful Gathering" loading="lazy">
+          <div class="compact-overlay">
+            <span class="compact-zoom-pill">View Photo</span>
+          </div>
+        </div>
+        <div class="compact-info">
+          <h3 class="compact-title">Joyful Gathering</h3>
+        </div>
+      </article>
+    
+
+      <article class="compact-card reveal" onclick="openLightbox(8)">
+        <div class="compact-media">
+          <img src="/images/gallery/diwali_4.jpg" alt="Lighting Diyas" loading="lazy">
+          <div class="compact-overlay">
+            <span class="compact-zoom-pill">View Photo</span>
+          </div>
+        </div>
+        <div class="compact-info">
+          <h3 class="compact-title">Lighting Diyas</h3>
+        </div>
+      </article>
+    
+
+      <article class="compact-card reveal" onclick="openLightbox(9)">
+        <div class="compact-media">
+          <img src="/images/gallery/diwali_5.jpg" alt="Evening Celebration" loading="lazy">
+          <div class="compact-overlay">
+            <span class="compact-zoom-pill">View Photo</span>
+          </div>
+        </div>
+        <div class="compact-info">
+          <h3 class="compact-title">Evening Celebration</h3>
+        </div>
+      </article>
+    
+
+      <article class="compact-card reveal" onclick="openLightbox(10)">
+        <div class="compact-media">
+          <img src="/images/gallery/diwali_6.jpg" alt="Diwali Sparkles" loading="lazy">
+          <div class="compact-overlay">
+            <span class="compact-zoom-pill">View Photo</span>
+          </div>
+        </div>
+        <div class="compact-info">
+          <h3 class="compact-title">Diwali Sparkles</h3>
+        </div>
+      </article>
+    
+        </div>
+      </div>
+    </section>
+  
+
+    <section class="album-section" id="sports">
+      <div class="section-inner">
+        <div class="album-header">
+          <div class="album-heading-wrap">
+            <span class="album-tag">🏆 ALBUM</span>
+            <h2 class="album-heading">Sports Meet</h2>
+          </div>
+          <div class="album-rule"></div>
+        </div>
+        <div class="compact-cards-grid">
+          
+      <article class="compact-card reveal" onclick="openLightbox(11)">
+        <div class="compact-media">
+          <img src="/images/gallery/sports_1.jpg" alt="Opening Ceremony" loading="lazy">
+          <div class="compact-overlay">
+            <span class="compact-zoom-pill">View Photo</span>
+          </div>
+        </div>
+        <div class="compact-info">
+          <h3 class="compact-title">Opening Ceremony</h3>
+        </div>
+      </article>
+    
+
+      <article class="compact-card reveal" onclick="openLightbox(12)">
+        <div class="compact-media">
+          <img src="/images/gallery/sports_2.jpg" alt="Track Events" loading="lazy">
+          <div class="compact-overlay">
+            <span class="compact-zoom-pill">View Photo</span>
+          </div>
+        </div>
+        <div class="compact-info">
+          <h3 class="compact-title">Track Events</h3>
+        </div>
+      </article>
+    
+
+      <article class="compact-card reveal" onclick="openLightbox(13)">
+        <div class="compact-media">
+          <img src="/images/gallery/sports_3.jpg" alt="Wheelchair Races" loading="lazy">
+          <div class="compact-overlay">
+            <span class="compact-zoom-pill">View Photo</span>
+          </div>
+        </div>
+        <div class="compact-info">
+          <h3 class="compact-title">Wheelchair Races</h3>
+        </div>
+      </article>
+    
+
+      <article class="compact-card reveal" onclick="openLightbox(14)">
+        <div class="compact-media">
+          <img src="/images/gallery/sports_4.jpg" alt="Cheering Squad" loading="lazy">
+          <div class="compact-overlay">
+            <span class="compact-zoom-pill">View Photo</span>
+          </div>
+        </div>
+        <div class="compact-info">
+          <h3 class="compact-title">Cheering Squad</h3>
+        </div>
+      </article>
+    
+
+      <article class="compact-card reveal" onclick="openLightbox(15)">
+        <div class="compact-media">
+          <img src="/images/gallery/sports_5.jpg" alt="Medal Ceremony" loading="lazy">
+          <div class="compact-overlay">
+            <span class="compact-zoom-pill">View Photo</span>
+          </div>
+        </div>
+        <div class="compact-info">
+          <h3 class="compact-title">Medal Ceremony</h3>
+        </div>
+      </article>
+    
+
+      <article class="compact-card reveal" onclick="openLightbox(16)">
+        <div class="compact-media">
+          <img src="/images/gallery/sports_6.jpg" alt="Group Celebration" loading="lazy">
+          <div class="compact-overlay">
+            <span class="compact-zoom-pill">View Photo</span>
+          </div>
+        </div>
+        <div class="compact-info">
+          <h3 class="compact-title">Group Celebration</h3>
+        </div>
+      </article>
+    
+        </div>
+      </div>
+    </section>
+  
+
+    <section class="album-section" id="children">
+      <div class="section-inner">
+        <div class="album-header">
+          <div class="album-heading-wrap">
+            <span class="album-tag">💛 ALBUM</span>
+            <h2 class="album-heading">Our Children</h2>
+          </div>
+          <div class="album-rule"></div>
+        </div>
+        <div class="compact-cards-grid">
+          
+      <article class="compact-card reveal" onclick="openLightbox(17)">
+        <div class="compact-media">
+          <img src="/images/gallery/children_1.jpg" alt="Morning Smiles" loading="lazy">
+          <div class="compact-overlay">
+            <span class="compact-zoom-pill">View Photo</span>
+          </div>
+        </div>
+        <div class="compact-info">
+          <h3 class="compact-title">Morning Smiles</h3>
+        </div>
+      </article>
+    
+
+      <article class="compact-card reveal" onclick="openLightbox(18)">
+        <div class="compact-media">
+          <img src="/images/gallery/children_2.jpg" alt="Courtyard Laughter" loading="lazy">
+          <div class="compact-overlay">
+            <span class="compact-zoom-pill">View Photo</span>
+          </div>
+        </div>
+        <div class="compact-info">
+          <h3 class="compact-title">Courtyard Laughter</h3>
+        </div>
+      </article>
+    
+
+      <article class="compact-card reveal" onclick="openLightbox(19)">
+        <div class="compact-media">
+          <img src="/images/gallery/children_3.jpg" alt="Tender Companionship" loading="lazy">
+          <div class="compact-overlay">
+            <span class="compact-zoom-pill">View Photo</span>
+          </div>
+        </div>
+        <div class="compact-info">
+          <h3 class="compact-title">Tender Companionship</h3>
+        </div>
+      </article>
+    
+
+      <article class="compact-card reveal" onclick="openLightbox(20)">
+        <div class="compact-media">
+          <img src="/images/gallery/children_4.jpg" alt="Moments of Joy" loading="lazy">
+          <div class="compact-overlay">
+            <span class="compact-zoom-pill">View Photo</span>
+          </div>
+        </div>
+        <div class="compact-info">
+          <h3 class="compact-title">Moments of Joy</h3>
+        </div>
+      </article>
+    
+
+      <article class="compact-card reveal" onclick="openLightbox(21)">
+        <div class="compact-media">
+          <img src="/images/gallery/children_5.jpg" alt="Embraced with Love" loading="lazy">
+          <div class="compact-overlay">
+            <span class="compact-zoom-pill">View Photo</span>
+          </div>
+        </div>
+        <div class="compact-info">
+          <h3 class="compact-title">Embraced with Love</h3>
+        </div>
+      </article>
+    
+        </div>
+      </div>
+    </section>
+  
+  </div>
+
+</main>
+
+<!-- ══ LUXURY LIGHTBOX MODAL ═════════════════════════════════ -->
+<div class="lux-lightbox" id="lightboxModal" style="display:none;" role="dialog" aria-modal="true" aria-label="Photo Lightbox">
+  <div class="lux-backdrop" onclick="closeLightbox()"></div>
+  
+  <div class="lux-dialog">
+    <div class="lux-topbar">
+      <div class="lux-cat-badge">
+        <span class="lux-cat-pill" id="lightboxAlbum"></span>
+        <h2 id="lightboxTitle" style="font-family:'Lora',serif; font-size:1.05rem; color:#FFFBF5; margin:0; font-weight:600;"></h2>
+      </div>
+      <div class="lux-actions">
+        <span class="lux-index-pill" id="lightboxCounter">1 / 22</span>
+        <button class="lux-icon-btn" onclick="openOriginalImage()" title="Open Original File" aria-label="Open original file">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        </button>
+        <button class="lux-icon-btn lux-close-btn" onclick="closeLightbox()" title="Close Lightbox (Esc)" aria-label="Close">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="lux-viewer">
+      <button class="lux-nav-btn lux-prev" onclick="navLightbox(-1)" aria-label="Previous photo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+
+      <div class="lux-img-holder">
+        <img id="lightboxImg" src="" alt="Enlarged photo">
+      </div>
+
+      <button class="lux-nav-btn lux-next" onclick="navLightbox(1)" aria-label="Next photo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+    </div>
+
+    <div class="lux-scrubber" id="luxScrubber">
+      
+        <div class="lux-thumb-item" onclick="openLightbox(0)">
+          <img src="/images/gallery/school_1.jpg" alt="Classroom Learning">
+        </div>
+      
+        <div class="lux-thumb-item" onclick="openLightbox(1)">
+          <img src="/images/gallery/school_2.jpg" alt="Creative Art Sessions">
+        </div>
+      
+        <div class="lux-thumb-item" onclick="openLightbox(2)">
+          <img src="/images/gallery/school_3.jpg" alt="Group Study">
+        </div>
+      
+        <div class="lux-thumb-item" onclick="openLightbox(3)">
+          <img src="/images/gallery/school_4.jpg" alt="Sensory Teaching">
+        </div>
+      
+        <div class="lux-thumb-item" onclick="openLightbox(4)">
+          <img src="/images/gallery/school_5.jpg" alt="Focused Guidance">
+        </div>
+      
+        <div class="lux-thumb-item" onclick="openLightbox(5)">
+          <img src="/images/gallery/diwali_1.jpg" alt="Festival of Lights">
+        </div>
+      
+        <div class="lux-thumb-item" onclick="openLightbox(6)">
+          <img src="/images/gallery/diwali_2.jpg" alt="Sweet Distribution">
+        </div>
+      
+        <div class="lux-thumb-item" onclick="openLightbox(7)">
+          <img src="/images/gallery/diwali_3.jpg" alt="Joyful Gathering">
+        </div>
+      
+        <div class="lux-thumb-item" onclick="openLightbox(8)">
+          <img src="/images/gallery/diwali_4.jpg" alt="Lighting Diyas">
+        </div>
+      
+        <div class="lux-thumb-item" onclick="openLightbox(9)">
+          <img src="/images/gallery/diwali_5.jpg" alt="Evening Celebration">
+        </div>
+      
+        <div class="lux-thumb-item" onclick="openLightbox(10)">
+          <img src="/images/gallery/diwali_6.jpg" alt="Diwali Sparkles">
+        </div>
+      
+        <div class="lux-thumb-item" onclick="openLightbox(11)">
+          <img src="/images/gallery/sports_1.jpg" alt="Opening Ceremony">
+        </div>
+      
+        <div class="lux-thumb-item" onclick="openLightbox(12)">
+          <img src="/images/gallery/sports_2.jpg" alt="Track Events">
+        </div>
+      
+        <div class="lux-thumb-item" onclick="openLightbox(13)">
+          <img src="/images/gallery/sports_3.jpg" alt="Wheelchair Races">
+        </div>
+      
+        <div class="lux-thumb-item" onclick="openLightbox(14)">
+          <img src="/images/gallery/sports_4.jpg" alt="Cheering Squad">
+        </div>
+      
+        <div class="lux-thumb-item" onclick="openLightbox(15)">
+          <img src="/images/gallery/sports_5.jpg" alt="Medal Ceremony">
+        </div>
+      
+        <div class="lux-thumb-item" onclick="openLightbox(16)">
+          <img src="/images/gallery/sports_6.jpg" alt="Group Celebration">
+        </div>
+      
+        <div class="lux-thumb-item" onclick="openLightbox(17)">
+          <img src="/images/gallery/children_1.jpg" alt="Morning Smiles">
+        </div>
+      
+        <div class="lux-thumb-item" onclick="openLightbox(18)">
+          <img src="/images/gallery/children_2.jpg" alt="Courtyard Laughter">
+        </div>
+      
+        <div class="lux-thumb-item" onclick="openLightbox(19)">
+          <img src="/images/gallery/children_3.jpg" alt="Tender Companionship">
+        </div>
+      
+        <div class="lux-thumb-item" onclick="openLightbox(20)">
+          <img src="/images/gallery/children_4.jpg" alt="Moments of Joy">
+        </div>
+      
+        <div class="lux-thumb-item" onclick="openLightbox(21)">
+          <img src="/images/gallery/children_5.jpg" alt="Embraced with Love">
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<footer id="footer">
+  <div class="footer-warm-banner">
+    <div class="footer-warm-inner">
+      <div class="footer-warm-text">
+        <span class="f-eyebrow">♥ MAKE A DIRECT IMPACT TODAY</span>
+        <h3>Every child deserves a warm meal, shelter, and a hopeful future.</h3>
+        <p>Your contribution directly supports over 200 children with nutrition, education, and eternal dignity.</p>
+      </div>
+      <div class="footer-warm-actions">
+        <a href="/sponsormeals" class="btn btn-primary">🍲 Sponsor a Meal Today</a>
+        <a href="/howhelp" class="btn btn-outline-light">Bank &amp; NRI Details</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-grid">
+    <div class="footer-brand-col">
+      <a href="/" class="f-logo-link">
+        <img src="/images/logo.png" alt="Premavasam">
+        <div>
+          <h4>PREMAVASAM</h4>
+          <span>A Home Where Love Resides</span>
+        </div>
+      </a>
+      <p class="f-mission">
+        A registered charitable residential home caring for 200+ mentally challenged, differently-abled, and less-fortunate children in Chennai.
+      </p>
+      <div class="f-reg-info">
+        <span>📜 Registered Charitable Trust Act: <strong>No. 419 of 1999</strong></span>
+        <span>🇮🇳 100% Non-Profit Organization &bull; FCRA Approved</span>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Our Mission</h4>
+      <ul>
+        <li><a href="/about">About Prema Vasam &bull; Who We Are</a></li>
+        <li><a href="/projects">Our Projects &bull; Prem Niketan &amp; Prem Illam</a></li>
+        <li><a href="/achievements">Milestones &amp; Dreams</a></li>
+        <li><a href="/activities">Therapies &amp; Education</a></li>
+        <li><a href="/gallery">Photo Gallery &amp; Albums</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Shoulder Us</h4>
+      <ul>
+        <li><a href="/sponsormeals">Sponsor Daily Meals (Breakfast / Lunch / Dinner)</a></li>
+        <li><a href="/sharecare">Share &amp; Care (Provisions &amp; Clothing)</a></li>
+        <li><a href="/howhelp">Bank Transfer &bull; Bank of Baroda</a></li>
+        <li><a href="/howhelp#nri">NRI Donors &bull; SBI FCRA Account</a></li>
+        <li><a href="/volunteers">Volunteer Experience Stories</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact &amp; Location</h4>
+      <div class="f-contact-item">
+        <span class="f-icon">📍</span>
+        <span>Thiru V.K.A. Road, Gerugambakkam, Chennai &ndash; 600 128, Tamil Nadu, India</span>
+      </div>
+      <div class="f-contact-item">
+        <span class="f-icon">📞</span>
+        <span><a href="tel:+919677238998">+91 96772 38998</a> (9 AM &ndash; 8 PM)<br>044-23820771 &bull; 044-23820330</span>
+      </div>
+      <div class="f-contact-item">
+        <span class="f-icon">✉️</span>
+        <span><a href="mailto:premavasam1999@gmail.com">premavasam1999@gmail.com</a></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <p>&copy; 1999&ndash;2026 <strong>Premavasam Charitable Trust</strong>. All rights reserved. &bull; "To serve, not to be served."</p>
+      <div class="footer-legal">
+        <span>Designed with Modern Light Warm UI &bull; Fast, Accessible &amp; Locally Hosted</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button id="back-top" aria-label="Back to top of page" title="Scroll to top">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+</button>
+
+<script src="/js/main.js"></script>
+
+<script>
+  const ALL_PHOTOS = [{"src":"/images/gallery/school_1.jpg","title":"Classroom Learning","album":"Happy Schooling"},{"src":"/images/gallery/school_2.jpg","title":"Creative Art Sessions","album":"Happy Schooling"},{"src":"/images/gallery/school_3.jpg","title":"Group Study","album":"Happy Schooling"},{"src":"/images/gallery/school_4.jpg","title":"Sensory Teaching","album":"Happy Schooling"},{"src":"/images/gallery/school_5.jpg","title":"Focused Guidance","album":"Happy Schooling"},{"src":"/images/gallery/diwali_1.jpg","title":"Festival of Lights","album":"Diwali 2024"},{"src":"/images/gallery/diwali_2.jpg","title":"Sweet Distribution","album":"Diwali 2024"},{"src":"/images/gallery/diwali_3.jpg","title":"Joyful Gathering","album":"Diwali 2024"},{"src":"/images/gallery/diwali_4.jpg","title":"Lighting Diyas","album":"Diwali 2024"},{"src":"/images/gallery/diwali_5.jpg","title":"Evening Celebration","album":"Diwali 2024"},{"src":"/images/gallery/diwali_6.jpg","title":"Diwali Sparkles","album":"Diwali 2024"},{"src":"/images/gallery/sports_1.jpg","title":"Opening Ceremony","album":"Sports Meet"},{"src":"/images/gallery/sports_2.jpg","title":"Track Events","album":"Sports Meet"},{"src":"/images/gallery/sports_3.jpg","title":"Wheelchair Races","album":"Sports Meet"},{"src":"/images/gallery/sports_4.jpg","title":"Cheering Squad","album":"Sports Meet"},{"src":"/images/gallery/sports_5.jpg","title":"Medal Ceremony","album":"Sports Meet"},{"src":"/images/gallery/sports_6.jpg","title":"Group Celebration","album":"Sports Meet"},{"src":"/images/gallery/children_1.jpg","title":"Morning Smiles","album":"Our Children"},{"src":"/images/gallery/children_2.jpg","title":"Courtyard Laughter","album":"Our Children"},{"src":"/images/gallery/children_3.jpg","title":"Tender Companionship","album":"Our Children"},{"src":"/images/gallery/children_4.jpg","title":"Moments of Joy","album":"Our Children"},{"src":"/images/gallery/children_5.jpg","title":"Embraced with Love","album":"Our Children"}];
+  let curLightboxIdx = 0;
+
+  function openLightbox(idx) {
+    curLightboxIdx = idx;
+    updateLightbox();
+    document.getElementById('lightboxModal').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightboxModal').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  function navLightbox(direction) {
+    curLightboxIdx = (curLightboxIdx + direction + ALL_PHOTOS.length) % ALL_PHOTOS.length;
+    updateLightbox();
+  }
+
+  function openOriginalImage() {
+    const item = ALL_PHOTOS[curLightboxIdx];
+    if (item && item.src) window.open(item.src, '_blank');
+  }
+
+  function updateLightbox() {
+    const item = ALL_PHOTOS[curLightboxIdx];
+    const img = document.getElementById('lightboxImg');
+    img.style.opacity = '0';
+    img.src = item.src;
+    img.onload = () => { img.style.opacity = '1'; };
+
+    document.getElementById('lightboxAlbum').innerText = item.album;
+    document.getElementById('lightboxTitle').innerText = item.title;
+    document.getElementById('lightboxCounter').innerText = (curLightboxIdx + 1) + ' / ' + ALL_PHOTOS.length;
+
+    const thumbs = document.querySelectorAll('.lux-thumb-item');
+    thumbs.forEach((t, i) => {
+      t.classList.toggle('active', i === curLightboxIdx);
+    });
+    if (thumbs[curLightboxIdx]) {
+      thumbs[curLightboxIdx].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+  }
+
+  document.addEventListener('keydown', (e) => {
+    const modal = document.getElementById('lightboxModal');
+    if (modal && modal.style.display === 'flex') {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') navLightbox(-1);
+      if (e.key === 'ArrowRight') navLightbox(1);
+    }
+  });
+
+  // Highlight active album pill on scroll
+  const sections = document.querySelectorAll('.album-section');
+  const navPills = document.querySelectorAll('.album-pill');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    const scrollPos = window.scrollY + 180;
+    sections.forEach(sec => {
+      const top = sec.offsetTop;
+      const height = sec.offsetHeight;
+      if (scrollPos >= top && scrollPos < top + height) {
+        current = sec.getAttribute('id');
+      }
+    });
+    if (current) {
+      navPills.forEach(pill => {
+        pill.classList.toggle('active', pill.getAttribute('href') === '#' + current);
+      });
+    }
+  });
+</script>
+</body>
+</html>

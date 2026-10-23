@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="theme-color" content="#C17F24">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Premavasam">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="https://www.premavasam.org/sites/default/files/logo_0.png">
+  <title>How Can You Help | Premavasam &bull; A Home of Love</title>
+  <meta name="description" content="Bank of Baroda details for domestic donors and SBI FCRA account for NRI international donations.">
+  <link rel="shortcut icon" href="https://www.premavasam.org/sites/default/files/logo_0.png" type="image/png">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    /* ── CONTRIBUTION REGISTRATION FORM ── */
+    .contrib-section {
+      margin-top: 50px;
+      background: #FFFFFF;
+      border: 1.5px solid #EBDDCB;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 10px 32px rgba(44, 24, 16, 0.05);
+    }
+    .contrib-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 32px;
+    }
+    .contrib-badge {
+      display: inline-block;
+      padding: 4px 14px;
+      background: #FFF4DF;
+      color: #9A5E10;
+      font-size: .75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      border-radius: 999px;
+      margin-bottom: 12px;
+      border: 1px solid #EAD4B4;
+    }
+    .contrib-header h3 {
+      font-family: 'Lora', serif;
+      font-size: 1.85rem;
+      color: #2C1810;
+      margin: 0 0 10px;
+    }
+    .contrib-header p {
+      font-size: .92rem;
+      color: #5C4A38;
+      line-height: 1.5;
+      margin: 0;
+    }
+    .preset-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 26px;
+    }
+    .preset-btn {
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: 1.5px solid #E4D5C3;
+      background: #FAF6F0;
+      font-size: .92rem;
+      font-weight: 700;
+      color: #5C4A38;
+      cursor: pointer;
+      transition: all .2s ease;
+    }
+    .preset-btn:hover {
+      border-color: #C17F24;
+      color: #C17F24;
+      background: #FFF9F0;
+      transform: translateY(-1px);
+    }
+    .preset-btn.active {
+      background: #C17F24;
+      border-color: #C17F24;
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(193, 127, 36, 0.3);
+    }
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 24px;
+    }
+    .form-field-full {
+      grid-column: 1 / -1;
+    }
+    .form-label {
+      display: block;
+      font-size: .8rem;
+      font-weight: 700;
+      color: #5C4A38;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    .form-label span.req { color: #C0392B; }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1.5px solid #E4D5C3;
+      background: #FAF6F0;
+      font-size: .95rem;
+      font-family: inherit;
+      color: #2C1810;
+      outline: none;
+      box-sizing: border-box;
+      transition: all .2s;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: #C17F24;
+      background: #FFFFFF;
+      box-shadow: 0 0 0 3px rgba(193, 127, 36, 0.15);
+    }
+    .contrib-submit-btn {
+      width: 100%;
+      padding: 15px;
+      border-radius: 12px;
+      background: #C17F24;
+      color: #FFFFFF;
+      font-size: 1.05rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: all .2s ease;
+      box-shadow: 0 4px 16px rgba(193, 127, 36, 0.35);
+      margin-top: 10px;
+    }
+    .contrib-submit-btn:hover {
+      background: #A76B1C;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(193, 127, 36, 0.45);
+    }
+    .contrib-submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .contrib-success-box {
+      display: none;
+      background: #E8F8F5;
+      border: 1.5px solid #A3E4D7;
+      border-radius: 14px;
+      padding: 24px;
+      text-align: center;
+      margin-top: 24px;
+    }
+    .contrib-success-box h4 {
+      margin: 0 0 8px;
+      color: #117A65;
+      font-size: 1.3rem;
+      font-family: 'Lora', serif;
+    }
+    .contrib-success-box p {
+      margin: 0 0 12px;
+      color: #145A32;
+      font-size: .92rem;
+      line-height: 1.5;
+    }
+    .contrib-ref-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: #D4EFDF;
+      color: #117A65;
+      font-weight: 800;
+      border-radius: 6px;
+      font-size: .95rem;
+      letter-spacing: .04em;
+    }
+    @media(max-width: 768px) {
+      .contrib-section { padding: 24px 18px; }
+      .form-grid-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+
+<!-- ══ TOP ANNOUNCEMENT TICKER ═════════════════════════════ -->
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <div class="top-badge">💛 A Home of Love Since 1999</div>
+    <div class="top-ticker" aria-live="polite">
+      <span class="ticker-dot"></span>
+      <span class="ticker-text" id="topTickerText">Sports Meet on World Disabled Day &bull; Rohit (Cerebral Palsy) walks after 2 years of physiotherapy!</span>
+    </div>
+    <div class="top-contact-quick">
+      <a href="tel:+919677238998">📞 +91 96772 38998</a>
+      <span class="sep">&bull;</span>
+      <a href="mailto:premavasam1999@gmail.com">✉️ premavasam1999@gmail.com</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ NAVBAR ══════════════════════════════════════════════ -->
+<header id="navbar">
+  <div class="nav-wrap">
+    <a href="/" class="nav-logo" aria-label="Premavasam Home">
+      <img class="logo-img" src="https://www.premavasam.org/sites/all/themes/trust/logo.png" alt="Premavasam Logo">
+      <div class="logo-brand">
+        <span class="logo-name">PREMAVASAM</span>
+        <span class="logo-sub">Where Love Resides &bull; Est. 1999</span>
+      </div>
+    </a>
+
+    <div class="nav-spacer"></div>
+
+    <ul class="nav-links" id="navLinks" role="menubar">
+      <li><a href="/" class="" role="menuitem">Home</a></li>
+      
+      <li class="has-sub">
+        <a href="/about" class="" role="menuitem">About Us</a>
+        <ul class="nav-drop" role="menu">
+          <li><a href="/whoweare" class="">Who We Are</a></li>
+          <li><a href="/projects" class="">Our Projects</a></li>
+          <li><a href="/achievements" class="">Achievements</a></li>
+        </ul>
+      </li>
+
+      <li><a href="/activities" class="" role="menuitem">Activities</a></li>
+
+      <li class="has-sub">
+        <a href="/volunteers" class="" role="menuitem">Echo</a>
+        <ul class="nav-drop" role="menu">
+          <li><a href="/volunteers" class="">Volunteers' Love</a></li>
+          <li><a href="/press" class="">Press &amp; Media</a></li>
+        </ul>
+      </li>
+
+      <li class="has-sub">
+        <a href="/sponsormeals" class="" role="menuitem">Shoulder Us</a>
+        <ul class="nav-drop" role="menu">
+          <li><a href="/sponsormeals" class="">🍲 Sponsor Meals</a></li>
+          <li><a href="/sharecare" class="">🎁 Share &amp; Care</a></li>
+          <li><a href="/howhelp" class="active">💳 Bank &amp; NRI Transfer</a></li>
+        </ul>
+      </li>
+
+      <li><a href="/contact" class="" role="menuitem">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="search-trigger" id="searchTriggerBtn" title="Search Premavasam" aria-label="Open search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
+      <a href="/howhelp" class="nav-cta">
+        <span>Donate Now</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ══ SEARCH MODAL ════════════════════════════════════════ -->
+<div class="search-modal" id="searchModal" role="dialog" aria-modal="true" aria-label="Search site">
+  <div class="search-modal-backdrop" id="searchBackdrop"></div>
+  <div class="search-modal-card">
+    <div class="search-input-wrap">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input type="search" id="siteSearchInput" placeholder="Search activities, donations, history, projects..." autocomplete="off">
+      <button id="searchCloseBtn" class="search-close-btn" aria-label="Close search">&times;</button>
+    </div>
+    <div id="searchResults" class="search-results-list">
+      <div class="search-hint">Type keyword (e.g. <em>physiotherapy, meals, indra, bank, prem</em>)</div>
+    </div>
+  </div>
+</div>
+
+
+<main id="main" tabindex="-1">
+
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span>/</span> <strong>How Can You Help</strong>
+      </nav>
+      <span class="hero-tag">TRANSPARENT GIVING</span>
+      <h1 class="page-title">How Can You Help</h1>
+      <p class="page-lead">Every contribution directly funds nutritious meals, specialized therapy equipment, emergency medicines, and education for 200+ children.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="donate-intro-strip reveal">
+        <div class="di-badge">💛 100% OF FUNDS GO TO DIRECT CARE</div>
+        <h2>No Contribution is Too Small</h2>
+        <p>Whether you sponsor a simple breakfast for ₹3,500, donate groceries, or remit an international contribution through our FCRA account &mdash; your compassion creates immediate warmth in a child's life.</p>
+      </div>
+
+      <div class="bank-grid" style="margin-top: 40px;">
+
+        <!-- DOMESTIC -->
+        <div class="bank-card domestic-card reveal">
+          <div class="bank-card-header">
+            <span class="bc-pill">🇮🇳 WITHIN INDIA (NEFT / RTGS / IMPS / UPI)</span>
+            <h3>Bank of Baroda &bull; Domestic Account</h3>
+          </div>
+          <div class="bank-card-body">
+            <div class="bank-field">
+              <span class="bf-label">Account Name</span>
+              <span class="bf-val" id="accNameDom">PREMA VASAM</span>
+              <button class="copy-btn" onclick="copyText('PREMA VASAM')">Copy</button>
+            </div>
+            <div class="bank-field">
+              <span class="bf-label">Account Number</span>
+              <span class="bf-val highlight" id="accNumDom">20460100001458</span>
+              <button class="copy-btn" onclick="copyText('20460100001458')">Copy</button>
+            </div>
+            <div class="bank-field">
+              <span class="bf-label">IFSC Code</span>
+              <span class="bf-val" id="accIfscDom">BARB0KOVOOR</span>
+              <button class="copy-btn" onclick="copyText('BARB0KOVOOR')">Copy</button>
+            </div>
+            <div class="bank-field">
+              <span class="bf-label">Branch</span>
+              <span class="bf-val">KOVOOR, CHENNAI</span>
+            </div>
+            <div class="bank-field">
+              <span class="bf-label">Bank Name</span>
+              <span class="bf-val">BANK OF BARODA</span>
+            </div>
+          </div>
+          <div class="bank-card-foot">
+            <p>💡 <em>Tip: 5th character in IFSC is digit zero (0).</em></p>
+          </div>
+        </div>
+
+        <!-- NRI / INTERNATIONAL -->
+        <div class="bank-card nri-card reveal delay-1" id="nri">
+          <div class="bank-card-header">
+            <span class="bc-pill" style="background:var(--navy); color:#fff;">🌍 NRI &amp; INTERNATIONAL (FCRA APPROVED)</span>
+            <h3>State Bank of India &bull; FCRA Current Account</h3>
+          </div>
+          <div class="bank-card-body">
+            <div class="bank-field">
+              <span class="bf-label">Account Name</span>
+              <span class="bf-val">PREM CHARITABLE TRUST</span>
+              <button class="copy-btn" onclick="copyText('PREM CHARITABLE TRUST')">Copy</button>
+            </div>
+            <div class="bank-field">
+              <span class="bf-label">Account Number</span>
+              <span class="bf-val highlight">40172248120</span>
+              <button class="copy-btn" onclick="copyText('40172248120')">Copy</button>
+            </div>
+            <div class="bank-field">
+              <span class="bf-label">Account Type</span>
+              <span class="bf-val">FCRA CURRENT ACCOUNT</span>
+            </div>
+            <div class="bank-field">
+              <span class="bf-label">Bank &amp; Address</span>
+              <span class="bf-val">State Bank of India, FCRA Cell, 4th Floor, New Delhi Main Branch, 11 Sansad Marg, New Delhi &ndash; 110001</span>
+            </div>
+            <div class="bank-field">
+              <span class="bf-label">Branch Code</span>
+              <span class="bf-val">00691</span>
+            </div>
+            <div class="bank-field">
+              <span class="bf-label">IFSC Code</span>
+              <span class="bf-val">SBIN0000691</span>
+              <button class="copy-btn" onclick="copyText('SBIN0000691')">Copy</button>
+            </div>
+            <div class="bank-field">
+              <span class="bf-label">SWIFT Code</span>
+              <span class="bf-val highlight">SBININBB104</span>
+              <button class="copy-btn" onclick="copyText('SBININBB104')">Copy</button>
+            </div>
+          </div>
+          <div class="bank-card-foot">
+            <p>Mandatory for all foreign inward remittances under FCRA guidelines.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- INTIMATION NOTICE -->
+      <div class="intimation-card reveal delay-2" style="margin-top: 40px;">
+        <div class="ic-icon">✉️</div>
+        <div>
+          <h4>Important Request to All Donors:</h4>
+          <p>
+            After making your bank or NRI transaction, please register your contribution below or send an email to <a href="mailto:premavasam1999@gmail.com"><strong>premavasam1999@gmail.com</strong></a> with your transaction reference number, postal address, and PAN card number (for Indian tax receipt generation). We will promptly issue your official receipt and thank-you letter.
+          </p>
+        </div>
+      </div>
+
+      <!-- ══ CONTRIBUTION REGISTRATION FORM ══════════════════════ -->
+      <div class="contrib-section reveal delay-2" id="register-contribution">
+        <div class="contrib-header">
+          <span class="contrib-badge">💖 Online Contribution Registration</span>
+          <h3>Register Your Contribution &bull; Intimate Bank Transfer</h3>
+          <p>
+            Whether you have completed an online transfer (UPI, NEFT, IMPS, RTGS, or FCRA) or wish to register your planned contribution, please provide your details below. We will immediately issue your official 80G tax exemption receipt and send our heartfelt acknowledgment.
+          </p>
+        </div>
+
+        <!-- Quick Presets -->
+        <div class="preset-row">
+          <button type="button" class="preset-btn" onclick="selectPreset(1000, this)">₹1,000</button>
+          <button type="button" class="preset-btn" onclick="selectPreset(2500, this)">₹2,500</button>
+          <button type="button" class="preset-btn active" onclick="selectPreset(5000, this)">₹5,000</button>
+          <button type="button" class="preset-btn" onclick="selectPreset(10000, this)">₹10,000</button>
+          <button type="button" class="preset-btn" onclick="selectPreset(25000, this)">₹25,000</button>
+        </div>
+
+        <form id="contribForm" onsubmit="handleContribSubmit(event)">
+          <div class="form-grid-2">
+            <!-- Amount -->
+            <div>
+              <label class="form-label" for="contribAmount">Contribution Amount (₹) <span class="req">*</span></label>
+              <input type="number" id="contribAmount" class="form-input" value="5000" min="100" step="100" required placeholder="5000">
+            </div>
+
+            <!-- Purpose -->
+            <div>
+              <label class="form-label" for="contribPurpose">Contribution Purpose / Cause <span class="req">*</span></label>
+              <select id="contribPurpose" class="form-select" required>
+                <option value="General Fund & Daily Living" selected>General Fund &amp; Daily Living</option>
+                <option value="Nutrition & Daily Child Meals">Nutrition &amp; Daily Child Meals</option>
+                <option value="Physiotherapy & Special Education">Physiotherapy &amp; Special Education</option>
+                <option value="Emergency Medical & Healthcare">Emergency Medical &amp; Healthcare</option>
+                <option value="Prem Illam Girls Home (Maduranthakam)">Prem Illam Girls Home (Maduranthakam)</option>
+              </select>
+            </div>
+
+            <!-- Name -->
+            <div>
+              <label class="form-label" for="contribName">Your Full Name <span class="req">*</span></label>
+              <input type="text" id="contribName" class="form-input" placeholder="e.g. Anandha Krishnan" required>
+            </div>
+
+            <!-- Phone -->
+            <div>
+              <label class="form-label" for="contribPhone">Mobile / WhatsApp Number <span class="req">*</span></label>
+              <input type="tel" id="contribPhone" class="form-input" placeholder="+91 98401 23456" required>
+            </div>
+
+            <!-- Email -->
+            <div>
+              <label class="form-label" for="contribEmail">Email Address (For Tax Receipt) <span class="req">*</span></label>
+              <input type="email" id="contribEmail" class="form-input" placeholder="anand@example.com" required>
+            </div>
+
+            <!-- Mode -->
+            <div>
+              <label class="form-label" for="contribMode">Transfer Method / Status <span class="req">*</span></label>
+              <select id="contribMode" class="form-select" required>
+                <option value="UPI (GPay / PhonePe / Paytm)" selected>Already Transferred via UPI (GPay / PhonePe)</option>
+                <option value="Net Banking (NEFT / IMPS / RTGS)">Already Transferred via Net Banking (NEFT / IMPS)</option>
+                <option value="Foreign Remittance (SBI FCRA)">Foreign Remittance (SBI FCRA)</option>
+                <option value="Pledge — Will Transfer Soon">Pledge — Will Transfer Today / This Week</option>
+                <option value="Cheque / Demand Draft">Cheque / Demand Draft</option>
+              </select>
+            </div>
+
+            <!-- Transaction Reference / UTR -->
+            <div>
+              <label class="form-label" for="contribRef">Transaction UTR / Ref No. <em>(If already transferred)</em></label>
+              <input type="text" id="contribRef" class="form-input" placeholder="e.g. UTR429810349812">
+            </div>
+
+            <!-- PAN Number -->
+            <div>
+              <label class="form-label" for="contribPan">PAN Card Number <em>(Optional for 80G Tax Exemption)</em></label>
+              <input type="text" id="contribPan" class="form-input" placeholder="ABCDE1234F" style="text-transform:uppercase;">
+            </div>
+
+            <!-- Notes -->
+            <div class="form-field-full">
+              <label class="form-label" for="contribNotes">Special Occasion / Dedication / Remarks <em>(Optional)</em></label>
+              <textarea id="contribNotes" class="form-textarea" rows="2" placeholder="e.g. Dedicated on my son's birthday, in memory of my parents, or specific instructions..."></textarea>
+            </div>
+
+            <!-- Submit -->
+            <div class="form-field-full">
+              <button type="submit" id="contribSubmitBtn" class="contrib-submit-btn">
+                💖 Register Contribution &amp; Request Receipt &rarr;
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <div id="contribSuccess" class="contrib-success-box">
+          <h4>🙏 Thank You for Your Generous Support!</h4>
+          <p>
+            Your contribution registration of <strong id="succAmountDisplay">₹5,000</strong> has been successfully received by our accounts team.
+          </p>
+          <div style="margin-bottom:12px;">
+            <span class="contrib-ref-badge" id="succRefDisplay">Ref: DON-XXXX</span>
+          </div>
+          <p style="font-size:.85rem; color:#145A32; margin-bottom:0;">
+            Our coordinator <strong>Miss Mumtaj</strong> (+91 96772 38998) will verify the transaction and email your official 80G donation receipt.
+          </p>
+        </div>
+      </div>
+
+      <!-- OTHER WAYS -->
+      <div class="ways-grid reveal delay-3" style="margin-top: 48px;">
+        <div class="way-card">
+          <span class="way-icon">🍲</span>
+          <h3>Sponsor Daily Meals</h3>
+          <p>Celebrate your birthday, wedding anniversary, or memorialize a loved one by providing breakfast, lunch, or dinner for all 200 children.</p>
+          <a href="/sponsormeals" class="btn btn-primary btn-sm" style="margin-top:12px;">View Meal Menu &amp; Tariffs &rarr;</a>
+        </div>
+
+        <div class="way-card">
+          <span class="way-icon">🎁</span>
+          <h3>Share &amp; Care Provisions</h3>
+          <p>Send sacks of rice, wheat, dhal, cooking oil, towels, bedsheets, or health drinks directly to our campus in Gerugambakkam.</p>
+          <a href="/sharecare" class="btn btn-outline btn-sm" style="margin-top:12px;">See Required Items &rarr;</a>
+        </div>
+
+        <div class="way-card">
+          <span class="way-icon">🤝</span>
+          <h3>Volunteer Your Skills</h3>
+          <p>Spend time teaching, conducting dance or craft sessions, reading stories, or assisting our physiotherapists and nurses.</p>
+          <a href="/volunteers" class="btn btn-outline btn-sm" style="margin-top:12px;">Read Volunteer Stories &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+
+<!-- ══ FOOTER ══════════════════════════════════════════════ -->
+<footer id="footer">
+  <div class="footer-warm-banner">
+    <div class="footer-warm-inner">
+      <div class="footer-warm-text">
+        <span class="f-eyebrow">♥ MAKE A DIRECT IMPACT TODAY</span>
+        <h3>Every child who knocks on our door is embraced with tender love.</h3>
+        <p>No contribution is too small. Together, we can provide physiotherapy, warm nutrition, education, and eternal dignity.</p>
+      </div>
+      <div class="footer-warm-actions">
+        <a href="/sponsormeals" class="btn btn-primary">🍲 Sponsor a Meal Today</a>
+        <a href="/howhelp" class="btn btn-outline-light">Bank &amp; NRI Details</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-grid">
+    <div class="footer-brand-col">
+      <a href="/" class="f-logo-link">
+        <img src="https://www.premavasam.org/sites/all/themes/trust/logo.png" alt="Premavasam">
+        <div>
+          <h4>PREMAVASAM</h4>
+          <span>A Home Where Love Resides</span>
+        </div>
+      </a>
+      <p class="f-mission">
+        A registered charitable residential home caring for 200+ mentally challenged, differently-abled, and less-fortunate children in Chennai.
+      </p>
+      <div class="f-reg-info">
+        <span>📜 Registered Charitable Trust Act: <strong>No. 419 of 1999</strong></span>
+        <span>🇮🇳 100% Non-Profit Organization &bull; FCRA Approved</span>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Our Mission</h4>
+      <ul>
+        <li><a href="/whoweare">Who We Are &bull; Inception</a></li>
+        <li><a href="/about">About Prema Vasam</a></li>
+        <li><a href="/projects">Our Projects &bull; Prem Niketan &amp; Prem Illam</a></li>
+        <li><a href="/achievements">Milestones &amp; Dreams</a></li>
+        <li><a href="/activities">Therapies &amp; Education</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Shoulder Us</h4>
+      <ul>
+        <li><a href="/sponsormeals">Sponsor Daily Meals (Breakfast / Lunch / Dinner)</a></li>
+        <li><a href="/sharecare">Share &amp; Care (Provisions &amp; Clothing)</a></li>
+        <li><a href="/howhelp">Bank Transfer &bull; Bank of Baroda</a></li>
+        <li><a href="/howhelp#nri">NRI Donors &bull; SBI FCRA Account</a></li>
+        <li><a href="/volunteers">Volunteer Experience Stories</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact &amp; Location</h4>
+      <div class="f-contact-item">
+        <span class="f-icon">📍</span>
+        <span>Thiru V.K.A. Road, Gerugambakkam, Chennai &ndash; 600 128, Tamil Nadu, India</span>
+      </div>
+      <div class="f-contact-item">
+        <span class="f-icon">📞</span>
+        <span><a href="tel:+919677238998">+91 96772 38998</a> (9 AM &ndash; 8 PM)<br>044-23820771 &bull; 044-23820330</span>
+      </div>
+      <div class="f-contact-item">
+        <span class="f-icon">✉️</span>
+        <span><a href="mailto:premavasam1999@gmail.com">premavasam1999@gmail.com</a></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <p>&copy; 1999&ndash;2026 <strong>Premavasam Charitable Trust</strong>. All rights reserved. &bull; "To serve, not to be served."</p>
+      <div class="footer-legal">
+        <span>Designed with Light Warm UI &bull; Fast, Accessible &amp; Modern</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button id="back-top" aria-label="Back to top of page" title="Scroll to top">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+</button>
+
+<script src="/js/main.js"></script>
+<script>
+  function selectPreset(amount, btn) {
+    document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('contribAmount').value = amount;
+  }
+
+  async function handleContribSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('contribSubmitBtn');
+    btn.disabled = true;
+    btn.innerText = 'Registering Contribution...';
+
+    const payload = {
+      name: document.getElementById('contribName').value.trim(),
+      phone: document.getElementById('contribPhone').value.trim(),
+      email: document.getElementById('contribEmail').value.trim(),
+      amount: parseInt(document.getElementById('contribAmount').value, 10) || 0,
+      purpose: document.getElementById('contribPurpose').value,
+      payment_mode: document.getElementById('contribMode').value,
+      transaction_ref: document.getElementById('contribRef').value.trim(),
+      pan: document.getElementById('contribPan').value.trim().toUpperCase(),
+      notes: document.getElementById('contribNotes').value.trim()
+    };
+
+    try {
+      const res = await fetch('/api/contribute', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if (data.ok) {
+        document.getElementById('contribForm').style.display = 'none';
+        document.getElementById('succAmountDisplay').innerText = '₹' + Number(payload.amount).toLocaleString('en-IN');
+        document.getElementById('succRefDisplay').innerText = 'Registration Ref: ' + data.id;
+        document.getElementById('contribSuccess').style.display = 'block';
+        document.getElementById('contribSuccess').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        alert(data.error || 'Failed to submit registration. Please try again.');
+        btn.disabled = false;
+        btn.innerText = '💖 Register Contribution & Request Receipt →';
+      }
+    } catch (err) {
+      alert('Network error. Please try again or call +91 96772 38998.');
+      btn.disabled = false;
+      btn.innerText = '💖 Register Contribution & Request Receipt →';
+    }
+  }
+
+  function copyText(str) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(str).then(() => {
+        alert('Copied to clipboard: ' + str);
+      }).catch(() => {
+        prompt('Copy this text:', str);
+      });
+    } else {
+      prompt('Copy this text:', str);
+    }
+  }
+</script>
+
+</body>
+</html>

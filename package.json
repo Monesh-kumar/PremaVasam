@@ -1,0 +1,25 @@
+{
+  "name": "premavasam-web",
+  "version": "1.0.0",
+  "description": "Premavasam Children's Home Official Website, SQLite Database & Modern CRM Admin Portal",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test_qea.js",
+    "qea": "node test_qea.js"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "keywords": [
+    "premavasam",
+    "ngo",
+    "charity",
+    "sqlite",
+    "nodejs",
+    "crm",
+    "admin-portal"
+  ],
+  "author": "Premavasam",
+  "license": "ISC"
+}

@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: premavasam-web
+    env: node
+    plan: free
+    region: oregon
+    buildCommand: "npm install --omit=dev"
+    startCommand: "npm start"
+    envVars:
+      - key: NODE_VERSION
+        value: 22.23.4
+      - key: NODE_ENV
+        value: production
