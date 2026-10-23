@@ -600,6 +600,36 @@ window.initHeroCarousel = function() {
     resetHeroTimer();
   };
 
+  // ── Touch Swipe Gestures for Mobile Platforms ──
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchEndX = 0;
+  let touchEndY = 0;
+
+  container.addEventListener('touchstart', (e) => {
+    if (e.changedTouches && e.changedTouches.length > 0) {
+      touchStartX = e.changedTouches[0].clientX;
+      touchStartY = e.changedTouches[0].clientY;
+    }
+  }, { passive: true });
+
+  container.addEventListener('touchend', (e) => {
+    if (e.changedTouches && e.changedTouches.length > 0) {
+      touchEndX = e.changedTouches[0].clientX;
+      touchEndY = e.changedTouches[0].clientY;
+      const diffX = touchEndX - touchStartX;
+      const diffY = touchEndY - touchStartY;
+      // Ensure horizontal swipe is dominant (not vertical scroll)
+      if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+        if (diffX < 0) {
+          window.nextHeroSlide();
+        } else {
+          window.prevHeroSlide();
+        }
+      }
+    }
+  }, { passive: true });
+
   resetHeroTimer();
 };
 

@@ -2100,6 +2100,39 @@ h1,h2,h3,h4{font-family:'Lora',Georgia,serif;line-height:1.25;color:var(--txt)}
   .content-story, .story-card, .coordinator-card, .project-box-content, .therapy-card, .share-card, .contact-info-panel, .contact-form-panel {
     padding: 24px 20px;
   }
+
+  /* Mobile platform image & grid compatibility */
+  div[style*="grid-template-columns:1fr 380px"],
+  div[style*="grid-template-columns:380px 1fr"],
+  div[style*="grid-template-columns:1fr 340px"],
+  div[style*="grid-template-columns:repeat(3, 1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+  div[style*="border-left:1px solid"] {
+    border-left: none !important;
+    border-top: 1px solid var(--border-soft) !important;
+  }
+  .img-selvyn, .img-prem, .img-mumtaj, .img-indra {
+    max-width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+@media(max-width: 480px) {
+  div[style*="width:280px; height:320px"],
+  div[style*="width:280px; height:300px"],
+  div[style*="width:280px; height:340px"] {
+    width: 100% !important;
+    max-width: 260px !important;
+    height: 240px !important;
+    margin: 0 auto 16px !important;
+  }
+  div[style*="padding:48px 44px"] {
+    padding: 24px 18px !important;
+  }
+  div[style*="padding:36px"] {
+    padding: 24px 16px !important;
+  }
 }
 
 /* ── Portrait Framing & Accurate Face Alignment ── */
