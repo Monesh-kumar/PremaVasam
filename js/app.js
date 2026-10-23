@@ -67,6 +67,44 @@ window.copyToClipboard = function(text, label = 'Account detail') {
   });
 };
 
+// ── 3B. MOBILE NAVIGATION DRAWER & AUTO-ADJUST ───────────────
+window.toggleMobileMenu = function() {
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.getElementById('mobileMenuBtn');
+  const icon = document.getElementById('mobileMenuIcon');
+  if (!menu) return;
+  const isHidden = menu.classList.contains('hidden');
+  if (isHidden) {
+    menu.classList.remove('hidden');
+    if (btn) btn.setAttribute('aria-expanded', 'true');
+    if (icon) icon.setAttribute('data-lucide', 'x');
+  } else {
+    menu.classList.add('hidden');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
+    if (icon) icon.setAttribute('data-lucide', 'menu');
+  }
+  if (window.lucide) lucide.createIcons();
+};
+
+window.closeMobileMenu = function() {
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.getElementById('mobileMenuBtn');
+  const icon = document.getElementById('mobileMenuIcon');
+  if (menu && !menu.classList.contains('hidden')) {
+    menu.classList.add('hidden');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
+    if (icon) icon.setAttribute('data-lucide', 'menu');
+    if (window.lucide) lucide.createIcons();
+  }
+};
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth >= 1024) {
+    window.closeMobileMenu();
+  }
+});
+
+
 // ── 4. ABOUT US INTERACTIVE TABS ─────────────────────────────
 window.switchAboutTab = function(tabId) {
   document.querySelectorAll('.about-tab-btn').forEach(btn => {

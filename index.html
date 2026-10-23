@@ -57,27 +57,27 @@
 <body class="bg-[#FEF9F2] text-stone-900 antialiased selection:bg-amber-200 selection:text-amber-900">
 
   <!-- ════════════════════════════════════════════════════════════
-       1. HEADER & ACCESSIBILITY CONTROLS
+       1. HEADER & NAVIGATION
   ════════════════════════════════════════════════════════════ -->
   <header class="sticky top-0 z-40 bg-[#FEF9F2]/95 backdrop-blur-md border-b border-amber-200/70 shadow-xs">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
         
         <!-- Brand Emblem & Tagline -->
-        <a href="#hero" class="flex items-center gap-3.5 group">
-          <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-600 to-amber-400 p-0.5 shadow-md group-hover:scale-105 transition duration-200">
+        <a href="#hero" class="flex items-center gap-2.5 sm:gap-3.5 group shrink-0">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-tr from-amber-600 to-amber-400 p-0.5 shadow-md group-hover:scale-105 transition duration-200 shrink-0">
             <div class="w-full h-full bg-white rounded-[14px] flex items-center justify-center overflow-hidden p-1">
               <img src="/images/logo.png" alt="Prema Vasam Logo" class="w-full h-full object-contain">
             </div>
           </div>
           <div>
-            <span class="block font-heading text-2xl font-bold tracking-tight text-stone-900 group-hover:text-amber-700 transition">PREMA VASAM</span>
-            <span class="block text-xs font-semibold uppercase tracking-wider text-amber-700">Where Love Resides &bull; Est. 1999</span>
+            <span class="block font-heading text-lg sm:text-2xl font-bold tracking-tight text-stone-900 group-hover:text-amber-700 transition leading-tight">PREMA VASAM</span>
+            <span class="block text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-amber-700">Where Love Resides &bull; Est. 1999</span>
           </div>
         </a>
 
         <!-- Desktop Navigation Links -->
-        <nav class="hidden md:flex items-center gap-6 font-medium text-sm text-stone-700">
+        <nav class="hidden lg:flex items-center gap-5 xl:gap-6 font-medium text-sm text-stone-700">
           <a href="#about" class="hover:text-amber-600 transition">About Us</a>
           <a href="#meals-planner" class="hover:text-amber-600 transition">Sponsor Meals</a>
           <a href="#campuses" class="hover:text-amber-600 transition">Campuses</a>
@@ -89,15 +89,62 @@
         </nav>
 
         <!-- Header Actions -->
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2 sm:gap-3">
           <!-- Quick Donate CTA -->
-          <a href="#donate" class="inline-flex items-center gap-2 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-700 hover:to-amber-600 text-white font-semibold text-sm px-4 py-2.5 rounded-xl shadow-md shadow-amber-600/20 transition transform hover:-translate-y-0.5">
-            <i data-lucide="heart" class="w-4 h-4 fill-white"></i>
+          <a href="#donate" class="inline-flex items-center gap-1.5 sm:gap-2 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-700 hover:to-amber-600 text-white font-semibold text-xs sm:text-sm px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl shadow-md shadow-amber-600/20 transition transform hover:-translate-y-0.5 shrink-0">
+            <i data-lucide="heart" class="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white"></i>
             <span>Donate 80G</span>
           </a>
+
+          <!-- Mobile Menu Hamburger Button -->
+          <button id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="Toggle Navigation Menu" aria-expanded="false" class="lg:hidden p-2 rounded-xl text-stone-700 hover:text-amber-700 hover:bg-amber-100/70 border border-amber-200/80 transition">
+            <i id="mobileMenuIcon" data-lucide="menu" class="w-6 h-6"></i>
+          </button>
         </div>
 
       </div>
+    </div>
+
+    <!-- Mobile Dropdown Navigation Drawer -->
+    <div id="mobileMenu" class="hidden lg:hidden border-t border-amber-200/80 bg-[#FEF9F2] px-4 pt-3 pb-6 shadow-xl animate-in slide-in-from-top-2 duration-200">
+      <nav class="flex flex-col space-y-1 font-medium text-sm text-stone-800">
+        <a href="#about" onclick="closeMobileMenu()" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl hover:bg-amber-100/60 hover:text-amber-800 transition">
+          <i data-lucide="info" class="w-4 h-4 text-amber-600"></i>
+          <span>About Us</span>
+        </a>
+        <a href="#meals-planner" onclick="closeMobileMenu()" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl hover:bg-amber-100/60 hover:text-amber-800 transition">
+          <i data-lucide="utensils" class="w-4 h-4 text-amber-600"></i>
+          <span>Sponsor Meals</span>
+        </a>
+        <a href="#campuses" onclick="closeMobileMenu()" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl hover:bg-amber-100/60 hover:text-amber-800 transition">
+          <i data-lucide="building-2" class="w-4 h-4 text-amber-600"></i>
+          <span>Campuses</span>
+        </a>
+        <a href="#therapies" onclick="closeMobileMenu()" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl hover:bg-amber-100/60 hover:text-amber-800 transition">
+          <i data-lucide="activity" class="w-4 h-4 text-amber-600"></i>
+          <span>Therapies &amp; Care</span>
+        </a>
+        <a href="#gallery" onclick="closeMobileMenu()" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl hover:bg-amber-100/60 hover:text-amber-800 transition">
+          <i data-lucide="image" class="w-4 h-4 text-amber-600"></i>
+          <span>Photo Gallery</span>
+        </a>
+        <a href="#share-care" onclick="closeMobileMenu()" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl hover:bg-amber-100/60 hover:text-amber-800 transition">
+          <i data-lucide="gift" class="w-4 h-4 text-amber-600"></i>
+          <span>Share &amp; Care (Wishlist)</span>
+        </a>
+        <a href="#donate" onclick="closeMobileMenu()" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl hover:bg-amber-100/60 hover:text-amber-800 transition font-semibold text-amber-700 bg-amber-50">
+          <i data-lucide="landmark" class="w-4 h-4 text-amber-600"></i>
+          <span>Donation Hub (80G)</span>
+        </a>
+        <a href="#volunteer" onclick="closeMobileMenu()" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl hover:bg-amber-100/60 hover:text-amber-800 transition">
+          <i data-lucide="heart-handshake" class="w-4 h-4 text-amber-600"></i>
+          <span>Volunteer Application</span>
+        </a>
+        <a href="#contact" onclick="closeMobileMenu()" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl hover:bg-amber-100/60 hover:text-amber-800 transition">
+          <i data-lucide="mail" class="w-4 h-4 text-amber-600"></i>
+          <span>Contact Us</span>
+        </a>
+      </nav>
     </div>
   </header>
 
@@ -115,42 +162,42 @@
               <span>Chennai's Haven of Unconditional Love Since 1999</span>
             </div>
 
-            <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-stone-900 tracking-tight leading-[1.12]">
+            <h1 class="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-stone-900 tracking-tight leading-[1.14]">
               Where Every Child Finds <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-700 via-amber-600 to-amber-500">Love, Dignity &amp; Hope</span>
             </h1>
 
-            <p class="text-lg text-stone-700 max-w-2xl leading-relaxed">
+            <p class="text-base sm:text-lg text-stone-700 max-w-2xl leading-relaxed">
               Prema Vasam is the only sanctuary in Tamil Nadu nurturing over <strong>200+ mentally challenged, differently-abled, and underprivileged children</strong> alongside normal school-going children under one loving family roof.
             </p>
 
-            <div class="flex flex-wrap items-center gap-4 pt-2">
-              <a href="#meals-planner" class="inline-flex items-center gap-2.5 bg-amber-600 hover:bg-amber-700 text-white font-semibold px-6 py-3.5 rounded-xl shadow-lg shadow-amber-600/25 transition transform hover:-translate-y-0.5">
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2">
+              <a href="#meals-planner" class="inline-flex items-center justify-center gap-2.5 bg-amber-600 hover:bg-amber-700 text-white font-semibold px-6 py-3.5 rounded-xl shadow-lg shadow-amber-600/25 transition transform hover:-translate-y-0.5 text-center">
                 <i data-lucide="utensils" class="w-5 h-5"></i>
                 <span>Sponsor Today's Meals</span>
               </a>
-              <a href="#donate" class="inline-flex items-center gap-2.5 bg-white hover:bg-amber-50 text-stone-800 font-semibold px-6 py-3.5 rounded-xl border border-amber-300 shadow-sm transition">
+              <a href="#donate" class="inline-flex items-center justify-center gap-2.5 bg-white hover:bg-amber-50 text-stone-800 font-semibold px-6 py-3.5 rounded-xl border border-amber-300 shadow-sm transition text-center">
                 <i data-lucide="landmark" class="w-5 h-5 text-amber-600"></i>
                 <span>Direct Bank Donation (80G)</span>
               </a>
             </div>
 
             <!-- Stats Bar -->
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-8 border-t border-amber-200/80">
-              <div class="bg-white/90 p-3 sm:p-4 rounded-xl border border-amber-100 shadow-xs flex flex-col justify-center">
-                <span class="block font-heading text-xl sm:text-2xl font-bold text-amber-700 whitespace-nowrap">25+ Years</span>
-                <span class="text-xs text-stone-600 font-medium whitespace-nowrap">Of Devoted Service</span>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4 pt-8 border-t border-amber-200/80">
+              <div class="bg-white/90 p-2.5 sm:p-4 rounded-xl border border-amber-100 shadow-xs flex flex-col justify-center text-center sm:text-left">
+                <span class="block font-heading text-lg sm:text-2xl font-bold text-amber-700 whitespace-nowrap">25+ Years</span>
+                <span class="text-[11px] sm:text-xs text-stone-600 font-medium sm:whitespace-nowrap">Of Devoted Service</span>
               </div>
-              <div class="bg-white/90 p-3 sm:p-4 rounded-xl border border-amber-100 shadow-xs flex flex-col justify-center">
-                <span class="block font-heading text-xl sm:text-2xl font-bold text-amber-700 whitespace-nowrap">100+</span>
-                <span class="text-xs text-stone-600 font-medium whitespace-nowrap">Children in Care</span>
+              <div class="bg-white/90 p-2.5 sm:p-4 rounded-xl border border-amber-100 shadow-xs flex flex-col justify-center text-center sm:text-left">
+                <span class="block font-heading text-lg sm:text-2xl font-bold text-amber-700 whitespace-nowrap">100+</span>
+                <span class="text-[11px] sm:text-xs text-stone-600 font-medium sm:whitespace-nowrap">Children in Care</span>
               </div>
-              <div class="bg-white/90 p-3 sm:p-4 rounded-xl border border-amber-100 shadow-xs flex flex-col justify-center">
-                <span class="block font-heading text-xl sm:text-2xl font-bold text-amber-700 whitespace-nowrap">3 Campuses</span>
-                <span class="text-xs text-stone-600 font-medium whitespace-nowrap">Dedicated Facilities</span>
+              <div class="bg-white/90 p-2.5 sm:p-4 rounded-xl border border-amber-100 shadow-xs flex flex-col justify-center text-center sm:text-left">
+                <span class="block font-heading text-lg sm:text-2xl font-bold text-amber-700 whitespace-nowrap">3 Campuses</span>
+                <span class="text-[11px] sm:text-xs text-stone-600 font-medium sm:whitespace-nowrap">Dedicated Facilities</span>
               </div>
-              <div class="bg-white/90 p-3 sm:p-4 rounded-xl border border-amber-100 shadow-xs flex flex-col justify-center">
-                <span class="block font-heading text-xl sm:text-2xl font-bold text-amber-700 whitespace-nowrap">100% NGO</span>
-                <span class="text-xs text-stone-600 font-medium whitespace-nowrap">Registered Non-Profit</span>
+              <div class="bg-white/90 p-2.5 sm:p-4 rounded-xl border border-amber-100 shadow-xs flex flex-col justify-center text-center sm:text-left">
+                <span class="block font-heading text-lg sm:text-2xl font-bold text-amber-700 whitespace-nowrap">100% NGO</span>
+                <span class="text-[11px] sm:text-xs text-stone-600 font-medium sm:whitespace-nowrap">Registered Non-Profit</span>
               </div>
             </div>
           </div>
@@ -160,7 +207,7 @@
               <div class="absolute -inset-4 bg-gradient-to-tr from-amber-400/30 to-amber-200/20 rounded-3xl blur-xl"></div>
               <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white group">
                 <!-- 10-Slide Image Carousel -->
-                <div class="relative h-[440px] overflow-hidden" id="heroCarousel">
+                <div class="relative h-[280px] sm:h-[380px] lg:h-[440px] overflow-hidden" id="heroCarousel">
                   <div class="hero-slide active absolute inset-0 transition-opacity duration-700 opacity-100">
                     <img src="/images/img_1163.jpg" alt="Children at Prema Vasam" class="w-full h-full object-cover">
                     <div class="p-5 bg-gradient-to-t from-stone-900/90 via-stone-900/40 to-transparent absolute inset-x-0 bottom-0 text-white">
@@ -262,26 +309,26 @@
         </div>
 
         <!-- Interactive Tabs Header -->
-        <div class="flex flex-wrap items-center justify-center gap-2 border-b border-amber-200 pb-4 mb-8">
-          <button onclick="switchAboutTab('tab-welcome')" class="about-tab-btn active px-4 py-2.5 rounded-xl font-semibold text-sm text-stone-700 hover:text-amber-700" data-tab="tab-welcome">
-            <span class="flex items-center gap-2"><i data-lucide="home" class="w-4 h-4"></i> Welcome &amp; Mission</span>
+        <div class="flex overflow-x-auto no-scrollbar touch-scroll sm:flex-wrap items-center sm:justify-center gap-2 border-b border-amber-200 pb-3 mb-8 -mx-4 px-4 sm:mx-0">
+          <button onclick="switchAboutTab('tab-welcome')" class="about-tab-btn active shrink-0 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl font-semibold text-xs sm:text-sm text-stone-700 hover:text-amber-700 whitespace-nowrap" data-tab="tab-welcome">
+            <span class="flex items-center gap-1.5 sm:gap-2"><i data-lucide="home" class="w-4 h-4"></i> Welcome &amp; Mission</span>
           </button>
-          <button onclick="switchAboutTab('tab-prem')" class="about-tab-btn px-4 py-2.5 rounded-xl font-semibold text-sm text-stone-700 hover:text-amber-700" data-tab="tab-prem">
-            <span class="flex items-center gap-2"><i data-lucide="gift" class="w-4 h-4 text-amber-600"></i> Precious Gift Prem</span>
+          <button onclick="switchAboutTab('tab-prem')" class="about-tab-btn shrink-0 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl font-semibold text-xs sm:text-sm text-stone-700 hover:text-amber-700 whitespace-nowrap" data-tab="tab-prem">
+            <span class="flex items-center gap-1.5 sm:gap-2"><i data-lucide="gift" class="w-4 h-4 text-amber-600"></i> Precious Gift Prem</span>
           </button>
-          <button onclick="switchAboutTab('tab-indra')" class="about-tab-btn px-4 py-2.5 rounded-xl font-semibold text-sm text-stone-700 hover:text-amber-700" data-tab="tab-indra">
-            <span class="flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-amber-600"></i> The Inception &amp; Indra</span>
+          <button onclick="switchAboutTab('tab-indra')" class="about-tab-btn shrink-0 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl font-semibold text-xs sm:text-sm text-stone-700 hover:text-amber-700 whitespace-nowrap" data-tab="tab-indra">
+            <span class="flex items-center gap-1.5 sm:gap-2"><i data-lucide="award" class="w-4 h-4 text-amber-600"></i> The Inception &amp; Indra</span>
           </button>
-          <button onclick="switchAboutTab('tab-founder')" class="about-tab-btn px-4 py-2.5 rounded-xl font-semibold text-sm text-stone-700 hover:text-amber-700" data-tab="tab-founder">
-            <span class="flex items-center gap-2"><i data-lucide="user-check" class="w-4 h-4 text-amber-600"></i> Founder Mr. Selvyn Roy</span>
+          <button onclick="switchAboutTab('tab-founder')" class="about-tab-btn shrink-0 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl font-semibold text-xs sm:text-sm text-stone-700 hover:text-amber-700 whitespace-nowrap" data-tab="tab-founder">
+            <span class="flex items-center gap-1.5 sm:gap-2"><i data-lucide="user-check" class="w-4 h-4 text-amber-600"></i> Founder Mr. Selvyn Roy</span>
           </button>
-          <button onclick="switchAboutTab('tab-mumtaj')" class="about-tab-btn px-4 py-2.5 rounded-xl font-semibold text-sm text-stone-700 hover:text-amber-700" data-tab="tab-mumtaj">
-            <span class="flex items-center gap-2"><i data-lucide="heart-handshake" class="w-4 h-4 text-amber-600"></i> Coordinator Miss Mumtaj</span>
+          <button onclick="switchAboutTab('tab-mumtaj')" class="about-tab-btn shrink-0 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl font-semibold text-xs sm:text-sm text-stone-700 hover:text-amber-700 whitespace-nowrap" data-tab="tab-mumtaj">
+            <span class="flex items-center gap-1.5 sm:gap-2"><i data-lucide="heart-handshake" class="w-4 h-4 text-amber-600"></i> Coordinator Miss Mumtaj</span>
           </button>
         </div>
 
         <!-- Tab 1: Welcome & Mission -->
-        <div id="tab-welcome" class="tab-pane active bg-[#FFFDF9] p-8 lg:p-10 rounded-3xl border border-amber-200/90 shadow-sm">
+        <div id="tab-welcome" class="tab-pane active bg-[#FFFDF9] p-5 sm:p-8 lg:p-10 rounded-3xl border border-amber-200/90 shadow-sm">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div class="lg:col-span-7 space-y-4">
               <span class="text-xs font-bold text-amber-800 uppercase tracking-widest">CHAPTER 1 &bull; OUR PURPOSE</span>
@@ -304,7 +351,7 @@
         </div>
 
         <!-- Tab 2: Precious Gift Prem -->
-        <div id="tab-prem" class="tab-pane bg-[#FFFDF9] p-8 lg:p-10 rounded-3xl border border-amber-200/90 shadow-sm">
+        <div id="tab-prem" class="tab-pane bg-[#FFFDF9] p-5 sm:p-8 lg:p-10 rounded-3xl border border-amber-200/90 shadow-sm">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div class="lg:col-span-7 space-y-4">
               <span class="text-xs font-bold text-amber-800 uppercase tracking-widest">CHAPTER 2 &bull; THE NAME THAT STARTED IT ALL</span>
@@ -326,7 +373,7 @@
         </div>
 
         <!-- Tab 3: The Inception & Indra -->
-        <div id="tab-indra" class="tab-pane bg-[#FFFDF9] p-8 lg:p-10 rounded-3xl border border-amber-200/90 shadow-sm">
+        <div id="tab-indra" class="tab-pane bg-[#FFFDF9] p-5 sm:p-8 lg:p-10 rounded-3xl border border-amber-200/90 shadow-sm">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div class="lg:col-span-7 space-y-4">
               <span class="text-xs font-bold text-amber-800 uppercase tracking-widest">CHAPTER 3 &bull; INSPIRATION OF EMPOWERMENT</span>
@@ -348,7 +395,7 @@
         </div>
 
         <!-- Tab 4: Founder Mr. Selvyn Roy -->
-        <div id="tab-founder" class="tab-pane bg-[#FFFDF9] p-8 lg:p-10 rounded-3xl border border-amber-200/90 shadow-sm">
+        <div id="tab-founder" class="tab-pane bg-[#FFFDF9] p-5 sm:p-8 lg:p-10 rounded-3xl border border-amber-200/90 shadow-sm">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div class="lg:col-span-7 space-y-4">
               <span class="text-xs font-bold text-amber-800 uppercase tracking-widest">CHAPTER 4 &bull; VISIONARY LEADERSHIP</span>
@@ -370,7 +417,7 @@
         </div>
 
         <!-- Tab 5: Coordinator Miss Mumtaj -->
-        <div id="tab-mumtaj" class="tab-pane bg-[#FFFDF9] p-8 lg:p-10 rounded-3xl border border-amber-200/90 shadow-sm">
+        <div id="tab-mumtaj" class="tab-pane bg-[#FFFDF9] p-5 sm:p-8 lg:p-10 rounded-3xl border border-amber-200/90 shadow-sm">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div class="lg:col-span-7 space-y-4">
               <span class="text-xs font-bold text-amber-800 uppercase tracking-widest">CHAPTER 5 &bull; THE HEART OF OPERATIONS</span>
@@ -407,12 +454,12 @@
         </div>
 
         <!-- Quick Presets -->
-        <div class="flex flex-wrap items-center justify-center gap-2.5 mb-8">
-          <span class="text-xs font-bold text-stone-500 uppercase tracking-wide mr-2">Quick Presets:</span>
-          <button onclick="applyMealPreset('lunch')" class="bg-white hover:bg-amber-50 text-stone-800 px-3.5 py-1.5 rounded-lg border border-amber-300 text-xs font-bold shadow-2xs">☀️ Lunch Feast (₹6,500)</button>
-          <button onclick="applyMealPreset('fullday')" class="bg-white hover:bg-amber-50 text-stone-800 px-3.5 py-1.5 rounded-lg border border-amber-300 text-xs font-bold shadow-2xs">🌟 Full Day (₹20,000)</button>
-          <button onclick="applyMealPreset('breakfast')" class="bg-white hover:bg-amber-50 text-stone-800 px-3.5 py-1.5 rounded-lg border border-amber-300 text-xs font-bold shadow-2xs">🌅 Breakfast Feast (₹4,000)</button>
-          <button onclick="applyMealPreset('treats')" class="bg-white hover:bg-amber-50 text-stone-800 px-3.5 py-1.5 rounded-lg border border-amber-300 text-xs font-bold shadow-2xs">🍦 Snacks &amp; Ice Cream (₹7,000)</button>
+        <div class="flex overflow-x-auto no-scrollbar touch-scroll sm:flex-wrap items-center sm:justify-center gap-2 mb-8 -mx-4 px-4 sm:mx-0">
+          <span class="text-xs font-bold text-stone-500 uppercase tracking-wide mr-1 shrink-0">Quick Presets:</span>
+          <button onclick="applyMealPreset('lunch')" class="shrink-0 whitespace-nowrap bg-white hover:bg-amber-50 text-stone-800 px-3.5 py-1.5 rounded-lg border border-amber-300 text-xs font-bold shadow-2xs">☀️ Lunch Feast (₹6,500)</button>
+          <button onclick="applyMealPreset('fullday')" class="shrink-0 whitespace-nowrap bg-white hover:bg-amber-50 text-stone-800 px-3.5 py-1.5 rounded-lg border border-amber-300 text-xs font-bold shadow-2xs">🌟 Full Day (₹20,000)</button>
+          <button onclick="applyMealPreset('breakfast')" class="shrink-0 whitespace-nowrap bg-white hover:bg-amber-50 text-stone-800 px-3.5 py-1.5 rounded-lg border border-amber-300 text-xs font-bold shadow-2xs">🌅 Breakfast Feast (₹4,000)</button>
+          <button onclick="applyMealPreset('treats')" class="shrink-0 whitespace-nowrap bg-white hover:bg-amber-50 text-stone-800 px-3.5 py-1.5 rounded-lg border border-amber-300 text-xs font-bold shadow-2xs">🍦 Snacks &amp; Ice Cream (₹7,000)</button>
         </div>
 
         <!-- Category Cards Grid -->
@@ -550,11 +597,11 @@
         </div>
 
         <!-- Live Tally & Booking Form Block -->
-        <div class="bg-white rounded-3xl p-8 lg:p-10 border border-amber-200 shadow-lg">
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <div class="bg-white rounded-3xl p-5 sm:p-8 lg:p-10 border border-amber-200 shadow-lg">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
             
             <!-- Left: Live Tally Summary -->
-            <div class="lg:col-span-5 bg-gradient-to-br from-amber-50 to-amber-100/40 p-6 rounded-2xl border border-amber-200/80 flex flex-col justify-between">
+            <div class="lg:col-span-5 bg-gradient-to-br from-amber-50 to-amber-100/40 p-4 sm:p-6 rounded-2xl border border-amber-200/80 flex flex-col justify-between">
               <div>
                 <span class="text-xs font-bold text-amber-800 uppercase tracking-wider">LIVE TOTAL TALLY</span>
                 <div class="mt-2 flex items-baseline gap-2">
@@ -808,12 +855,12 @@
         </div>
 
         <!-- Filter Buttons -->
-        <div class="flex flex-wrap items-center justify-center gap-2 mb-10">
-          <button onclick="filterGallery('all', this)" class="gal-filter-btn active px-4 py-2 rounded-xl text-xs font-bold bg-stone-100 text-stone-700 hover:bg-amber-100">All Photos</button>
-          <button onclick="filterGallery('daily', this)" class="gal-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-stone-100 text-stone-700 hover:bg-amber-100">Daily Life</button>
-          <button onclick="filterGallery('celebration', this)" class="gal-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-stone-100 text-stone-700 hover:bg-amber-100">Celebrations &amp; Diwali</button>
-          <button onclick="filterGallery('sports', this)" class="gal-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-stone-100 text-stone-700 hover:bg-amber-100">Sports Meet</button>
-          <button onclick="filterGallery('education', this)" class="gal-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-stone-100 text-stone-700 hover:bg-amber-100">Special Education</button>
+        <div class="flex overflow-x-auto no-scrollbar touch-scroll sm:flex-wrap items-center sm:justify-center gap-2 mb-10 -mx-4 px-4 sm:mx-0">
+          <button onclick="filterGallery('all', this)" class="gal-filter-btn active shrink-0 whitespace-nowrap px-4 py-2 rounded-xl text-xs font-bold bg-stone-100 text-stone-700 hover:bg-amber-100">All Photos</button>
+          <button onclick="filterGallery('daily', this)" class="gal-filter-btn shrink-0 whitespace-nowrap px-4 py-2 rounded-xl text-xs font-bold bg-stone-100 text-stone-700 hover:bg-amber-100">Daily Life</button>
+          <button onclick="filterGallery('celebration', this)" class="gal-filter-btn shrink-0 whitespace-nowrap px-4 py-2 rounded-xl text-xs font-bold bg-stone-100 text-stone-700 hover:bg-amber-100">Celebrations &amp; Diwali</button>
+          <button onclick="filterGallery('sports', this)" class="gal-filter-btn shrink-0 whitespace-nowrap px-4 py-2 rounded-xl text-xs font-bold bg-stone-100 text-stone-700 hover:bg-amber-100">Sports Meet</button>
+          <button onclick="filterGallery('education', this)" class="gal-filter-btn shrink-0 whitespace-nowrap px-4 py-2 rounded-xl text-xs font-bold bg-stone-100 text-stone-700 hover:bg-amber-100">Special Education</button>
         </div>
 
         <!-- Gallery Grid -->
@@ -913,7 +960,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
           
           <!-- Domestic Account -->
-          <div class="bg-[#FFFDF8] rounded-3xl p-8 border-2 border-amber-200 shadow-sm relative">
+          <div class="bg-[#FFFDF8] rounded-3xl p-5 sm:p-8 border-2 border-amber-200 shadow-sm relative">
             <div class="flex items-center gap-3 mb-6">
               <div class="w-12 h-12 rounded-xl bg-amber-600 text-white flex items-center justify-center">
                 <i data-lucide="landmark" class="w-6 h-6"></i>
@@ -955,7 +1002,7 @@
           </div>
 
           <!-- NRI FCRA Account -->
-          <div class="bg-[#FFFDF8] rounded-3xl p-8 border-2 border-amber-200 shadow-sm relative">
+          <div class="bg-[#FFFDF8] rounded-3xl p-5 sm:p-8 border-2 border-amber-200 shadow-sm relative">
             <div class="flex items-center gap-3 mb-6">
               <div class="w-12 h-12 rounded-xl bg-amber-600 text-white flex items-center justify-center">
                 <i data-lucide="globe" class="w-6 h-6"></i>
@@ -999,7 +1046,7 @@
         </div>
 
         <!-- Real-Time Donation & 80G Record Form -->
-        <div class="max-w-3xl mx-auto bg-[#FEF9F2] p-8 lg:p-10 rounded-3xl border border-amber-300/80 shadow-md">
+        <div class="max-w-3xl mx-auto bg-[#FEF9F2] p-5 sm:p-8 lg:p-10 rounded-3xl border border-amber-300/80 shadow-md">
           <div class="text-center mb-6">
             <span class="text-xs font-bold text-amber-800 uppercase tracking-wider">OFFICIAL RECEIPT ISSUANCE</span>
             <h3 class="font-heading text-2xl font-bold text-stone-900 mt-1">Register Your Donation for 80G Tax Receipt</h3>
@@ -1088,7 +1135,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
           
           <!-- Volunteer Application -->
-          <div class="bg-white p-8 lg:p-10 rounded-3xl border border-amber-200 shadow-sm flex flex-col justify-between">
+          <div class="bg-white p-5 sm:p-8 lg:p-10 rounded-3xl border border-amber-200 shadow-sm flex flex-col justify-between">
             <div>
               <span class="text-xs font-bold text-amber-800 uppercase tracking-wider bg-amber-100 px-3.5 py-1.5 rounded-full border border-amber-300">JOIN OUR FAMILY</span>
               <h3 class="font-heading text-2xl lg:text-3xl font-bold text-stone-900 mt-3">Volunteer With Us</h3>
@@ -1133,7 +1180,7 @@
           </div>
 
           <!-- Contact Inquiries -->
-          <div id="contact" class="bg-white p-8 lg:p-10 rounded-3xl border border-amber-200 shadow-sm flex flex-col justify-between">
+          <div id="contact" class="bg-white p-5 sm:p-8 lg:p-10 rounded-3xl border border-amber-200 shadow-sm flex flex-col justify-between">
             <div>
               <span class="text-xs font-bold text-amber-800 uppercase tracking-wider bg-amber-100 px-3.5 py-1.5 rounded-full border border-amber-300">GET IN TOUCH</span>
               <h3 class="font-heading text-2xl lg:text-3xl font-bold text-stone-900 mt-3">Contact Prema Vasam</h3>
@@ -1191,7 +1238,7 @@
        CONFIRMATION MODAL FOR MEAL BOOKING
   ════════════════════════════════════════════════════════════ -->
   <div id="mealBookingModal" class="hidden fixed inset-0 z-50 bg-stone-900/70 backdrop-blur-sm items-center justify-center p-4">
-    <div class="bg-white max-w-lg w-full rounded-3xl p-6 sm:p-8 shadow-2xl border border-amber-300 relative animate-in fade-in zoom-in duration-200">
+    <div class="bg-white max-w-lg w-full rounded-3xl p-5 sm:p-8 shadow-2xl border border-amber-300 relative max-h-[92vh] overflow-y-auto animate-in fade-in zoom-in duration-200">
       <button onclick="closeMealModal()" class="absolute top-5 right-5 text-stone-400 hover:text-stone-700 p-1">
         <i data-lucide="x" class="w-6 h-6"></i>
       </button>
@@ -1244,14 +1291,14 @@
        FULL-SCREEN GALLERY LIGHTBOX MODAL
   ════════════════════════════════════════════════════════════ -->
   <div id="lightboxModal" class="hidden fixed inset-0 z-50 bg-black/90 items-center justify-center p-4">
-    <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white hover:text-amber-400 p-2 z-10">
-      <i data-lucide="x" class="w-8 h-8"></i>
+    <button onclick="closeLightbox()" class="absolute top-4 right-4 sm:top-6 sm:right-6 text-white hover:text-amber-400 p-2 z-10">
+      <i data-lucide="x" class="w-7 h-7 sm:w-8 sm:h-8"></i>
     </button>
-    <button onclick="navigateLightbox(-1)" class="absolute left-6 text-white hover:text-amber-400 p-3 bg-white/10 rounded-full z-10">
-      <i data-lucide="chevron-left" class="w-8 h-8"></i>
+    <button onclick="navigateLightbox(-1)" class="absolute left-2 sm:left-6 text-white hover:text-amber-400 p-2 sm:p-3 bg-white/10 rounded-full z-10 backdrop-blur-xs">
+      <i data-lucide="chevron-left" class="w-6 h-6 sm:w-8 sm:h-8"></i>
     </button>
-    <button onclick="navigateLightbox(1)" class="absolute right-6 text-white hover:text-amber-400 p-3 bg-white/10 rounded-full z-10">
-      <i data-lucide="chevron-right" class="w-8 h-8"></i>
+    <button onclick="navigateLightbox(1)" class="absolute right-2 sm:right-6 text-white hover:text-amber-400 p-2 sm:p-3 bg-white/10 rounded-full z-10 backdrop-blur-xs">
+      <i data-lucide="chevron-right" class="w-6 h-6 sm:w-8 sm:h-8"></i>
     </button>
     <div class="max-w-4xl max-h-[85vh] text-center">
       <img id="lightboxImg" src="" alt="Enlarged photo" class="max-w-full max-h-[75vh] object-contain mx-auto rounded-xl shadow-2xl">

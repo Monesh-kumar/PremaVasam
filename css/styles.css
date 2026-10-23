@@ -27,6 +27,8 @@
 html {
   font-size: var(--base-font-size);
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 body {
@@ -35,6 +37,8 @@ body {
   color: var(--color-text-dark);
   line-height: 1.6;
   transition: background-color 0.25s ease, color 0.25s ease;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 h1, h2, h3, h4, h5, h6, .font-heading {
@@ -199,3 +203,17 @@ body.high-contrast .a11y-btn {
   opacity: 1;
   pointer-events: auto;
 }
+
+/* ── RESPONSIVE & MOBILE EXPERIENCE UTILITIES ──────────────── */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.touch-scroll {
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+}
+
