@@ -362,7 +362,7 @@ function serveFile(res, filePath, statusCode = 200, req = null) {
         "font-src 'self' https://fonts.gstatic.com data:; " +
         "img-src 'self' data: https: http:; " +
         "connect-src 'self' https: http:; " +
-        "frame-src 'self' https://www.google.com https://maps.google.com;";
+        "frame-src 'self' https://www.google.com https://maps.google.com https://www.youtube.com https://www.youtube-nocookie.com https://youtu.be;";
     }
 
     if (filePath.endsWith('sw.js')) {
