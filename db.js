@@ -167,9 +167,13 @@ function verifyPassword(password, hash, salt) {
       }
     } catch (_) {}
   }
-  // 3. Fallback: direct password match for default setup
-  if (password === 'premavasam1999' || password === 'premavasam2026') {
-    return true;
+  // 3. Fallback for unsalted direct legacy records only (timing-safe comparison)
+  if (!salt && hash) {
+    const bHash = Buffer.from(hash);
+    const bPass = Buffer.from(password);
+    if (bHash.length === bPass.length && crypto.timingSafeEqual(bHash, bPass)) {
+      return true;
+    }
   }
   return false;
 }

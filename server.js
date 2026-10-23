@@ -9,7 +9,6 @@
 const http = require('http');
 const fs   = require('fs');
 const path = require('path');
-const url  = require('url');
 const db   = require('./db.js');
 
 const PORT = process.env.PORT || 3000;
@@ -182,8 +181,12 @@ const MIME_TYPES = {
 function detectDevice(req) {
   const ua = (req.headers['user-agent'] || '').toLowerCase();
   const chMobile = req.headers['sec-ch-ua-mobile'];
-  const parsedUrl = url.parse(req.url, true);
-  const query = parsedUrl.query;
+  const host = req.headers.host || 'localhost';
+  let query = {};
+  try {
+    const urlObj = new URL(req.url, `http://${host}`);
+    query = Object.fromEntries(urlObj.searchParams.entries());
+  } catch (_) {}
 
   if (query.view === 'mobile' || query.app === '1' || query.view === 'app') {
     return {
@@ -233,15 +236,82 @@ function isIPadCheck(ua, isIOS, req) {
   return /ipad/i.test(ua) || (isIOS && /macintosh/i.test(ua) && Boolean(req.headers['sec-ch-ua-platform']));
 }
 
-// ── 4. HELPER: PARSE JSON BODY ──────────────────────────────
+// ── 3C. CYBERSECURITY: RATE LIMITING & INPUT SANITIZATION ────
+const rateLimitStores = {
+  login: new Map(),
+  forms: new Map()
+};
+
+function getClientIp(req) {
+  const forwarded = req.headers['x-forwarded-for'];
+  if (forwarded) {
+    return forwarded.split(',')[0].trim();
+  }
+  return req.socket.remoteAddress || '127.0.0.1';
+}
+
+function checkRateLimit(req, type, maxAttempts, windowMs) {
+  const ip = getClientIp(req);
+  const now = Date.now();
+  const store = rateLimitStores[type];
+
+  // Purge expired keys periodically
+  if (store.size > 2000) {
+    for (const [k, v] of store.entries()) {
+      if (now > v.resetTime) store.delete(k);
+    }
+  }
+
+  const record = store.get(ip) || { count: 0, resetTime: now + windowMs };
+  if (now > record.resetTime) {
+    record.count = 0;
+    record.resetTime = now + windowMs;
+  }
+
+  record.count += 1;
+  store.set(ip, record);
+
+  if (record.count > maxAttempts) {
+    const retryAfter = Math.max(1, Math.ceil((record.resetTime - now) / 1000));
+    return { limited: true, retryAfter };
+  }
+  return { limited: false, remaining: maxAttempts - record.count };
+}
+
+function resetRateLimit(req, type) {
+  const ip = getClientIp(req);
+  rateLimitStores[type].delete(ip);
+}
+
+function sanitizeInput(val, maxLen = 1000) {
+  if (val === null || val === undefined) return '';
+  const str = String(val).trim();
+  return str.slice(0, maxLen).replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '');
+}
+
+function sendJson(res, statusCode, payload, extraHeaders = {}) {
+  const body = JSON.stringify(payload);
+  res.writeHead(statusCode, {
+    'Content-Type': 'application/json; charset=utf-8',
+    'X-Content-Type-Options': 'nosniff',
+    'X-Frame-Options': 'DENY',
+    'X-XSS-Protection': '1; mode=block',
+    'Referrer-Policy': 'strict-origin-when-cross-origin',
+    'Cache-Control': 'no-store, no-cache, must-revalidate',
+    ...extraHeaders
+  });
+  res.end(body);
+}
+
+// ── 4. HELPER: PARSE JSON BODY (WITH PAYLOAD SIZE DEFENSE) ─────
 function parseJsonBody(req) {
   return new Promise((resolve, reject) => {
     let body = '';
     req.on('data', chunk => {
       body += chunk;
-      if (body.length > 2e6) { // 2MB limit
+      if (body.length > 5e5) { // 500KB security limit against DoS memory attacks
         req.destroy();
-        reject(new Error('Payload too large'));
+        reject(new Error('Payload exceeds security limit'));
       }
     });
     req.on('end', () => {
@@ -254,7 +324,7 @@ function parseJsonBody(req) {
   });
 }
 
-// ── 5. HELPER: SERVE STATIC FILE ────────────────────────────
+// ── 5. HELPER: SERVE STATIC FILE WITH CYBER-DEFENSE HEADERS ───
 function serveFile(res, filePath, statusCode = 200, req = null) {
   fs.readFile(filePath, (err, data) => {
     if (err) {
@@ -264,17 +334,31 @@ function serveFile(res, filePath, statusCode = 200, req = null) {
     const ext  = path.extname(filePath).toLowerCase();
     const mime = MIME_TYPES[ext] || 'application/octet-stream';
     const device = req ? detectDevice(req) : { type: 'unknown', isApp: false };
+    const isHtml = ext === '.html';
 
     const headers = {
       'Content-Type': mime,
-      'Cache-Control': 'no-cache, no-store, must-revalidate',
-      'Pragma': 'no-cache',
-      'Expires': '0',
+      'Cache-Control': isHtml ? 'no-cache, no-store, must-revalidate' : 'public, max-age=86400',
       'X-Content-Type-Options': 'nosniff',
       'X-Frame-Options': 'SAMEORIGIN',
+      'X-XSS-Protection': '1; mode=block',
+      'Referrer-Policy': 'strict-origin-when-cross-origin',
+      'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+      'Cross-Origin-Opener-Policy': 'same-origin',
       'X-Device-Type': device.type,
       'X-Mobile-App': device.isApp ? 'true' : 'false'
     };
+
+    if (isHtml) {
+      headers['Content-Security-Policy'] = 
+        "default-src 'self' 'unsafe-inline' https: http: data:; " +
+        "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://unpkg.com; " +
+        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
+        "font-src 'self' https://fonts.gstatic.com data:; " +
+        "img-src 'self' data: https: http:; " +
+        "connect-src 'self' https: http:; " +
+        "frame-src 'self' https://www.google.com https://maps.google.com;";
+    }
 
     if (filePath.endsWith('sw.js')) {
       headers['Service-Worker-Allowed'] = '/';
@@ -289,7 +373,13 @@ function serveFile(res, filePath, statusCode = 200, req = null) {
 function serve404(res, attemptedPath) {
   const file404 = path.join(ROOT, '404.html');
   fs.readFile(file404, (err, data) => {
-    res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
+    const headers = {
+      'Content-Type': 'text/html; charset=utf-8',
+      'X-Content-Type-Options': 'nosniff',
+      'X-Frame-Options': 'SAMEORIGIN',
+      'Referrer-Policy': 'strict-origin-when-cross-origin'
+    };
+    res.writeHead(404, headers);
     if (err) {
       res.end(`<!DOCTYPE html><html><body style="font-family:sans-serif;padding:60px;text-align:center;background:#FEF9F2">
         <h1 style="color:#C17F24;font-size:3rem">404 &bull; Page Not Found</h1>
@@ -304,11 +394,40 @@ function serve404(res, attemptedPath) {
 
 // ── 6. MAIN HTTP SERVER ─────────────────────────────────────
 const server = http.createServer(async (req, res) => {
-  const parsed = url.parse(req.url, true);
-  let pathname = decodeURIComponent(parsed.pathname).replace(/\/+$/, '') || '/';
+  const host = req.headers.host || 'localhost:3000';
+  let urlObj;
+  try {
+    urlObj = new URL(req.url, `http://${host}`);
+  } catch (err) {
+    sendJson(res, 400, { ok: false, error: 'Malformed request URL' });
+    return;
+  }
+  const query = Object.fromEntries(urlObj.searchParams.entries());
+  let pathname = decodeURIComponent(urlObj.pathname).replace(/\/+$/, '') || '/';
+  const parsed = { pathname: urlObj.pathname, query, searchParams: urlObj.searchParams };
 
-  // Enable CORS
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  // CORS Hardening
+  const isPublicApi = pathname.startsWith('/api/meals/book') ||
+                      pathname.startsWith('/api/donations/record') ||
+                      pathname.startsWith('/api/volunteers/apply') ||
+                      pathname.startsWith('/api/contacts/send') ||
+                      pathname.startsWith('/api/contact') ||
+                      pathname.startsWith('/api/sponsor-meal') ||
+                      pathname.startsWith('/api/contribute') ||
+                      pathname.startsWith('/api/donate') ||
+                      pathname === '/api/stats' ||
+                      pathname === '/api/device' ||
+                      pathname === '/api/search';
+
+  if (isPublicApi) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+  } else {
+    const origin = req.headers.origin;
+    if (origin && (origin.includes(host) || origin === 'null')) {
+      res.setHeader('Access-Control-Allow-Origin', origin);
+      res.setHeader('Access-Control-Allow-Credentials', 'true');
+    }
+  }
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
@@ -320,10 +439,9 @@ const server = http.createServer(async (req, res) => {
 
   // ── BACKEND API: /api/search ───────────────────────────────
   if (pathname === '/api/search' && req.method === 'GET') {
-    const q = (parsed.query.q || '').trim().toLowerCase();
+    const q = sanitizeInput(parsed.query.q || '', 100).toLowerCase();
     if (!q) {
-      res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ query: '', results: [] }));
+      sendJson(res, 200, { query: '', results: [] });
       return;
     }
 
@@ -332,8 +450,7 @@ const server = http.createServer(async (req, res) => {
       return haystack.includes(q);
     });
 
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ query: q, total: matches.length, results: matches }));
+    sendJson(res, 200, { query: q, total: matches.length, results: matches });
     return;
   }
 
@@ -362,28 +479,34 @@ const server = http.createServer(async (req, res) => {
 
   // 1. POST /api/admin/login
   if (pathname === '/api/admin/login' && req.method === 'POST') {
+    const rateCheck = checkRateLimit(req, 'login', 15, 15 * 60 * 1000);
+    if (rateCheck.limited) {
+      sendJson(res, 429, {
+        ok: false,
+        error: `Too many login attempts. Please wait ${rateCheck.retryAfter} seconds before trying again.`
+      }, { 'Retry-After': String(rateCheck.retryAfter) });
+      return;
+    }
+
     try {
       const data = await parseJsonBody(req);
-      const username = (data.username || '').trim();
-      const password = data.password || '';
+      const username = sanitizeInput(data.username, 100);
+      const password = String(data.password || '').slice(0, 200);
 
       const admin = db.verifyAdmin(username, password);
       if (!admin) {
-        res.writeHead(401, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ ok: false, error: 'Invalid username or password' }));
+        sendJson(res, 401, { ok: false, error: 'Invalid username or password' });
         return;
       }
 
+      resetRateLimit(req, 'login');
       const session = db.createSession(admin.id);
-      res.writeHead(200, {
-        'Content-Type': 'application/json',
+      sendJson(res, 200, { ok: true, token: session.token, admin }, {
         'Set-Cookie': `premavasam_admin_session=${encodeURIComponent(session.token)}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${7 * 86400}`
       });
-      res.end(JSON.stringify({ ok: true, token: session.token, admin }));
       return;
     } catch (err) {
-      res.writeHead(400, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ ok: false, error: err.message }));
+      sendJson(res, 400, { ok: false, error: err.message });
       return;
     }
   }
@@ -764,100 +887,120 @@ const server = http.createServer(async (req, res) => {
   }
 
   // ════════════════════════════════════════════════════════════
-  // ── PUBLIC BACKEND ROUTES ──────────────────────────────────
+  // ── PUBLIC BACKEND ROUTES (RATE-LIMITED & SANITIZED) ───────
   // ════════════════════════════════════════════════════════════
 
   // 1. POST /api/meals/book (and legacy /api/sponsor-meal)
   if ((pathname === '/api/meals/book' || pathname === '/api/sponsor-meal') && req.method === 'POST') {
+    const rateCheck = checkRateLimit(req, 'forms', 30, 5 * 60 * 1000);
+    if (rateCheck.limited) {
+      sendJson(res, 429, {
+        ok: false,
+        error: `Submission rate limit exceeded. Please wait ${rateCheck.retryAfter} seconds before trying again.`
+      }, { 'Retry-After': String(rateCheck.retryAfter) });
+      return;
+    }
+
     try {
       const data = await parseJsonBody(req);
-      const name = (data.sponsor_name || data.name || '').trim();
-      const phone = (data.sponsor_phone || data.phone || '').trim();
-      const date = (data.sponsor_date || data.meal_date || data.date || '').trim();
+      const name = sanitizeInput(data.sponsor_name || data.name, 150);
+      const phone = sanitizeInput(data.sponsor_phone || data.phone, 35);
+      const date = sanitizeInput(data.sponsor_date || data.meal_date || data.date, 30);
 
       if (!name || !phone || !date) {
-        res.writeHead(400, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ ok: false, error: 'Sponsor name, phone, and date are required fields' }));
+        sendJson(res, 400, { ok: false, error: 'Sponsor name, phone, and date are required fields' });
         return;
       }
 
       const booking = db.insertMealBooking({
         sponsor_name: name,
         sponsor_phone: phone,
-        sponsor_email: (data.sponsor_email || data.email || '').trim(),
+        sponsor_email: sanitizeInput(data.sponsor_email || data.email, 100),
         sponsor_date: date,
-        occasion: (data.occasion || 'Special Occasion').trim(),
-        selected_items: (data.selected_items || data.meal_type || data.meal || 'Lunch Feast').trim(),
-        total_amount: data.total_amount !== undefined ? data.total_amount : (data.amount || 0),
-        notes: (data.notes || '').trim()
+        occasion: sanitizeInput(data.occasion || 'Special Occasion', 200),
+        selected_items: sanitizeInput(data.selected_items || data.meal_type || data.meal || 'Lunch Feast', 300),
+        total_amount: Number(data.total_amount !== undefined ? data.total_amount : (data.amount || 0)) || 0,
+        notes: sanitizeInput(data.notes, 1000)
       });
 
-      res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({
+      sendJson(res, 200, {
         ok: true,
         id: booking.id,
         booking,
         message: 'Meal reservation recorded with heartfelt gratitude. Official confirmation will be shared promptly.'
-      }));
+      });
       return;
     } catch (err) {
-      res.writeHead(400, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ ok: false, error: err.message }));
+      sendJson(res, 400, { ok: false, error: err.message });
       return;
     }
   }
 
   // 2. POST /api/donations/record (and legacy /api/contribute, /api/donate)
   if ((pathname === '/api/donations/record' || pathname === '/api/contribute' || pathname === '/api/donate') && req.method === 'POST') {
+    const rateCheck = checkRateLimit(req, 'forms', 30, 5 * 60 * 1000);
+    if (rateCheck.limited) {
+      sendJson(res, 429, {
+        ok: false,
+        error: `Submission rate limit exceeded. Please wait ${rateCheck.retryAfter} seconds before trying again.`
+      }, { 'Retry-After': String(rateCheck.retryAfter) });
+      return;
+    }
+
     try {
       const data = await parseJsonBody(req);
-      const name = (data.donor_name || data.name || '').trim();
+      const name = sanitizeInput(data.donor_name || data.name, 150);
       const numAmount = parseFloat(data.amount);
 
       if (!name || isNaN(numAmount) || numAmount <= 0) {
-        res.writeHead(400, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ ok: false, error: 'Donor name and a valid donation amount are required' }));
+        sendJson(res, 400, { ok: false, error: 'Donor name and a valid donation amount are required' });
         return;
       }
 
       const donation = db.insertDonation({
         donor_name: name,
-        donor_email: (data.donor_email || data.email || '').trim(),
-        donor_phone: (data.donor_phone || data.phone || '').trim(),
-        pan_number: (data.pan_number || data.pan || '').trim().toUpperCase(),
+        donor_email: sanitizeInput(data.donor_email || data.email, 100),
+        donor_phone: sanitizeInput(data.donor_phone || data.phone, 35),
+        pan_number: sanitizeInput(data.pan_number || data.pan, 15).toUpperCase(),
         amount: numAmount,
-        transfer_type: (data.transfer_type || data.payment_mode || 'Bank Transfer').trim(),
-        reference_number: (data.reference_number || data.transaction_ref || data.utr || '').trim(),
-        notes: (data.notes || data.purpose || '').trim()
+        transfer_type: sanitizeInput(data.transfer_type || data.payment_mode || 'Bank Transfer', 100),
+        reference_number: sanitizeInput(data.reference_number || data.transaction_ref || data.utr, 100),
+        notes: sanitizeInput(data.notes || data.purpose, 1000)
       });
 
-      res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({
+      sendJson(res, 200, {
         ok: true,
         id: donation.id,
         amount: donation.amount,
         donation,
         message: 'Donation recorded successfully. An 80G tax receipt will be issued to your email.'
-      }));
+      });
       return;
     } catch (err) {
-      res.writeHead(400, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ ok: false, error: err.message }));
+      sendJson(res, 400, { ok: false, error: err.message });
       return;
     }
   }
 
   // 3. POST /api/volunteers/apply
   if (pathname === '/api/volunteers/apply' && req.method === 'POST') {
+    const rateCheck = checkRateLimit(req, 'forms', 30, 5 * 60 * 1000);
+    if (rateCheck.limited) {
+      sendJson(res, 429, {
+        ok: false,
+        error: `Submission rate limit exceeded. Please wait ${rateCheck.retryAfter} seconds before trying again.`
+      }, { 'Retry-After': String(rateCheck.retryAfter) });
+      return;
+    }
+
     try {
       const data = await parseJsonBody(req);
-      const name = (data.full_name || data.name || '').trim();
-      const phone = (data.phone || '').trim();
-      const email = (data.email || '').trim();
+      const name = sanitizeInput(data.full_name || data.name, 150);
+      const phone = sanitizeInput(data.phone, 35);
+      const email = sanitizeInput(data.email, 100);
 
       if (!name || !phone || !email) {
-        res.writeHead(400, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ ok: false, error: 'Full name, phone, and email are required for volunteer applications' }));
+        sendJson(res, 400, { ok: false, error: 'Full name, phone, and email are required for volunteer applications' });
         return;
       }
 
@@ -865,57 +1008,61 @@ const server = http.createServer(async (req, res) => {
         full_name: name,
         phone,
         email,
-        skills: (data.skills || '').trim(),
-        message: (data.message || '').trim()
+        skills: sanitizeInput(data.skills, 300),
+        message: sanitizeInput(data.message, 2000)
       });
 
-      res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({
+      sendJson(res, 200, {
         ok: true,
         id: volunteer.id,
         volunteer,
         message: 'Thank you for stepping forward to serve! Miss Mumtaj will reach out to schedule an orientation.'
-      }));
+      });
       return;
     } catch (err) {
-      res.writeHead(400, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ ok: false, error: err.message }));
+      sendJson(res, 400, { ok: false, error: err.message });
       return;
     }
   }
 
   // 4. POST /api/contacts/send (and legacy /api/contact)
   if ((pathname === '/api/contacts/send' || pathname === '/api/contact') && req.method === 'POST') {
+    const rateCheck = checkRateLimit(req, 'forms', 30, 5 * 60 * 1000);
+    if (rateCheck.limited) {
+      sendJson(res, 429, {
+        ok: false,
+        error: `Submission rate limit exceeded. Please wait ${rateCheck.retryAfter} seconds before trying again.`
+      }, { 'Retry-After': String(rateCheck.retryAfter) });
+      return;
+    }
+
     try {
       const data = await parseJsonBody(req);
-      const name = (data.name || '').trim();
-      const email = (data.email || '').trim();
-      const message = (data.message || '').trim();
+      const name = sanitizeInput(data.name, 150);
+      const email = sanitizeInput(data.email, 100);
+      const message = sanitizeInput(data.message, 3000);
 
       if (!name || !message) {
-        res.writeHead(400, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ ok: false, error: 'Name and message are required fields' }));
+        sendJson(res, 400, { ok: false, error: 'Name and message are required fields' });
         return;
       }
 
       const contact = db.insertContact({
         name,
         email: email || 'donor@premavasam.org',
-        subject: (data.subject || 'General Inquiry').trim(),
+        subject: sanitizeInput(data.subject || 'General Inquiry', 200),
         message
       });
 
-      res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({
+      sendJson(res, 200, {
         ok: true,
         id: contact.id,
         contact,
         message: 'Your inquiry has been received. Our office team will respond promptly.'
-      }));
+      });
       return;
     } catch (err) {
-      res.writeHead(400, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ ok: false, error: err.message }));
+      sendJson(res, 400, { ok: false, error: err.message });
       return;
     }
   }
@@ -923,31 +1070,75 @@ const server = http.createServer(async (req, res) => {
   // Public Telemetry Stats
   if (pathname === '/api/stats' && req.method === 'GET') {
     const stats = db.getStats();
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify(stats));
+    sendJson(res, 200, stats);
     return;
   }
 
   // Device Telemetry API
   if (pathname === '/api/device' && req.method === 'GET') {
     const device = detectDevice(req);
-    res.writeHead(200, {
-      'Content-Type': 'application/json',
+    sendJson(res, 200, { ok: true, device }, {
       'X-Device-Type': device.type,
       'X-Mobile-App': device.isApp ? 'true' : 'false'
     });
-    res.end(JSON.stringify({ ok: true, device }));
     return;
   }
 
-  // ── 7. ROUTE RESOLUTION FOR STATIC ASSETS & PAGES ───────────
+  // ── 7. ROUTE RESOLUTION FOR STATIC ASSETS & PAGES (WITH CYBER-DEFENSE) ─
   let resolvedFile = null;
+
+  // STRICT CYBERSECURITY CHECK 1: Disallow access to databases, config, source code, hidden files
+  const lowerPath = pathname.toLowerCase();
+  const isForbidden =
+    lowerPath.startsWith('/data') ||
+    lowerPath.includes('.db') ||
+    lowerPath.includes('.sqlite') ||
+    lowerPath.includes('.wal') ||
+    lowerPath.includes('.shm') ||
+    lowerPath.includes('.git') ||
+    lowerPath.includes('.env') ||
+    lowerPath.includes('node_modules') ||
+    lowerPath.endsWith('.yaml') ||
+    lowerPath.endsWith('.yml') ||
+    lowerPath.includes('procfile') ||
+    lowerPath.includes('package.json') ||
+    lowerPath.includes('package-lock.json') ||
+    (lowerPath.endsWith('.json') && pathname !== '/manifest.json') ||
+    (lowerPath.endsWith('.js') && !lowerPath.startsWith('/js/') && pathname !== '/sw.js');
+
+  if (isForbidden) {
+    serve404(res, pathname);
+    return;
+  }
 
   if (ROUTE_MAP[pathname]) {
     resolvedFile = path.join(ROOT, ROUTE_MAP[pathname]);
   } else {
+    // Sanitize path against directory traversal
     const safePath = path.normalize(pathname).replace(/^(\.\.[/\\])+/, '');
-    const candidate = path.join(ROOT, safePath);
+    const candidate = path.resolve(ROOT, '.' + safePath);
+
+    // STRICT CYBERSECURITY CHECK 2: Must be within ROOT directory
+    if (!candidate.startsWith(ROOT)) {
+      serve404(res, pathname);
+      return;
+    }
+
+    // STRICT CYBERSECURITY CHECK 3: Must be inside allowed public directories or files
+    const relativeToRoot = path.relative(ROOT, candidate);
+    const allowedPrefixes = ['images', 'css', 'js', 'fonts', 'icons'];
+    const firstSegment = relativeToRoot.split(path.sep)[0];
+
+    const isExplicitlyAllowed = 
+      allowedPrefixes.includes(firstSegment) || 
+      candidate.endsWith('.html') || 
+      candidate.endsWith('manifest.json') || 
+      candidate.endsWith('sw.js');
+
+    if (!isExplicitlyAllowed) {
+      serve404(res, pathname);
+      return;
+    }
 
     if (fs.existsSync(candidate)) {
       if (fs.statSync(candidate).isDirectory()) {
@@ -965,6 +1156,15 @@ const server = http.createServer(async (req, res) => {
   }
 
   if (resolvedFile && fs.existsSync(resolvedFile)) {
+    // Final verification: ensure resolvedFile does not point to data directory or server code
+    const resolvedLower = resolvedFile.toLowerCase();
+    if (resolvedLower.startsWith(DATA_DIR.toLowerCase()) || 
+        resolvedLower.includes('.db') || 
+        resolvedLower === path.join(ROOT, 'server.js').toLowerCase() || 
+        resolvedLower === path.join(ROOT, 'db.js').toLowerCase()) {
+      serve404(res, pathname);
+      return;
+    }
     serveFile(res, resolvedFile, 200, req);
   } else {
     serve404(res, pathname);
